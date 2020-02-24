@@ -12,4 +12,6 @@ public interface QuoteService {
 	public Quote getQuoteDetailById(Long id);
 	
 	public Quote calculate(Quote quo);
+	
+	public void updateQuote(Quote quo);
 }

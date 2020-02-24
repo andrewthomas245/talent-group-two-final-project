@@ -211,7 +211,7 @@ public class QuoteServiceImpl implements QuoteService {
 			} else if (age == 58) {
 				yearlypremium = suminsured * 0.144000;
 			} else {
-				
+
 			}
 		}
 		if (policyterm == 10) {
@@ -236,18 +236,59 @@ public class QuoteServiceImpl implements QuoteService {
 			} else if (age == 55) {
 				yearlypremium = suminsured * 0.097200;
 			} else {
-				
+
 			}
 		}
-		
-		double monthlypremium= yearlypremium/12;
-		double totalpayamount=yearlypremium*policyterm;
-		
+
+		double monthlypremium = yearlypremium / 12;
+		double totalpayamount = yearlypremium * policyterm;
+
 		quo.setMonthlypremium(monthlypremium);
 		quo.setYearlypremium(yearlypremium);
 		quo.setTotalpayamount(totalpayamount);
 
 		return quo;
+	}
+
+	@Override
+	public void updateQuote(Quote quo) {
+		Optional<Quotes> quotesDb = this.quoteRepository.findById(quo.getId());
+		Optional<Addresses> addressesDb = this.addressRepository.findById(quo.getId());
+		Optional<Benificiaries> benificariesDb = this.benificiaryRepository.findById(quo.getId());
+
+		Addresses addressesUpdate = addressesDb.get();
+		addressesUpdate.setResidenceno(quo.getResidenceno());
+		addressesUpdate.setRoadstreet(quo.getRoadstreet());
+		addressesUpdate.setTownship(quo.getTownship());
+		addressesUpdate.setCity(quo.getCity());
+
+		Benificiaries benificiariesUpdate = benificariesDb.get();
+		benificiariesUpdate.setName(quo.getBenificiaryname());
+		benificiariesUpdate.setNrc(quo.getBenificiarynrc());
+		benificiariesUpdate.setRelationship(quo.getRelationship());
+		benificiariesUpdate.setAddress(quo.getBenificiaryaddress());
+		benificiariesUpdate.setPhone(quo.getBenificiaryphone());
+
+		Quotes quotesUpdate = quotesDb.get();
+		quotesUpdate.setName(quo.getName());
+		quotesUpdate.setFathername(quo.getFathername());
+		quotesUpdate.setAge(quo.getAge());
+		quotesUpdate.setDob(quo.getDob());
+		quotesUpdate.setNrc(quo.getNrc());
+		quotesUpdate.setOccupation(quo.getOccupation());
+
+		quotesUpdate.setPolicyterm(quo.getPolicyterm());
+		quotesUpdate.setPremiumplan(quo.getPremiumplan());
+		quotesUpdate.setSuminsured(quo.getSuminsured());
+		quotesUpdate.setMonthlypremium(quo.getMonthlypremium());
+		quotesUpdate.setYearlypremium(quo.getYearlypremium());
+		quotesUpdate.setTotalpayamount(quo.getTotalpayamount());
+		
+		quotesUpdate.setAddresses(addressesUpdate);
+		quotesUpdate.setBenificiaries(benificiariesUpdate);
+
+		quoteRepository.save(quotesUpdate);
+
 	}
 
 }

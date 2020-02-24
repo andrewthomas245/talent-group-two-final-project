@@ -1,0 +1,274 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<f:metadata charset="UTF-8" />
+	<f:metadata name="viewport"
+		content="width=device-width, initial-scale=1" />
+
+	<script src="js\jquery.mask.js" />
+
+	<script src="js\bootstrap.bundle.min.js" />
+	
+	<script>
+	function changeFunction(){
+		
+	}
+	</script>
+
+	<link rel="stylesheet" type="text/css" href="css\bootstrap.min.css" />
+	<link rel="stylesheet"
+		href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+	<link rel="stylesheet" type="text/css" href="css\allcss.css" />
+	<style type="text/css">
+.label {
+	width: 40%;
+	padding: 4px;
+}
+
+.value {
+	width: 60%;
+	padding: 4px;
+}
+
+.grid {
+	width: 100%;
+}
+
+.error {
+	color: red;
+}
+
+.outputLabel {
+	font-weight: bold;
+}
+
+.grid {
+	width: 33%;
+	padding: 4px;
+}
+</style>
+</h:head>
+
+<h:body>
+	<!-- Navigation -->
+	<nav class="navbar navbar-expand-lg navbar-dark static-top" id="navbar">
+	<div class="container">
+		<a class="navbar-brand" href="#"> <img src="img/logo_white.svg"
+			style="height: 70px" />
+		</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#navbarResponsive" aria-controls="navbarResponsive"
+			aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarResponsive">
+			<ul class="navbar-nav ml-auto">
+				<li class="nav-item active"><a class="nav-link" href="#">Home
+						<span class="sr-only">(current)</span>
+				</a></li>
+				<li class="nav-item"><a class="nav-link" href="#">About</a></li>
+				<li class="nav-item"><a class="nav-link" href="#">Services</a></li>
+				<li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+				<li class="nav-item dropdown"><a
+					class="nav-link dropdown-toggle" href="#"
+					id="navbarDropdownMenuLink" data-toggle="dropdown"
+					aria-haspopup="true" aria-expanded="false"> Procedures </a>
+					<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+						<a class="dropdown-item" href="#">Application Procedure</a> <a
+							class="dropdown-item" href="#">Claim Procedure</a>
+					</div></li>
+			</ul>
+		</div>
+	</div>
+	</nav>
+
+
+	<br />
+
+	<div class="container">
+		<h2>Create a New Quote</h2>
+		<p>Fill the form below and submit to create a new quote for you.</p>
+		<br />
+		<h:form>
+
+			<p:growl id="growl" showDetail="true" />
+
+			<p:wizard flowListener="#{quoteController.onFlowProcess}">
+				<p:tab id="personal" title="Personal">
+					<p:panel header="Fill your personal details here.">
+						<p:messages />
+						<h:panelGrid columns="2" columnClasses="label, value">
+							<h:outputText value="Name of Insured: *" />
+							<p:inputText value="#{quoteController.quote.name}" />
+
+							<h:outputText value="Father's Name: *" />
+							<p:inputText value="#{quoteController.quote.fathername}" />
+
+							<h:outputText value="Date of Birth: *" />
+							<p:calendar yearRange="1960:2010"
+								value="#{quoteController.quote.dob}" navigator="true" />
+
+							<h:outputText value="Age: *" />
+							<p:spinner id="age" value="#{quoteController.quote.age}" min="10"
+								max="60" style="width:60px" onkeydown="return false"/>
+
+							<h:outputText value="NRC: *" />
+							<p:inputMask value="#{quoteController.quote.nrc}"
+								mask="99/99/9999" />
+
+							<h:outputText value="Occupation: *" />
+							<p:inputMask value="#{quoteController.quote.occupation}"
+								mask="99/99/9999" />
+
+							<h:outputText value="Phone: *" />
+							<p:inputMask value="#{quoteController.quote.phone}"
+								mask="99/99/9999" />
+						</h:panelGrid>
+					</p:panel>
+				</p:tab>
+
+				<p:tab id="address" title="Address">
+					<p:panel header="Fill your address information here.">
+						<p:messages />
+						<h:panelGrid columns="2" columnClasses="label, value">
+
+							<h:outputText value="Residence No: *" />
+							<p:inputText value="#{quoteController.quote.residenceno}" />
+
+							<h:outputText value="Road or Street: *" />
+							<p:inputText value="#{quoteController.quote.roadstreet}" />
+
+							<h:outputText value="Township: *" />
+							<p:inputText value="#{quoteController.quote.township}" />
+
+							<h:outputText value="City: *" />
+							<p:inputText value="#{quoteController.quote.city}" />
+						</h:panelGrid>
+					</p:panel>
+				</p:tab>
+
+				<p:tab id="paymentdetails" title="Payment Details">
+					<p:panel header="Fill payment details for your insurance here.">
+						<p:messages />
+						<h:panelGrid columns="2" columnClasses="label, value">
+							<h:outputText value="Sum Insured: *" />
+							<p:inputText id="amount"
+								value="#{quoteController.quote.suminsured}" />
+
+							<h:outputText value="Policy Term: *" />
+							<p:selectOneMenu id="policy"
+								value="#{quoteController.quote.policyterm}" required="true" >
+								<f:selectItem itemLabel="Select One" itemValue="#{null}"
+									noSelectionOption="true"/>
+								<f:selectItem id="hi" itemLabel="5 Years" itemValue="5"/>
+								<f:selectItem itemLabel="7 Years" itemValue="7" />
+								<f:selectItem itemLabel="10 Years" itemValue="10" />
+							</p:selectOneMenu>
+
+							<h:outputText value="Premium Plan: *" />
+							<p:selectOneMenu id="premiumplan"
+								value="#{quoteController.quote.premiumplan}" required="true">
+								<f:selectItem itemLabel="Select One" itemValue="#{null}"
+									noSelectionOption="true" />
+								<f:selectItem itemLabel="1 Month" itemValue="1" />
+								<f:selectItem itemLabel="3 Months" itemValue="3" />
+								<f:selectItem itemLabel="6 Months" itemValue="6" />
+								<f:selectItem itemLabel="12 Months" itemValue="12" />
+							</p:selectOneMenu>
+						</h:panelGrid>
+					</p:panel>
+				</p:tab>
+
+				<p:tab id="beneficiary" title="Beneficiary">
+					<p:panel header="Fill your beneficiary's information here.">
+						<p:messages />
+						<h:panelGrid columns="2" columnClasses="label, value">
+							<h:outputText value="Beneficiary's Name: *" />
+							<p:inputText value="#{quoteController.quote.benificiaryname}" />
+
+							<h:outputText value="NRC: *" />
+							<p:inputText value="#{quoteController.quote.benificiarynrc}" />
+
+							<h:outputText value="Relationship with Insurer: *" />
+							<p:selectOneMenu id="relationship"
+								value="#{quoteController.quote.relationship}" required="true">
+								<f:selectItem itemLabel="Select One" itemValue="#{null}"
+									noSelectionOption="true" />
+								<f:selectItem itemLabel="Spouse" itemValue="Spouse" />
+								<f:selectItem itemLabel="Child" itemValue="Child" />
+								<f:selectItem itemLabel="Parent" itemValue="Parent" />
+								<f:selectItem itemLabel="Grandparent" itemValue="Grandparent" />
+								<f:selectItem itemLabel="Sibling" itemValue="Sibling" />
+								<f:selectItem itemLabel="Pibling" itemValue="Pibling" />
+								<f:selectItem itemLabel="Nibling" itemValue="Nibling" />
+								<f:selectItem itemLabel="Friend" itemValue="Friend" />
+							</p:selectOneMenu>
+
+							<h:outputText value="Address: *" />
+							<p:inputMask value="#{quoteController.quote.benificiaryaddress}"
+								mask="99/99/9999" />
+
+							<h:outputText value="Phone: *" />
+							<p:inputMask value="#{quoteController.quote.benificiaryphone}"
+								mask="99/99/9999" />
+						</h:panelGrid>
+					</p:panel>
+				</p:tab>
+				<p:tab id="gotoconfirm" title="Finish">
+					<p:panel
+						header="Go to confirmation page to confirm your information.">
+						<h:panelGrid columns="1" columnClasses="label, value" style="height:200px;">
+							<h3 style="font-weight: bolder; margin: 0 auto; line-height: 100px;">This is the
+								end of the form.</h3>
+							<p style="line-height: 50px;">You will be redirected to another page for confirmation.</p>
+						</h:panelGrid>
+					</p:panel>
+					<p:commandButton value="Finish" action="#{quoteController.confirm}"
+						update="growl" process="@this"
+						style="float: right; margin-top: 3px; background-color:green; border-color: green;"
+						icon="pi pi-chevron-right" />
+				</p:tab>
+			</p:wizard>
+		</h:form>
+	</div>
+
+	<!-- /.container -->
+	<div class="mt-5 pt-5 pb-5 footer">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-5 col-xs-12 about-company">
+					<h2>For More Information</h2>
+					<p class="pr-5 text-white-50">Please contact us via phone or
+						via social media. We are here for you anytime.</p>
+					<p>
+						<a href="#"><i class="fa fa-facebook-square mr-1"></i></a><a
+							href="#"><i class="fa fa-linkedin-square"></i></a>
+					</p>
+				</div>
+				<div class="col-lg-3 col-xs-12 links"></div>
+				<div class="col-lg-4 col-xs-12 location">
+					<h4 class="mt-lg-0 mt-sm-4">Address</h4>
+					<p>No. 22, Mingalar Road, Pyay Township, Yangon.</p>
+					<p class="mb-0">
+						<i class="fa fa-phone mr-3"></i>(+95) 9753010834
+					</p>
+					<p>
+						<i class="fa fa-envelope-o mr-3"></i>info@insurancemyanmar.com
+					</p>
+				</div>
+			</div>
+			<div class="row mt-5">
+				<div class="col copyright">
+					<p class="">
+						<small class="text-white-50">© 2020. All Rights Reserved.</small>
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</h:body>
+</html>
