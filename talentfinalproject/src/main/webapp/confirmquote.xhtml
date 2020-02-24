@@ -196,6 +196,8 @@
 				<br />
 				<p:commandButton value="Submit" action="#{quoteController.save}"
 					update="growl" process="@this" />
+				<p:commandButton value="Save" action="#{quoteController.edit}"
+					update="growl" process="@this" />
 				<p:commandButton value="Edit" action="/createquote.xhtml" />
 			</p:tab>
 		</h:form>

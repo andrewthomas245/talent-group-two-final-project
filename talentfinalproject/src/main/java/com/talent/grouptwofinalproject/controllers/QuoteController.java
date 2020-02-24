@@ -69,6 +69,38 @@ public class QuoteController {
 		return "/myquotes.xhtml?faces-redirect=true";
 
 	}
+	
+	public String edit() {
+		quoteservice.updateQuote(quote);
+		FacesMessage msg = new FacesMessage("Successful",
+				"Quote with Name: " + quote.getName() + " is edited successfully.");
+
+		FacesContext context = FacesContext.getCurrentInstance();
+		context.addMessage(null, msg);
+		context.getExternalContext().getFlash().setKeepMessages(true);
+
+		quote = new Quote();
+
+		return "/myquotes.xhtml?faces-redirect=true";
+
+	}
+	
+	public String getToEdit(Quote quo) {
+		System.out.println("Start: " + quo.getId());
+		List<Policies> findpolicies = policyservice.findQuoteInPolicy(quo.getId());
+		System.out.println(findpolicies);
+		if (!findpolicies.isEmpty()) {
+			System.out.println("DUPLICATE");
+			FacesContext context = FacesContext.getCurrentInstance();
+			context.addMessage("Error", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Fail",
+					"There is a policy already created with this quote."));
+			context.getExternalContext().getFlash().setKeepMessages(true);
+		} else {
+			System.out.println("Here");
+			return "/editquote.xhtml?faces-redirect=true";
+		}
+		return null;
+	}
 
 	public String confirm() {
 		quote = quoteservice.calculate(quote);
