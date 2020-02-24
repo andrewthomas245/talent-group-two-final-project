@@ -114,7 +114,7 @@
 				</h4>
 			</center>
 			<p:dataGrid var="policy" value="#{policyController.policies}"
-				columns="3" layout="grid" rows="12" paginator="false" id="quotes"
+				columns="3" layout="grid" rows="12" paginator="true" id="quotes"
 				paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 				rowsPerPageTemplate="6,12,16" columnClasses="label, value">
 				<p:panel header="Policy ID #{policy.id}" style="text-align:center">
