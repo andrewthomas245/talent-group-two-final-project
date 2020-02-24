@@ -152,6 +152,7 @@ body {
 		<br />
 		<div class="form">
 			<h:form class="register-form" id="register">
+			<p:growl id="growl" showDetail="true" />
 				<p:inputText placeholder="User Name"
 					value="#{userController.user.username}" />
 				<p:inputText placeholder="Email Address"
@@ -160,7 +161,7 @@ body {
 					value="#{userController.user.password}" />
 				<p:password placeholder="Confrim Password" />
 
-				<p:commandButton value="Create" action="#{userController.save}" />
+				<p:commandButton value="Create" action="#{userController.save}" update="growl" />
 				<p class="message">
 					Already registered? <a href="#" onclick="loginFunction()">Log
 						In</a>

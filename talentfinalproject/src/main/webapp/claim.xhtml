@@ -20,12 +20,12 @@
 	<link rel="stylesheet" type="text/css" href="css\allcss.css" />
 	<style type="text/css">
 .label {
-	width: 20%;
+	width: 50%;
 	padding: 4px;
 }
 
 .value {
-	width: 80%;
+	width: 50%;
 	padding: 4px;
 }
 
@@ -129,7 +129,7 @@
 								styleClass="outputLabel" />
 						</h:panelGrid>
 
-						<p:commandButton value="Submit"
+						<p:commandButton value="Claim"
 							action="#{claimController.store()}" update="growl"
 							process="@this" />
 					</p:panel>

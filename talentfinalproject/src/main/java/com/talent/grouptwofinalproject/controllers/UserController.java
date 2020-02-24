@@ -32,8 +32,13 @@ public class UserController {
     public void save() {
     	System.out.println("Here");
     	userService.createUser(user);
-        FacesMessage msg = new FacesMessage("Successful", "Welcome :" + user.getUsername());
-        FacesContext.getCurrentInstance().addMessage(null, msg);
+    	
+		FacesMessage msg = new FacesMessage("Successful",
+				"User with Name: " + user.getUsername() + " is created successfully.");
+
+		FacesContext context = FacesContext.getCurrentInstance();
+		context.addMessage(null, msg);
+		context.getExternalContext().getFlash().setKeepMessages(true);
     }
      
     public boolean isSkip() {
