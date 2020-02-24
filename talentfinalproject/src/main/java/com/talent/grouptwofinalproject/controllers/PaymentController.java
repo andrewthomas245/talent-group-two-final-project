@@ -55,7 +55,7 @@ public class PaymentController {
 		boolean checkpaidpremium = paymentService.checkTotalPayment(pol);
 		System.out.println(checkpaidpremium);
 		
-		if (checkpaidpremium) {
+		if (!checkpaidpremium) {
 			FacesContext context= FacesContext.getCurrentInstance();
 			context.addMessage("Error", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Fail",
 					"You have already paid premium in full."));

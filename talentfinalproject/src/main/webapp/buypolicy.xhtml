@@ -105,7 +105,7 @@
 							<p:inputText value="#{policyController.policy.effectivedate}" />
 
 							<h:outputText value="Enddate: *" />
-							<p:inputText value="#{userController.user.age}" />
+							<p:inputText value="#{policyController.policy.enddate}" />
 						</h:panelGrid>
 					</p:panel>
 				</p:tab>
@@ -130,11 +130,11 @@
 									styleClass="outputLabel" />
 
 								<h:outputText value="Effective Date: " />
-								<h:outputText value="#{userController.user.lastname}"
+								<h:outputText value="#{policyController.policy.effectivedate}"
 									styleClass="outputLabel" />
 
 								<h:outputText value="End Date: " />
-								<h:outputText value="#{userController.user.age}"
+								<h:outputText value="#{policyController.policy.enddate}"
 									styleClass="outputLabel" />
 							</h:panelGrid>
 						</h:panelGrid>

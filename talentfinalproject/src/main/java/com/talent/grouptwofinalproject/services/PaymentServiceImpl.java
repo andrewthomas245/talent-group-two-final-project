@@ -60,7 +60,7 @@ public class PaymentServiceImpl implements PaymentService {
 		System.out.println("Total:"+totalpremium);
 		
 		
-		if (totalpaidpremium <= totalpremium) {
+		if (totalpaidpremium >= totalpremium) {
 			check=false;
 		}
 		
