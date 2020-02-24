@@ -151,25 +151,29 @@ body {
 		</center>
 		<br />
 		<div class="form">
-			<form class="register-form" id="register">
-				<p:inputText placeholder="User Name" />
-				<p:password placeholder="Password" />
+			<h:form class="register-form" id="register">
+				<p:inputText placeholder="User Name"
+					value="#{userController.user.username}" />
+				<p:inputText placeholder="Email Address"
+					value="#{userController.user.email}" />
+				<p:password placeholder="Password"
+					value="#{userController.user.password}" />
 				<p:password placeholder="Confrim Password" />
-				<p:inputText placeholder="Email Address" />
-				<p:commandButton value="Create"/>
+
+				<p:commandButton value="Create" action="#{userController.save}" />
 				<p class="message">
 					Already registered? <a href="#" onclick="loginFunction()">Log
 						In</a>
 				</p>
-			</form>
+			</h:form>
 			<form class="login-form" id="login">
 				<p:inputText placeholder="username" />
 				<p:inputText placeholder="password" />
-				<p:commandButton value="Log In"/>
-					<p class="message">
-						Not registered? <a href="#" onclick="registerFunction()">Create
-							an account</a>
-					</p>
+				<p:commandButton value="Log In" />
+				<p class="message">
+					Not registered? <a href="#" onclick="registerFunction()">Create
+						an account</a>
+				</p>
 			</form>
 		</div>
 	</div>

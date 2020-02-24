@@ -19,6 +19,8 @@ public class Users {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long userid;
 	private String name;
+	private String email;
+	private String password;
 
 	//@OneToMany(mappedBy = "users", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	//private List<Quotes> quotes;
@@ -46,8 +48,26 @@ public class Users {
 	//public void setQuotes(List<Quotes> quotes) {
 	//	this.quotes = quotes;
 	//}
+	
+	
 
 	public Users() {
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public Users(Long userid, String name) {
