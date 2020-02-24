@@ -1,0 +1,152 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<f:metadata charset="UTF-8" />
+	<f:metadata name="viewport"
+		content="width=device-width, initial-scale=1" />
+	<script src="js\jquery.slim.min.js">
+		
+	</script>
+	<script src="js\bootstrap.bundle.min.js">
+		
+	</script>
+	<script src="js\bootstrap.jquery.min.js">
+		
+	</script>
+
+	<link rel="stylesheet" type="text/css" href="css\bootstrap.min.css" />
+	<link rel="stylesheet"
+		href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+	<link rel="stylesheet" type="text/css" href="css\allcss.css" />
+	<style>
+.bg {
+	background-image: url(img/bg_health.jpg);
+}
+</style>
+</h:head>
+
+<h:body>
+	<!-- Navigation -->
+	<nav class="navbar navbar-expand-lg navbar-dark static-top" id="navbar">
+	<div class="container">
+		<a class="navbar-brand" href="#"> <img src="img/logo_white.svg"
+			style="height: 70px" />
+		</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#navbarResponsive" aria-controls="navbarResponsive"
+			aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarResponsive">
+			<ul class="navbar-nav ml-auto">
+				<li class="nav-item active"><a class="nav-link" href="#">Home
+						<span class="sr-only">(current)</span>
+				</a></li>
+				<li class="nav-item"><a class="nav-link" href="#">About</a></li>
+				<li class="nav-item dropdown"><a
+					class="nav-link dropdown-toggle" href="#"
+					id="navbarDropdownMenuLink" data-toggle="dropdown"
+					aria-haspopup="true" aria-expanded="false"> <i
+						class="fa fa-user-circle-o" aria-hidden="true"/> Kyaw Kyaw Latt</a>
+					<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+						<a class="dropdown-item" href="#"><i class="fa fa-list-alt" aria-hidden="true"></i> My Quotes</a> <a
+							class="dropdown-item" href="#"><i class="fa fa-product-hunt" aria-hidden="true"></i> My Policies</a> <a
+							class="dropdown-item" href="#"><i class="fa fa-user" aria-hidden="true"></i> My Account</a>
+					</div></li>
+				<li class="nav-item active"><a href="/login.xhtml"><button
+							type="button" class="btn btn-primary">
+							<i class="fa fa-sign-out"></i> Logout
+						</button></a></li>
+			</ul>
+		</div>
+	</div>
+	</nav>
+
+	<div class="jumbotron jumbotron-fluid bg">
+		<center>
+			<h3 class="display-4">WHATEVER HAPPENS TO YOU, WE GOT YOU.</h3>
+			<p>We are committed to helping individuals and families in
+				Myanmar to live in healthier and happier lives.</p>
+			<button type="button" class="btn btn-primary">Do Something</button>
+			<button type="button" class="btn btn-success">Another Thing</button>
+		</center>
+	</div>
+
+	<br />
+	<div class="container">
+		<f:view contentType="text/html">
+			<h:form>
+				<p:panel>
+					<f:facet name="header">
+                Class Form
+                <p:commandButton icon="pi pi-refresh" update="classform"
+							process="@this" style="margin-right:20px;">
+							<p:resetInput target="classform" />
+						</p:commandButton>
+					</f:facet>
+					<h:panelGrid columns="3" id="classform">
+						<p:outputLabel for="classid" value="Class ID" />
+						<p:inputText id="classid"
+							value="#{classController.stuclass.stuclass_id}" required="true"
+							validatorMessage="The input does not match the pattern 'CL' + six numbers.">
+							<f:validateRegex pattern="^CL[0-9]{3,3}$" />
+						</p:inputText>
+						<p:message for="classid" />
+						<p:outputLabel for="classname" value="Class Name" />
+						<p:inputText id="classname"
+							value="#{classController.stuclass.name}" required="true"
+							validatorMessage="Name must be characters only and no spaces.">
+							<f:validateRegex pattern="^[a-zA-Z_]+( [a-zA-Z_]+)*$" />
+						</p:inputText>
+						<p:message for="classname" />
+						<p:outputLabel />
+						<p:commandButton value="Save" validateClient="true"
+							onclick="myFunction()" action="#{classController.save()}"
+							update="@form" process="@parent" />
+					</h:panelGrid>
+				</p:panel>
+				<br />
+			</h:form>
+		</f:view>
+	</div>
+	<!-- /.container -->
+	<div class="mt-5 pt-5 pb-5 footer">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-5 col-xs-12 about-company">
+					<h2>For More Information</h2>
+					<p class="pr-5 text-white-50">Please contact us via phone or
+						via social media. We are here for you anytime.</p>
+					<p>
+						<a href="#"><i class="fa fa-facebook-square mr-1"></i></a><a
+							href="#"><i class="fa fa-linkedin-square"></i></a>
+					</p>
+				</div>
+				<div class="col-lg-3 col-xs-12 links"></div>
+				<div class="col-lg-4 col-xs-12 location">
+					<h4 class="mt-lg-0 mt-sm-4">Address</h4>
+					<p>No. 22, Mingalar Road, Pyay Township, Yangon.</p>
+					<p class="mb-0">
+						<i class="fa fa-phone mr-3"></i>(+95) 9753010834
+					</p>
+					<p>
+						<i class="fa fa-envelope-o mr-3"></i>info@insurancemyanmar.com
+					</p>
+				</div>
+			</div>
+			<div class="row mt-5">
+				<div class="col copyright">
+					<p class="">
+						<small class="text-white-50">© 2020. All Rights Reserved.</small>
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</h:body>
+
+</html>

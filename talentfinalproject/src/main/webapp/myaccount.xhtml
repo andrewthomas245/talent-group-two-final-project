@@ -1,0 +1,278 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<f:metadata charset="UTF-8" />
+	<f:metadata name="viewport"
+		content="width=device-width, initial-scale=1" />
+
+	<script src="js\jquery.min.js">
+		
+	</script>
+
+	<script src="js\bootstrap.bundle.min.js">
+		
+	</script>
+
+	<link rel="stylesheet" type="text/css" href="css\bootstrap.min.css" />
+	<link rel="stylesheet"
+		href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+	<link rel="stylesheet" type="text/css" href="css\allcss.css" />
+	<style type="text/css">
+.label {
+	width: 20%;
+	padding: 4px;
+}
+
+.value {
+	width: 80%;
+	padding: 4px;
+}
+
+.grid {
+	width: 100%;
+}
+
+.error {
+	color: red;
+}
+
+.outputLabel {
+	font-weight: bold;
+}
+
+.grid {
+	width: 33%;
+	padding: 4px;
+}
+</style>
+</h:head>
+
+<h:body>
+	<!-- Navigation -->
+	<nav class="navbar navbar-expand-lg navbar-dark static-top" id="navbar">
+	<div class="container">
+		<a class="navbar-brand" href="#"> <img src="img/logo_white.svg"
+			style="height: 70px" />
+		</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#navbarResponsive" aria-controls="navbarResponsive"
+			aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarResponsive">
+			<ul class="navbar-nav ml-auto">
+				<li class="nav-item active"><a class="nav-link" href="#">Home
+						<span class="sr-only">(current)</span>
+				</a></li>
+				<li class="nav-item"><a class="nav-link" href="#">About</a></li>
+				<li class="nav-item"><a class="nav-link" href="#">Services</a></li>
+				<li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+				<li class="nav-item dropdown"><a
+					class="nav-link dropdown-toggle" href="#"
+					id="navbarDropdownMenuLink" data-toggle="dropdown"
+					aria-haspopup="true" aria-expanded="false"> Procedures </a>
+					<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+						<a class="dropdown-item" href="#">Application Procedure</a> <a
+							class="dropdown-item" href="#">Claim Procedure</a>
+					</div></li>
+			</ul>
+		</div>
+	</div>
+	</nav>
+
+
+	<br />
+
+	<div class="container">
+		<h2>Create a New Quote</h2>
+		<p>Fill the form below and submit to create a new quote for you.</p>
+		<br />
+		<h:form>
+
+			<p:growl id="growl" sticky="true" showDetail="true" />
+
+			<p:wizard flowListener="#{userController.onFlowProcess}">
+				<p:tab id="personal" title="Personal">
+					<p:panel header="Fill your personal details here.">
+						<p:messages />
+						<h:panelGrid columns="2" columnClasses="label, value">
+							<h:outputText value="Name of Insured: *" />
+							<p:inputText value="#{userController.user.firstname}" />
+
+							<h:outputText value="Father's Name: *" />
+							<p:inputText value="#{userController.user.lastname}" />
+
+							<h:outputText value="Age: *" />
+							<p:inputText value="#{userController.user.age}" />
+
+							<h:outputText value="Date of Birth: *" />
+							<p:inputMask value="#{userController.user.age}" mask="99/99/9999" />
+
+							<h:outputText value="NRC: *" />
+							<p:inputMask value="#{userController.user.age}" mask="99/99/9999" />
+
+							<h:outputText value="Occupation: *" />
+							<p:inputMask value="#{userController.user.age}" mask="99/99/9999" />
+						</h:panelGrid>
+					</p:panel>
+				</p:tab>
+
+				<p:tab id="address" title="Address">
+					<p:panel header="Fill your address information here.">
+						<p:messages />
+						<h:panelGrid columns="2" columnClasses="label, value">
+
+							<h:outputText value="Residence No: *" />
+							<p:inputText value="#{userController.user.street}" />
+
+							<h:outputText value="Rd, Street: *" />
+							<p:inputText value="#{userController.user.street}" />
+
+							<h:outputText value="Township: *" />
+							<p:inputText value="#{userController.user.postalCode}" />
+
+							<h:outputText value="City: *" />
+							<p:inputText value="#{userController.user.city}" />
+						</h:panelGrid>
+					</p:panel>
+				</p:tab>
+
+				<p:tab id="paymentdetails" title="Payment Details">
+					<p:panel header="Fill payment details for your insurance here.">
+						<p:messages />
+						<h:panelGrid columns="2" columnClasses="label, value">
+							<h:outputText value="Sum Insured: *" />
+							<p:inputText value="#{userController.user.firstname}" />
+
+							<h:outputText value="Premium: *" />
+							<p:inputText value="#{userController.user.lastname}" />
+
+							<h:outputText value="Age: *" />
+							<p:inputText value="#{userController.user.age}" />
+
+							<h:outputText value="Relationship with Insurer: *" />
+							<p:inputMask value="#{userController.user.age}" mask="99/99/9999" />
+
+							<h:outputText value="Persentage: *" />
+							<p:inputMask value="#{userController.user.age}" mask="99/99/9999" />
+						</h:panelGrid>
+					</p:panel>
+				</p:tab>
+
+				<p:tab id="beneficiary" title="Beneficiary">
+					<p:panel header="Fill your beneficiary's information here.">
+						<p:messages />
+						<h:panelGrid columns="2" columnClasses="label, value">
+							<h:outputText value="Beneficiary's Name: *" />
+							<p:inputText value="#{userController.user.firstname}" />
+
+							<h:outputText value="Father's Name: *" />
+							<p:inputText value="#{userController.user.lastname}" />
+
+							<h:outputText value="Age: *" />
+							<p:inputText value="#{userController.user.age}" />
+
+							<h:outputText value="Relationship with Insurer: *" />
+							<p:inputMask value="#{userController.user.age}" mask="99/99/9999" />
+
+							<h:outputText value="Persentage: *" />
+							<p:inputMask value="#{userController.user.age}" mask="99/99/9999" />
+						</h:panelGrid>
+					</p:panel>
+				</p:tab>
+
+				<p:tab id="confirm" title="Confirmation">
+					<p:panel header="Confirmation">
+						<h:panelGrid id="confirmation" columns="3"
+							columnClasses="grid,grid,grid">
+							<h:panelGrid columns="2" columnClasses="label, value">
+								<h:outputText value="Firstname: " />
+								<h:outputText value="#{userController.user.firstname}"
+									styleClass="outputLabel" />
+
+								<h:outputText value="Lastname: " />
+								<h:outputText value="#{userController.user.lastname}"
+									styleClass="outputLabel" />
+
+								<h:outputText value="Age: " />
+								<h:outputText value="#{userController.user.age}"
+									styleClass="outputLabel" />
+							</h:panelGrid>
+							<h:panelGrid columns="2" columnClasses="label, value">
+								<h:outputText value="Street: " />
+								<h:outputText value="#{userController.user.street}"
+									styleClass="outputLabel" />
+
+								<h:outputText value="Postal: " />
+								<h:outputText value="#{userController.user.postalCode}"
+									styleClass="outputLabel" />
+
+								<h:outputText value="City: " />
+								<h:outputText value="#{userController.user.city}"
+									styleClass="outputLabel" />
+							</h:panelGrid>
+							<h:panelGrid columns="2" columnClasses="label, value">
+								<h:outputText value="Email: " />
+								<h:outputText value="#{userController.user.email}"
+									styleClass="outputLabel" />
+
+								<h:outputText value="Phone " />
+								<h:outputText value="#{userController.user.phone}"
+									styleClass="outputLabel" />
+
+								<h:outputText value="Info: " />
+								<h:outputText value="#{userController.user.info}"
+									styleClass="outputLabel" />
+							</h:panelGrid>
+						</h:panelGrid>
+
+						<p:commandButton value="Submit" action="#{userController.save}"
+							update="growl" process="@this" />
+					</p:panel>
+				</p:tab>
+			</p:wizard>
+		</h:form>
+	</div>
+
+
+	<!-- /.container -->
+	<div class="mt-5 pt-5 pb-5 footer">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-5 col-xs-12 about-company">
+					<h2>For More Information</h2>
+					<p class="pr-5 text-white-50">Please contact us via phone or
+						via social media. We are here for you anytime.</p>
+					<p>
+						<a href="#"><i class="fa fa-facebook-square mr-1"></i></a><a
+							href="#"><i class="fa fa-linkedin-square"></i></a>
+					</p>
+				</div>
+				<div class="col-lg-3 col-xs-12 links"></div>
+				<div class="col-lg-4 col-xs-12 location">
+					<h4 class="mt-lg-0 mt-sm-4">Address</h4>
+					<p>No. 22, Mingalar Road, Pyay Township, Yangon.</p>
+					<p class="mb-0">
+						<i class="fa fa-phone mr-3"></i>(+95) 9753010834
+					</p>
+					<p>
+						<i class="fa fa-envelope-o mr-3"></i>info@insurancemyanmar.com
+					</p>
+				</div>
+			</div>
+			<div class="row mt-5">
+				<div class="col copyright">
+					<p class="">
+						<small class="text-white-50">© 2020. All Rights Reserved.</small>
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</h:body>
+
+</html>

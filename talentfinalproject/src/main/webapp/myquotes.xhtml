@@ -1,0 +1,171 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+<h:head>
+	<f:metadata>
+		<f:viewAction action="#{quoteController.fetchAll()}" />
+	</f:metadata>
+	<f:metadata charset="UTF-8" />
+	<f:metadata name="viewport"
+		content="width=device-width, initial-scale=1" />
+
+	<script src="js\jquery.min.js">
+		
+	</script>
+
+	<script src="js\bootstrap.bundle.min.js">
+		
+	</script>
+
+	<link rel="stylesheet" type="text/css" href="css\bootstrap.min.css" />
+	<link rel="stylesheet"
+		href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+	<link rel="stylesheet" type="text/css" href="css\allcss.css" />
+	<style type="text/css">
+.label {
+	padding: 4px;
+}
+
+.value {
+	padding: 4px;
+}
+
+.grid {
+	width: 100%;
+}
+
+.error {
+	color: red;
+}
+
+.outputLabel {
+	font-weight: bold;
+}
+
+.grid {
+	width: 33%;
+	padding: 4px;
+}
+
+.label {
+	font-weight: bold;
+}
+.value {
+	font-style: inherit;
+}
+</style>
+</h:head>
+
+<h:body>
+	<!-- Navigation -->
+	<nav class="navbar navbar-expand-lg navbar-dark static-top" id="navbar">
+	<div class="container">
+		<a class="navbar-brand" href="#"> <img src="img/logo_white.svg"
+			style="height: 70px" />
+		</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#navbarResponsive" aria-controls="navbarResponsive"
+			aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarResponsive">
+			<ul class="navbar-nav ml-auto">
+				<li class="nav-item active"><a class="nav-link" href="#">Home
+						<span class="sr-only">(current)</span>
+				</a></li>
+				<li class="nav-item"><a class="nav-link" href="#">About</a></li>
+				<li class="nav-item"><a class="nav-link" href="#">Services</a></li>
+				<li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+				<li class="nav-item dropdown"><a
+					class="nav-link dropdown-toggle" href="#"
+					id="navbarDropdownMenuLink" data-toggle="dropdown"
+					aria-haspopup="true" aria-expanded="false"> Procedures </a>
+					<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+						<a class="dropdown-item" href="#">Application Procedure</a> <a
+							class="dropdown-item" href="#">Claim Procedure</a>
+					</div></li>
+			</ul>
+		</div>
+	</div>
+	</nav>
+
+
+	<br />
+
+	<div class="container">
+		<h2>My Quotes</h2>
+		<p>Upgrade your quotes or get a policy with a specific quote.</p>
+		<br />
+
+		<h:form id="form">
+			<p:growl id="growl" showDetail="true" />
+			<center>
+				<h4 style="color: #073b8c;">
+					Number of Quotes: <span class="badge badge-secondary">#{fn:length(quoteController.quotes)}</span>
+				</h4>
+			</center>
+			<p:dataGrid var="quote" value="#{quoteController.quotes}"
+				emptyMessage="You haven't created any quotes yet." columns="3"
+				layout="grid" rows="30" paginator="true" id="quotes"
+				paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+				rowsPerPageTemplate="6,12,16">
+
+				<p:panel header="#{quote.id}" style="text-align:center">
+					<h:panelGrid columns="2" columnClasses="label, value" style="margin: 0 auto; text-align:left; height:80px;">
+						<h:outputText value="Name:" style="font-style: bold;"/>
+						<h:outputText value="#{quote.name}" />
+						<h:outputText value="Sum Insured:" />
+						<h:outputText value="#{quote.suminsured} Kyats" />
+						<h:outputText value="Policy Term:" />
+						<h:outputText value="#{quote.policyterm} Years" />
+					</h:panelGrid>
+					<h:commandButton value="Details" class="btn btn-primary"
+						action="#{quoteController.fetchByQuote(quote.id)}" />
+				</p:panel>
+
+			</p:dataGrid>
+		</h:form>
+	</div>
+
+
+	<!-- /.container -->
+	<div class="mt-5 pt-5 pb-5 footer">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-5 col-xs-12 about-company">
+					<h2>For More Information</h2>
+					<p class="pr-5 text-white-50">Please contact us via phone or
+						via social media. We are here for you anytime.</p>
+					<p>
+						<a href="#"><i class="fa fa-facebook-square mr-1"></i></a><a
+							href="#"><i class="fa fa-linkedin-square"></i></a>
+					</p>
+				</div>
+				<div class="col-lg-3 col-xs-12 links"></div>
+				<div class="col-lg-4 col-xs-12 location">
+					<h4 class="mt-lg-0 mt-sm-4">Address</h4>
+					<p>No. 22, Mingalar Road, Pyay Township, Yangon.</p>
+					<p class="mb-0">
+						<i class="fa fa-phone mr-3"></i>(+95) 9753010834
+					</p>
+					<p>
+						<i class="fa fa-envelope-o mr-3"></i>info@insurancemyanmar.com
+					</p>
+				</div>
+			</div>
+			<div class="row mt-5">
+				<div class="col copyright">
+					<p class="">
+						<small class="text-white-50">© 2020. All Rights Reserved.</small>
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</h:body>
+
+</html>

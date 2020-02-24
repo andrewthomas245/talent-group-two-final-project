@@ -1,0 +1,225 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<f:metadata charset="UTF-8" />
+	<f:metadata name="viewport"
+		content="width=device-width, initial-scale=1" />
+
+	<script src="js\jquery.min.js">
+		
+	</script>
+
+	<script src="js\bootstrap.bundle.min.js">
+		
+	</script>
+
+	<link rel="stylesheet" type="text/css" href="css\bootstrap.min.css" />
+	<link rel="stylesheet"
+		href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+	<link rel="stylesheet" type="text/css" href="css\allcss.css" />
+	<style type="text/css">
+.label {
+	width: 50%;
+	padding: 4px;
+}
+
+.value {
+	width: 50%;
+	padding: 4px;
+	font-weight: bold;
+}
+
+.grid {
+	width: 100%;
+}
+
+.error {
+	color: red;
+}
+
+.outputLabel {
+	font-weight: bold;
+}
+
+.grid {
+	width: 33%;
+	padding: 4px;
+}
+
+.totaltext {
+	font-weight: bolder;
+	color: navy;
+}
+
+.total {
+	font-size: 20px;
+}
+
+.green {
+	font-weight: bolder;
+	color: green;
+	background-image: none;
+}
+
+.red {
+	font-weight: bolder;
+	color: red;
+	background-image: none;
+}
+</style>
+</h:head>
+
+<h:body>
+	<!-- Navigation -->
+	<nav class="navbar navbar-expand-lg navbar-dark static-top" id="navbar">
+	<div class="container">
+		<a class="navbar-brand" href="#"> <img src="img/logo_white.svg"
+			style="height: 70px" />
+		</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#navbarResponsive" aria-controls="navbarResponsive"
+			aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarResponsive">
+			<ul class="navbar-nav ml-auto">
+				<li class="nav-item active"><a class="nav-link" href="#">Home
+						<span class="sr-only">(current)</span>
+				</a></li>
+				<li class="nav-item"><a class="nav-link" href="#">About</a></li>
+				<li class="nav-item"><a class="nav-link" href="#">Services</a></li>
+				<li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+				<li class="nav-item dropdown"><a
+					class="nav-link dropdown-toggle" href="#"
+					id="navbarDropdownMenuLink" data-toggle="dropdown"
+					aria-haspopup="true" aria-expanded="false"> Procedures </a>
+					<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+						<a class="dropdown-item" href="#">Application Procedure</a> <a
+							class="dropdown-item" href="#">Claim Procedure</a>
+					</div></li>
+			</ul>
+		</div>
+	</div>
+	</nav>
+
+
+	<br />
+
+	<div class="container">
+		<h2>Policy Detail</h2>
+		<p>Here are your policy details.</p>
+		<br />
+
+		<h:form id="form">
+			<p:growl id="growl" showDetail="true" />
+			<p:panel header="Policy Infomation">
+				<h:panelGrid columns="2" columnClasses="label, value">
+					<h:outputText value="Policy ID: " />
+					<h:outputText value="#{policyController.policy.id}"
+						styleClass="outputLabel" />
+
+					<h:outputText value="Policy Status: " />
+					<h:outputText value="#{policyController.policy.policystatus}"
+						styleClass="#{(policyController.policy.policystatus=='Active') ? 'green' : 'red'}" />
+				</h:panelGrid>
+			</p:panel>
+			<br />
+			<p:panel header="Quote Infomation">
+				<h:panelGrid columns="2" columnClasses="label, value">
+					<h:outputText value="Quote ID: " />
+					<h:outputText value="#{policyController.policy.quoteid}"
+						styleClass="outputLabel" />
+
+					<h:outputText value="Quote Name: " />
+					<h:outputText value="#{policyController.policy.quotename}"
+						styleClass="outputLabel" />
+
+					<h:outputText value="Premium Plan: " />
+					<h:outputText value="#{policyController.policy.premiumplan} Years"
+						styleClass="outputLabel" />
+
+					<h:outputText value="Monthly Premium: " />
+					<h:outputText value="#{policyController.policy.monthlypremium}"
+						styleClass="outputLabel" />
+
+					<h:outputText value="Yearly Premium: " />
+					<h:outputText value="#{policyController.policy.yearlypremium}"
+						styleClass="outputLabel" />
+
+					<h:outputText value="Total Premium: " />
+					<h:outputText value="#{policyController.policy.totalpremium}"
+						styleClass="outputLabel" />
+				</h:panelGrid>
+			</p:panel>
+			<br />
+			<p:panel header="Payment Infomation">
+				<p:dataTable var="payment"
+					value="#{policyController.policy.paymentList}" rows="10"
+					paginator="false" style="width:50%;">
+					<p:column headerText="Date Paid">
+						<h:outputText value="#{payment.paymentdate}">
+							<f:convertDateTime pattern="dd/MM/yyyy" type="date" />
+						</h:outputText>
+					</p:column>
+					<p:column headerText="Payment Amount">
+						<h:outputText value="#{payment.paymentamount} Kyats" />
+					</p:column>
+				</p:dataTable>
+				<br />
+				<h:panelGrid columns="2" columnClasses="totaltext, total">
+					<h:outputText value="Total Paid:" />
+					<h:outputText
+						value="#{policyController.policy.totalpaidpremium} Kyats"
+						styleClass="outputLabel" />
+				</h:panelGrid>
+			</p:panel>
+			<br />
+			<p:commandButton value="Claim Form"
+				action="#{claimController.getToClaim(policyController.policy)}"
+				update="growl" process="@this" />&nbsp;
+			<p:commandButton value="Pay Premium"
+				action="#{paymentController.getToPayment(policyController.policy)}" update="growl" process="@this"  />
+		</h:form>
+	</div>
+
+	<!-- /.container -->
+	<div class="mt-5 pt-5 pb-5 footer">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-5 col-xs-12 about-company">
+					<h2>For More Information</h2>
+					<p class="pr-5 text-white-50">Please contact us via phone or
+						via social media. We are here for you anytime.</p>
+					<p>
+						<a href="#"><i class="fa fa-facebook-square mr-1"></i></a><a
+							href="#"><i class="fa fa-linkedin-square"></i></a>
+					</p>
+				</div>
+				<div class="col-lg-3 col-xs-12 links"></div>
+				<div class="col-lg-4 col-xs-12 location">
+					<h4 class="mt-lg-0 mt-sm-4">Address</h4>
+					<p>No. 22, Mingalar Road, Pyay Township, Yangon.</p>
+					<p class="mb-0">
+						<i class="fa fa-phone mr-3"></i>(+95) 9753010834
+					</p>
+					<p>
+						<i class="fa fa-envelope-o mr-3"></i>info@insurancemyanmar.com
+					</p>
+				</div>
+			</div>
+			<div class="row mt-5">
+				<div class="col copyright">
+					<p class="">
+						<small class="text-white-50">© 2020. All Rights Reserved.</small>
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</h:body>
+
+</html>
