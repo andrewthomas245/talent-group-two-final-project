@@ -167,13 +167,29 @@
 								value="#{quoteController.quote.suminsured}" />
 
 							<h:outputText value="Policy Term: *" />
-							<p:selectOneMenu id="policy"
-								value="#{quoteController.quote.policyterm}" required="true">
+							<p:selectOneMenu id="policy1"
+								value="#{quoteController.quote.policyterm}" required="true"
+								rendered="#{quoteController.quote.age &gt;= 10 and quoteController.quote.age &lt;= 55}">
+								<f:selectItem itemLabel="
+								Select One" itemValue="#{null}" noSelectionOption="true" />
+							<f:selectItem id="hi" itemLabel="5 Years" itemValue="5" />
+							<f:selectItem itemLabel="7 Years" itemValue="7" />
+							<f:selectItem itemLabel="10 Years" itemValue="10" />
+							</p:selectOneMenu>
+							<p:selectOneMenu id="policy2"
+								value="#{quoteController.quote.policyterm}" required="true"
+								rendered="#{quoteController.quote.age &gt;= 56 and quoteController.quote.age &lt;= 58}">
 								<f:selectItem itemLabel="Select One" itemValue="#{null}"
 									noSelectionOption="true" />
-								<f:selectItem id="hi" itemLabel="5 Years" itemValue="5" />
+								<f:selectItem itemLabel="5 Years" itemValue="5"/>
 								<f:selectItem itemLabel="7 Years" itemValue="7" />
-								<f:selectItem itemLabel="10 Years" itemValue="10" />
+							</p:selectOneMenu>
+							<p:selectOneMenu id="policy3"
+								value="#{quoteController.quote.policyterm}" required="true"
+								rendered="#{quoteController.quote.age &gt;= 59 and quoteController.quote.age &lt;= 60}">
+								<f:selectItem itemLabel="Select One" itemValue="#{null}"
+									noSelectionOption="true" />
+								<f:selectItem itemLabel="5 Years" itemValue="5" />
 							</p:selectOneMenu>
 
 							<h:outputText value="Premium Plan: *" />

@@ -1,7 +1,13 @@
 package com.talent.grouptwofinalproject.controllers;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.Locale;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -9,6 +15,8 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
 import org.primefaces.event.FlowEvent;
+import org.primefaces.event.SelectEvent;
+import org.primefaces.event.DateViewChangeEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.talent.grouptwofinalproject.entities.Policies;
@@ -157,5 +165,17 @@ public class QuoteController {
 		} else {
 			return event.getNewStep();
 		}
+	}
+	
+	int currentyear = Calendar.getInstance().get(Calendar.YEAR);
+	
+	public void onDateSelect(SelectEvent event) {
+	    int yearfrombirthdate = quote.getDob().getYear();
+	    int birthyear;
+
+	    birthyear=1900+yearfrombirthdate;
+	    
+	    int age=currentyear-birthyear;
+	    quote.setAge(age);
 	}
 }

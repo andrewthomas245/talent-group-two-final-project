@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
 <h:head>
 	<f:metadata charset="UTF-8" />
 	<f:metadata name="viewport"
@@ -12,12 +13,6 @@
 	<script src="js\jquery.mask.js" />
 
 	<script src="js\bootstrap.bundle.min.js" />
-
-	<script>
-		function changeFunction() {
-
-		}
-	</script>
 
 	<link rel="stylesheet" type="text/css" href="css\bootstrap.min.css" />
 	<link rel="stylesheet"
@@ -106,8 +101,8 @@
 							<p:inputText value="#{quoteController.quote.name}" />
 
 							<h:outputText value="Gender: *" />
-							<p:selectOneRadio id="gender" value="#{quoteController.quote.gender}"
-								unselectable="true">
+							<p:selectOneRadio id="gender"
+								value="#{quoteController.quote.gender}" unselectable="true">
 								<f:selectItem itemLabel="Male" itemValue="Male" />
 								<f:selectItem itemLabel="Female" itemValue="Female" />
 							</p:selectOneRadio>
@@ -117,11 +112,10 @@
 
 							<h:outputText value="Date of Birth: *" />
 							<p:calendar yearRange="1960:2010"
-								value="#{quoteController.quote.dob}" navigator="true" />
-
-							<h:outputText value="Age: *" />
-							<p:spinner id="age" value="#{quoteController.quote.age}" min="10"
-								max="60" style="width:60px" onkeydown="return false" />
+								value="#{quoteController.quote.dob}" navigator="true">
+								<p:ajax event="dateSelect"
+									listener="#{quoteController.onDateSelect}" update="@form" />
+							</p:calendar>
 
 							<h:outputText value="NRC: *" />
 							<p:inputMask value="#{quoteController.quote.nrc}"
@@ -167,13 +161,29 @@
 								value="#{quoteController.quote.suminsured}" />
 
 							<h:outputText value="Policy Term: *" />
-							<p:selectOneMenu id="policy"
-								value="#{quoteController.quote.policyterm}" required="true">
+							<p:selectOneMenu id="policy1"
+								value="#{quoteController.quote.policyterm}" required="true"
+								rendered="#{quoteController.quote.age &gt;= 10 and quoteController.quote.age &lt;= 55}">
+								<f:selectItem itemLabel="
+								Select One" itemValue="#{null}" noSelectionOption="true" />
+							<f:selectItem id="hi" itemLabel="5 Years" itemValue="5" />
+							<f:selectItem itemLabel="7 Years" itemValue="7" />
+							<f:selectItem itemLabel="10 Years" itemValue="10" />
+							</p:selectOneMenu>
+							<p:selectOneMenu id="policy2"
+								value="#{quoteController.quote.policyterm}" required="true"
+								rendered="#{quoteController.quote.age &gt;= 56 and quoteController.quote.age &lt;= 58}">
 								<f:selectItem itemLabel="Select One" itemValue="#{null}"
 									noSelectionOption="true" />
-								<f:selectItem id="hi" itemLabel="5 Years" itemValue="5" />
+								<f:selectItem itemLabel="5 Years" itemValue="5"/>
 								<f:selectItem itemLabel="7 Years" itemValue="7" />
-								<f:selectItem itemLabel="10 Years" itemValue="10" />
+							</p:selectOneMenu>
+							<p:selectOneMenu id="policy3"
+								value="#{quoteController.quote.policyterm}" required="true"
+								rendered="#{quoteController.quote.age &gt;= 59 and quoteController.quote.age &lt;= 60}">
+								<f:selectItem itemLabel="Select One" itemValue="#{null}"
+									noSelectionOption="true" />
+								<f:selectItem itemLabel="5 Years" itemValue="5" />
 							</p:selectOneMenu>
 
 							<h:outputText value="Premium Plan: *" />
