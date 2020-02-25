@@ -106,6 +106,11 @@ public class QuoteController {
 		quote = quoteservice.calculate(quote);
 		return "/confirmquote.xhtml?faces-redirect=true";
 	}
+	
+	public String confirmedited() {
+		quote = quoteservice.calculate(quote);
+		return "/confirmeditedquote.xhtml?faces-redirect=true";
+	}
 
 	public void fetchAll() {
 		quotes = quoteservice.getQuotes(quote);
