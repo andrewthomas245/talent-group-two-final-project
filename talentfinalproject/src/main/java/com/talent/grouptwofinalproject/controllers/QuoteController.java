@@ -86,20 +86,31 @@ public class QuoteController {
 	}
 
 	public String delete(Quote quo) {
-		
-		System.out.println(quo.getId());
+		System.out.println("Start: " + quo.getId());
+		List<Policies> findpolicies = policyservice.findQuoteInPolicy(quo.getId());
+		System.out.println(findpolicies);
+		if (!findpolicies.isEmpty()) {
+			System.out.println("DUPLICATE");
+			FacesContext context = FacesContext.getCurrentInstance();
+			context.addMessage("Error", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Fail",
+					"This quote can't be deleted as there is a policy already created with this quote."));
+			context.getExternalContext().getFlash().setKeepMessages(true);
+		} else {
+			System.out.println(quo.getId());
 
-		quoteservice.deleteQuote(quo.getId());
-		FacesMessage msg = new FacesMessage("Successful",
-				"Quote with Name: " + quote.getName() + " is deleted successfully.");
+			quoteservice.deleteQuote(quo.getId());
+			FacesMessage msg = new FacesMessage("Successful",
+					"Quote with Name: " + quote.getName() + " is deleted successfully.");
 
-		FacesContext context = FacesContext.getCurrentInstance();
-		context.addMessage(null, msg);
-		context.getExternalContext().getFlash().setKeepMessages(true);
+			FacesContext context = FacesContext.getCurrentInstance();
+			context.addMessage(null, msg);
+			context.getExternalContext().getFlash().setKeepMessages(true);
 
-		quote = new Quote();
+			quote = new Quote();
 
-		return "/myquotes.xhtml?faces-redirect=true";
+			return "/myquotes.xhtml?faces-redirect=true";
+		}
+		return null;
 
 	}
 
@@ -111,7 +122,7 @@ public class QuoteController {
 			System.out.println("DUPLICATE");
 			FacesContext context = FacesContext.getCurrentInstance();
 			context.addMessage("Error", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Fail",
-					"There is a policy already created with this quote."));
+					"This quote can't be edited as there is a policy already created with this quote."));
 			context.getExternalContext().getFlash().setKeepMessages(true);
 		} else {
 			System.out.println("Here");
