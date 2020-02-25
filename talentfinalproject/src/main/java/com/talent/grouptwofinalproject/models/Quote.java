@@ -8,6 +8,7 @@ import lombok.Data;
 public class Quote {
 	private Long id;
 	private String name;
+	private String gender;
 	private String fathername;
 	private int age;
 	private Date dob;
@@ -49,6 +50,14 @@ public class Quote {
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
 	}
 	
 	public String getFathername() {

@@ -33,6 +33,7 @@ public class Quotes {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long quoteid;
 	private String name;
+	private String gender;
 	private String fathername;
 	private int age;
 	private Date dob;
@@ -83,6 +84,14 @@ public class Quotes {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
 	}
 
 	public String getFathername() {
@@ -232,14 +241,15 @@ public class Quotes {
 	public Quotes() {
 
 	}
-	
-	public Quotes(Long quoteid, String name, String fathername, int age, Date dob, String nrc, String occupation,
-			String phone, Addresses addresses, Benificiaries benificiaries, Policies policies, double suminsured,
-			int policyterm, int premiumplan, double monthlypremium, double yearlypremium, double totalpayamount,
-			AccountState state, Date deletedate) {
+
+	public Quotes(Long quoteid, String name, String gender, String fathername, int age, Date dob, String nrc,
+			String occupation, String phone, Addresses addresses, Benificiaries benificiaries, Policies policies,
+			double suminsured, int policyterm, int premiumplan, double monthlypremium, double yearlypremium,
+			double totalpayamount, AccountState state, Date deletedate) {
 		super();
 		this.quoteid = quoteid;
 		this.name = name;
+		this.gender = gender;
 		this.fathername = fathername;
 		this.age = age;
 		this.dob = dob;
