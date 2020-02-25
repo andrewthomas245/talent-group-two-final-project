@@ -14,4 +14,6 @@ public interface QuoteService {
 	public Quote calculate(Quote quo);
 	
 	public void updateQuote(Quote quo);
+	
+	public void deleteQuote(Long id);
 }

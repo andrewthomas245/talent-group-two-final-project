@@ -205,6 +205,8 @@
 				action="#{policyController.getToPolicy(quoteController.quote)}" update="growl" process="@this" />
 			<p:commandButton value="Edit Quote"
 				action="#{quoteController.getToEdit(quoteController.quote)}" update="growl" process="@this" />
+			<p:commandButton value="Delete Quote"
+				action="#{quoteController.delete(quoteController.quote)}" update="growl" process="@this" />
 		</h:form>
 	</div>
 

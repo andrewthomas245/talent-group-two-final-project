@@ -69,7 +69,7 @@ public class QuoteController {
 		return "/myquotes.xhtml?faces-redirect=true";
 
 	}
-	
+
 	public String edit() {
 		quoteservice.updateQuote(quote);
 		FacesMessage msg = new FacesMessage("Successful",
@@ -84,7 +84,25 @@ public class QuoteController {
 		return "/myquotes.xhtml?faces-redirect=true";
 
 	}
-	
+
+	public String delete(Quote quo) {
+		
+		System.out.println(quo.getId());
+
+		quoteservice.deleteQuote(quo.getId());
+		FacesMessage msg = new FacesMessage("Successful",
+				"Quote with Name: " + quote.getName() + " is deleted successfully.");
+
+		FacesContext context = FacesContext.getCurrentInstance();
+		context.addMessage(null, msg);
+		context.getExternalContext().getFlash().setKeepMessages(true);
+
+		quote = new Quote();
+
+		return "/myquotes.xhtml?faces-redirect=true";
+
+	}
+
 	public String getToEdit(Quote quo) {
 		System.out.println("Start: " + quo.getId());
 		List<Policies> findpolicies = policyservice.findQuoteInPolicy(quo.getId());
@@ -106,7 +124,7 @@ public class QuoteController {
 		quote = quoteservice.calculate(quote);
 		return "/confirmquote.xhtml?faces-redirect=true";
 	}
-	
+
 	public String confirmedited() {
 		quote = quoteservice.calculate(quote);
 		return "/confirmeditedquote.xhtml?faces-redirect=true";

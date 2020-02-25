@@ -4,11 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.talent.grouptwofinalproject.entities.AccountState;
 import com.talent.grouptwofinalproject.entities.Addresses;
 import com.talent.grouptwofinalproject.entities.Benificiaries;
 import com.talent.grouptwofinalproject.entities.Quotes;
@@ -20,6 +23,10 @@ import com.talent.grouptwofinalproject.repositories.QuoteRepository;
 @Service
 @Transactional
 public class QuoteServiceImpl implements QuoteService {
+	
+	@PersistenceContext
+	EntityManager em;
+	
 	@Autowired
 	public QuoteRepository quoteRepository;
 
@@ -31,12 +38,15 @@ public class QuoteServiceImpl implements QuoteService {
 
 	@Override
 	public void createQuote(Quote quo) {
+		AccountState state= AccountState.ACTIVE;
+		
 		Addresses addressesEntity = new Addresses();
 
 		addressesEntity.setResidenceno(quo.getResidenceno());
 		addressesEntity.setRoadstreet(quo.getRoadstreet());
 		addressesEntity.setTownship(quo.getTownship());
 		addressesEntity.setCity(quo.getCity());
+		addressesEntity.setState(state);
 
 		// addressRepository.save(addressesEntity);
 
@@ -47,6 +57,7 @@ public class QuoteServiceImpl implements QuoteService {
 		benificiariesEntity.setRelationship(quo.getRelationship());
 		benificiariesEntity.setAddress(quo.getBenificiaryaddress());
 		benificiariesEntity.setPhone(quo.getBenificiaryphone());
+		benificiariesEntity.setState(state);
 
 		// benificiaryRepository.save(benificiariesEntity);
 
@@ -65,6 +76,8 @@ public class QuoteServiceImpl implements QuoteService {
 		quotesEntity.setMonthlypremium(quo.getMonthlypremium());
 		quotesEntity.setYearlypremium(quo.getYearlypremium());
 		quotesEntity.setTotalpayamount(quo.getTotalpayamount());
+		quotesEntity.setState(state);
+		
 		quotesEntity.setAddresses(addressesEntity);
 		quotesEntity.setBenificiaries(benificiariesEntity);
 
@@ -290,5 +303,20 @@ public class QuoteServiceImpl implements QuoteService {
 		quoteRepository.save(quotesUpdate);
 
 	}
+
+	@Override
+	public void deleteQuote(Long id) {
+		Addresses a= em.find(Addresses.class,id);
+		addressRepository.delete(a);
+		
+		Benificiaries b= em.find(Benificiaries.class,id);
+		benificiaryRepository.delete(b);
+		
+		Quotes q= em.find(Quotes.class,id);
+		quoteRepository.delete(q);
+		
+	}
+	
+	
 
 }

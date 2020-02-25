@@ -2,14 +2,20 @@ package com.talent.grouptwofinalproject.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.ResultCheckStyle;
+import org.hibernate.annotations.SQLDelete;
+
 @Entity
 @Table(name = "benificiaries")
+@SQLDelete(sql = "UPDATE benificiaries SET state = 'DELETED' WHERE benificiaryid = ?", check = ResultCheckStyle.COUNT )
 public class Benificiaries {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -21,6 +27,10 @@ public class Benificiaries {
 	private String relationship;
 	private String phone;
 	private String address;
+	
+	@Column
+	@Enumerated(EnumType.STRING)
+	private AccountState state;
 	
 	@OneToOne(mappedBy = "benificiaries")
     private Quotes quotes;
@@ -81,20 +91,27 @@ public class Benificiaries {
 		this.quotes = quotes;
 	}
 
+	public AccountState getState() {
+		return state;
+	}
+
+	public void setState(AccountState state) {
+		this.state = state;
+	}
+
 	public Benificiaries() {
 	}
 
 	public Benificiaries(Long benificiaryid, String name, String nrc, String relationship, String phone, String address,
-			Quotes quotes) {
+			AccountState state, Quotes quotes) {
 		this.benificiaryid = benificiaryid;
 		this.name = name;
 		this.nrc = nrc;
 		this.relationship = relationship;
 		this.phone = phone;
 		this.address = address;
+		this.state = state;
 		this.quotes = quotes;
 	}
-
-	
 
 }

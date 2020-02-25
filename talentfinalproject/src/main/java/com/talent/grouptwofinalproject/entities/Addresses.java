@@ -2,15 +2,21 @@ package com.talent.grouptwofinalproject.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.ResultCheckStyle;
+import org.hibernate.annotations.SQLDelete;
+
 
 @Entity
 @Table(name = "addresses")
+@SQLDelete(sql = "UPDATE addresses SET state = 'DELETED' WHERE addressid = ?", check = ResultCheckStyle.COUNT )
 public class Addresses {
 
 	@Id
@@ -25,6 +31,10 @@ public class Addresses {
 	
 	@OneToOne(mappedBy = "addresses")
     private Quotes quotes;
+	
+	@Column
+	@Enumerated(EnumType.STRING)
+	private AccountState state;
 
 	public Long getAddressid() {
 		return addressid;
@@ -74,16 +84,27 @@ public class Addresses {
 		this.quotes = quotes;
 	}
 	
-	
+	public AccountState getState() {
+		return state;
+	}
+
+	public void setState(AccountState state) {
+		this.state = state;
+	}
+
 	public Addresses() {
 	}
 
-	public Addresses(Long addressid, int residenceno, String roadstreet, String township, String city, Quotes quotes) {
+	public Addresses(Long addressid, int residenceno, String roadstreet, String township, String city, Quotes quotes,
+			AccountState state) {
 		this.addressid = addressid;
 		this.residenceno = residenceno;
 		this.roadstreet = roadstreet;
 		this.township = township;
 		this.city = city;
 		this.quotes = quotes;
+		this.state = state;
 	}
+	
+	
 }

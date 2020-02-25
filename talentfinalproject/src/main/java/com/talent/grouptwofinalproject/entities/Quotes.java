@@ -3,7 +3,10 @@ package com.talent.grouptwofinalproject.entities;
 import java.util.Date;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,13 +14,19 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.PreRemove;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
+import org.hibernate.annotations.ResultCheckStyle;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
 
 @Entity
 @Table(name = "quotes")
+@SQLDelete(sql = "UPDATE quotes SET state = 'DELETED' WHERE quoteid = ?", check = ResultCheckStyle.COUNT )
+@Where(clause = "state <> 'DELETED'")
 public class Quotes {
 
 	@Id
@@ -48,6 +57,10 @@ public class Quotes {
 	private double monthlypremium;
 	private double yearlypremium;
 	private double totalpayamount;
+	
+	@Column
+	@Enumerated(EnumType.STRING)
+	private AccountState state;
 
 	//@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	//@JoinColumn(name = "user_id", nullable = false)
@@ -198,13 +211,22 @@ public class Quotes {
 		this.policies = policies;
 	}
 
+	public AccountState getState() {
+		return state;
+	}
+
+	public void setState(AccountState state) {
+		this.state = state;
+	}
+
 	public Quotes() {
 
 	}
 
 	public Quotes(Long quoteid, String name, String fathername, int age, Date dob, String nrc, String occupation,
 			String phone, Addresses addresses, Benificiaries benificiaries, Policies policies, double suminsured,
-			int policyterm, int premiumplan, double monthlypremium, double yearlypremium, double totalpayamount) {
+			int policyterm, int premiumplan, double monthlypremium, double yearlypremium, double totalpayamount,
+			AccountState state) {
 		this.quoteid = quoteid;
 		this.name = name;
 		this.fathername = fathername;
@@ -222,10 +244,12 @@ public class Quotes {
 		this.monthlypremium = monthlypremium;
 		this.yearlypremium = yearlypremium;
 		this.totalpayamount = totalpayamount;
+		this.state = state;
 	}
 	
-	
-
-	
+	@PreRemove
+	public void deleteUser() {
+	this.state = AccountState.DELETED;
+	}
 
 }
