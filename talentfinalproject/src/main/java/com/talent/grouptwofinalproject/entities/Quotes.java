@@ -25,7 +25,7 @@ import org.hibernate.annotations.Where;
 
 @Entity
 @Table(name = "quotes")
-@SQLDelete(sql = "UPDATE quotes SET state = 'DELETED' WHERE quoteid = ?", check = ResultCheckStyle.COUNT )
+@SQLDelete(sql = "UPDATE quotes SET state = 'DELETED', deletedate= CURRENT_DATE() WHERE quoteid = ?", check = ResultCheckStyle.COUNT )
 @Where(clause = "state <> 'DELETED'")
 public class Quotes {
 
@@ -61,6 +61,8 @@ public class Quotes {
 	@Column
 	@Enumerated(EnumType.STRING)
 	private AccountState state;
+	
+	private Date deletedate;
 
 	//@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	//@JoinColumn(name = "user_id", nullable = false)
@@ -219,14 +221,23 @@ public class Quotes {
 		this.state = state;
 	}
 
+	public Date getDeletedate() {
+		return deletedate;
+	}
+
+	public void setDeletedate(Date deletedate) {
+		this.deletedate = deletedate;
+	}
+
 	public Quotes() {
 
 	}
-
+	
 	public Quotes(Long quoteid, String name, String fathername, int age, Date dob, String nrc, String occupation,
 			String phone, Addresses addresses, Benificiaries benificiaries, Policies policies, double suminsured,
 			int policyterm, int premiumplan, double monthlypremium, double yearlypremium, double totalpayamount,
-			AccountState state) {
+			AccountState state, Date deletedate) {
+		super();
 		this.quoteid = quoteid;
 		this.name = name;
 		this.fathername = fathername;
@@ -245,10 +256,11 @@ public class Quotes {
 		this.yearlypremium = yearlypremium;
 		this.totalpayamount = totalpayamount;
 		this.state = state;
+		this.deletedate = deletedate;
 	}
-	
+
 	@PreRemove
-	public void deleteUser() {
+	public void deleteQuote() {
 	this.state = AccountState.DELETED;
 	}
 

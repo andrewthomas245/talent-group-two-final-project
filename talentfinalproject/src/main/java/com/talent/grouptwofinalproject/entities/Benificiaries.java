@@ -1,5 +1,7 @@
 package com.talent.grouptwofinalproject.entities;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -15,7 +17,7 @@ import org.hibernate.annotations.SQLDelete;
 
 @Entity
 @Table(name = "benificiaries")
-@SQLDelete(sql = "UPDATE benificiaries SET state = 'DELETED' WHERE benificiaryid = ?", check = ResultCheckStyle.COUNT )
+@SQLDelete(sql = "UPDATE benificiaries SET state = 'DELETED', deletedate= CURRENT_DATE() WHERE benificiaryid = ?", check = ResultCheckStyle.COUNT )
 public class Benificiaries {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -31,6 +33,8 @@ public class Benificiaries {
 	@Column
 	@Enumerated(EnumType.STRING)
 	private AccountState state;
+	
+	private Date deletedate;
 	
 	@OneToOne(mappedBy = "benificiaries")
     private Quotes quotes;
@@ -99,11 +103,20 @@ public class Benificiaries {
 		this.state = state;
 	}
 
+	public Date getDeletedate() {
+		return deletedate;
+	}
+
+	public void setDeletedate(Date deletedate) {
+		this.deletedate = deletedate;
+	}
+
 	public Benificiaries() {
 	}
 
 	public Benificiaries(Long benificiaryid, String name, String nrc, String relationship, String phone, String address,
-			AccountState state, Quotes quotes) {
+			AccountState state, Date deletedate, Quotes quotes) {
+		super();
 		this.benificiaryid = benificiaryid;
 		this.name = name;
 		this.nrc = nrc;
@@ -111,7 +124,7 @@ public class Benificiaries {
 		this.phone = phone;
 		this.address = address;
 		this.state = state;
+		this.deletedate = deletedate;
 		this.quotes = quotes;
 	}
-
 }

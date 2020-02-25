@@ -1,5 +1,7 @@
 package com.talent.grouptwofinalproject.entities;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -16,7 +18,7 @@ import org.hibernate.annotations.SQLDelete;
 
 @Entity
 @Table(name = "addresses")
-@SQLDelete(sql = "UPDATE addresses SET state = 'DELETED' WHERE addressid = ?", check = ResultCheckStyle.COUNT )
+@SQLDelete(sql = "UPDATE addresses SET state = 'DELETED', deletedate= CURRENT_DATE() WHERE addressid = ?", check = ResultCheckStyle.COUNT )
 public class Addresses {
 
 	@Id
@@ -35,6 +37,8 @@ public class Addresses {
 	@Column
 	@Enumerated(EnumType.STRING)
 	private AccountState state;
+	
+	private Date deletedate;
 
 	public Long getAddressid() {
 		return addressid;
@@ -92,11 +96,20 @@ public class Addresses {
 		this.state = state;
 	}
 
+	public Date getDeletedate() {
+		return deletedate;
+	}
+
+	public void setDeletedate(Date deletedate) {
+		this.deletedate = deletedate;
+	}
+
 	public Addresses() {
 	}
 
 	public Addresses(Long addressid, int residenceno, String roadstreet, String township, String city, Quotes quotes,
-			AccountState state) {
+			AccountState state, Date deletedate) {
+		super();
 		this.addressid = addressid;
 		this.residenceno = residenceno;
 		this.roadstreet = roadstreet;
@@ -104,7 +117,7 @@ public class Addresses {
 		this.city = city;
 		this.quotes = quotes;
 		this.state = state;
+		this.deletedate = deletedate;
 	}
-	
 	
 }
