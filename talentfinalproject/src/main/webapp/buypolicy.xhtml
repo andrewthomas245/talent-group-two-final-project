@@ -116,7 +116,8 @@
 							<h:outputText value="Total Pay Amount: " />
 							<h:outputText value="#{quoteController.quote.totalpayamount}" />
 							<h:outputText value="Your Payment Amount: *" />
-							<p:inputText value="#{policyController.policy.firstpaymentamount}" />
+							<p:inputText
+								value="#{policyController.policy.firstpaymentamount}" />
 						</h:panelGrid>
 					</p:panel>
 				</p:tab>
@@ -138,11 +139,11 @@
 									styleClass="outputLabel" />
 							</h:panelGrid>
 						</h:panelGrid>
-
-						<p:commandButton value="Submit"
-							action="#{policyController.save()}" update="growl"
-							process="@this" />
 					</p:panel>
+					<p:commandButton value="Submit" action="#{policyController.save()}"
+						update="growl" process="@this"
+						style="float: right; margin-top: 3px; background-color:green; border-color: green;"
+						icon="pi pi-chevron-right" />
 				</p:tab>
 			</p:wizard>
 		</h:form>

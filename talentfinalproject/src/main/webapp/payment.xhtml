@@ -102,8 +102,7 @@
 							<h:outputText value="#{paymentController.payment.policyid}" />
 
 							<h:outputText value="Payment Date: *" />
-							<h:outputText
-								value="#{currentDate}">
+							<h:outputText value="#{currentDate}">
 								<f:convertDateTime pattern="dd/MM/yyyy" type="date" />
 							</h:outputText>
 
@@ -114,23 +113,25 @@
 				</p:tab>
 				<p:tab id="confirm" title="Confirmation">
 					<p:panel header="Confirmation">
-							<h:panelGrid columns="2" columnClasses="label, value">
-								<h:outputText value="Policy ID: " />
-								<h:outputText value="#{paymentController.payment.policyid}"
-									styleClass="outputLabel" />
+						<h:panelGrid columns="2" columnClasses="label, value">
+							<h:outputText value="Policy ID: " />
+							<h:outputText value="#{paymentController.payment.policyid}"
+								styleClass="outputLabel" />
 
-								<h:outputText value="Payment Date: " />
-								<h:outputText value="#{currentDate}" styleClass="outputLabel">
-									<f:convertDateTime pattern="dd/MM/yyyy" type="date" />
-								</h:outputText>
+							<h:outputText value="Payment Date: " />
+							<h:outputText value="#{currentDate}" styleClass="outputLabel">
+								<f:convertDateTime pattern="dd/MM/yyyy" type="date" />
+							</h:outputText>
 
-								<h:outputText value="Payment Amount: " />
-								<h:outputText value="#{paymentController.payment.paymentamount}"
-									styleClass="outputLabel" />
+							<h:outputText value="Payment Amount: " />
+							<h:outputText value="#{paymentController.payment.paymentamount}"
+								styleClass="outputLabel" />
 						</h:panelGrid>
-
-						<p:commandButton value="Pay" action="#{paymentController.save()}"/>
 					</p:panel>
+					<p:commandButton value="Pay" action="#{paymentController.save()}"
+						update="growl" process="@this"
+						style="float: right; margin-top: 3px; background-color:green; border-color: green;"
+						icon="pi pi-chevron-right" />
 				</p:tab>
 			</p:wizard>
 		</h:form>

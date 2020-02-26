@@ -128,11 +128,11 @@
 							<h:outputText value="#{claimController.claim.claimreason}"
 								styleClass="outputLabel" />
 						</h:panelGrid>
-
-						<p:commandButton value="Claim"
-							action="#{claimController.store()}" update="growl"
-							process="@this" />
 					</p:panel>
+					<p:commandButton value="Claim" action="#{claimController.store()}"
+						update="growl" process="@this"
+						style="float: right; margin-top: 3px; background-color:green; border-color: green;"
+						icon="pi pi-chevron-right" />
 				</p:tab>
 			</p:wizard>
 		</h:form>
