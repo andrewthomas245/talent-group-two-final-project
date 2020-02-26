@@ -178,23 +178,38 @@
 					<h:panelGrid columns="2" columnClasses="label, value">
 						<h:outputText value="Sum Insured: " />
 						<h:outputText value="#{quoteController.quote.suminsured}"
-							styleClass="outputLabel" />
+							styleClass="outputLabel">
+							<f:convertNumber maxIntegerDigits="10" maxFractionDigits="1"
+								pattern="########" />
+						</h:outputText>
 
 						<h:outputText value="Policy Term: " />
 						<h:outputText value="#{quoteController.quote.policyterm}"
-							styleClass="outputLabel" />
+							styleClass="outputLabel">
+							<f:convertNumber maxIntegerDigits="10" maxFractionDigits="1"
+								pattern="########" />
+						</h:outputText>
 
 						<h:outputText value="Monthly Premium: " />
 						<h:outputText value="#{quoteController.quote.monthlypremium}"
-							styleClass="outputLabel" />
+							styleClass="outputLabel">
+							<f:convertNumber maxIntegerDigits="10" maxFractionDigits="1"
+								pattern="########" />
+						</h:outputText>
 
 						<h:outputText value="Yearly Premium: " />
 						<h:outputText value="#{quoteController.quote.yearlypremium}"
-							styleClass="outputLabel" />
+							styleClass="outputLabel">
+							<f:convertNumber maxIntegerDigits="10" maxFractionDigits="1"
+								pattern="########" />
+						</h:outputText>
 
 						<h:outputText value="Total Pay Amount: " />
 						<h:outputText value="#{quoteController.quote.totalpayamount}"
-							styleClass="outputLabel" />
+							styleClass="outputLabel">
+							<f:convertNumber maxIntegerDigits="10" maxFractionDigits="1"
+								pattern="########" />
+						</h:outputText>
 					</h:panelGrid>
 				</p:panel>
 				<br />

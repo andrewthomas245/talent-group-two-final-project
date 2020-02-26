@@ -107,7 +107,8 @@
 							</h:outputText>
 
 							<h:outputText value="Payment Amount: *" />
-							<p:inputText value="#{paymentController.payment.paymentamount}" />
+							<p:inputText value="#{paymentController.payment.paymentamount}"
+								maxlength="9" maxValue="999999999" decimalPlaces="0" />
 						</h:panelGrid>
 					</p:panel>
 				</p:tab>

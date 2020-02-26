@@ -112,7 +112,8 @@
 
 							<h:outputText value="Date of Birth: *" />
 							<p:calendar yearRange="1960:2010"
-								value="#{quoteController.quote.dob}" navigator="true">
+								value="#{quoteController.quote.dob}" navigator="true"
+								required="true">
 								<p:ajax event="dateSelect"
 									listener="#{quoteController.onDateSelect}" update="@form" />
 							</p:calendar>
@@ -122,12 +123,11 @@
 								mask="99/99/9999" />
 
 							<h:outputText value="Occupation: *" />
-							<p:inputMask value="#{quoteController.quote.occupation}"
-								mask="99/99/9999" />
+							<p:inputText value="#{quoteController.quote.occupation}" />
 
-							<h:outputText value="Phone: *" />
-							<p:inputMask value="#{quoteController.quote.phone}"
-								mask="99/99/9999" />
+							<h:outputText value="Phone (+95) :*" />
+							<p:inputNumber value="#{quoteController.quote.phone}" maxlength="9"
+								maxValue="999999999" decimalPlaces="0"/>
 						</h:panelGrid>
 					</p:panel>
 				</p:tab>
@@ -157,25 +157,26 @@
 						<p:messages />
 						<h:panelGrid columns="2" columnClasses="label, value">
 							<h:outputText value="Sum Insured: *" />
-							<p:inputText id="amount"
-								value="#{quoteController.quote.suminsured}" />
+							<p:inputNumber id="amount"
+								value="#{quoteController.quote.suminsured}"  maxValue="99999999" decimalPlaces="0" />
 
 							<h:outputText value="Policy Term: *" />
 							<p:selectOneMenu id="policy1"
 								value="#{quoteController.quote.policyterm}" required="true"
 								rendered="#{quoteController.quote.age &gt;= 10 and quoteController.quote.age &lt;= 55}">
 								<f:selectItem itemLabel="
-								Select One" itemValue="#{null}" noSelectionOption="true" />
-							<f:selectItem id="hi" itemLabel="5 Years" itemValue="5" />
-							<f:selectItem itemLabel="7 Years" itemValue="7" />
-							<f:selectItem itemLabel="10 Years" itemValue="10" />
+								Select One"
+									itemValue="#{null}" noSelectionOption="true" />
+								<f:selectItem id="hi" itemLabel="5 Years" itemValue="5" />
+								<f:selectItem itemLabel="7 Years" itemValue="7" />
+								<f:selectItem itemLabel="10 Years" itemValue="10" />
 							</p:selectOneMenu>
 							<p:selectOneMenu id="policy2"
 								value="#{quoteController.quote.policyterm}" required="true"
 								rendered="#{quoteController.quote.age &gt;= 56 and quoteController.quote.age &lt;= 58}">
 								<f:selectItem itemLabel="Select One" itemValue="#{null}"
 									noSelectionOption="true" />
-								<f:selectItem itemLabel="5 Years" itemValue="5"/>
+								<f:selectItem itemLabel="5 Years" itemValue="5" />
 								<f:selectItem itemLabel="7 Years" itemValue="7" />
 							</p:selectOneMenu>
 							<p:selectOneMenu id="policy3"

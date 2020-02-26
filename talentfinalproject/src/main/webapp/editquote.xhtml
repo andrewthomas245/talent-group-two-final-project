@@ -131,9 +131,9 @@
 							<p:inputMask value="#{quoteController.quote.occupation}"
 								mask="99/99/9999" />
 
-							<h:outputText value="Phone: *" />
-							<p:inputMask value="#{quoteController.quote.phone}"
-								mask="99/99/9999" />
+							<h:outputText value="Phone (+95) :*" />
+							<p:inputNumber value="#{quoteController.quote.phone}" maxlength="9"
+								maxValue="999999999" decimalPlaces="0"/>
 						</h:panelGrid>
 					</p:panel>
 				</p:tab>
