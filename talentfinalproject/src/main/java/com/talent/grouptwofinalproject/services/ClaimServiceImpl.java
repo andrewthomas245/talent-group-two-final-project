@@ -1,5 +1,6 @@
 package com.talent.grouptwofinalproject.services;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -27,6 +28,12 @@ public class ClaimServiceImpl implements ClaimService {
 	@Override
 	public void storeClaim(Claim claim) {
 		Claims claimEntity= new Claims();
+		
+		Date date = new Date();
+		
+		claimEntity.setClaimdate(date);
+		claimEntity.setPaymentdate(date);
+		claimEntity.setReviewdate(date);
 		
 		claimEntity.setClaimreason(claim.getClaimreason());
 		

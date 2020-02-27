@@ -11,10 +11,12 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.talent.grouptwofinalproject.entities.Claims;
 import com.talent.grouptwofinalproject.entities.Payments;
 import com.talent.grouptwofinalproject.entities.Policies;
 import com.talent.grouptwofinalproject.entities.Quotes;
 import com.talent.grouptwofinalproject.entities.Users;
+import com.talent.grouptwofinalproject.models.Claim;
 import com.talent.grouptwofinalproject.models.Payment;
 import com.talent.grouptwofinalproject.models.Policy;
 import com.talent.grouptwofinalproject.models.Quote;
@@ -41,6 +43,9 @@ public class PolicyServiceImpl implements PolicyService {
 
 	@Autowired
 	public PaymentRepository paymentRepository;
+	
+	@Autowired
+	public ClaimRepository claimRepository;
 
 	@Override
 	public void createPolicy(Policy pol) {
@@ -96,6 +101,7 @@ public class PolicyServiceImpl implements PolicyService {
 		List<Policies> entitylist = new ArrayList<Policies>();
 		List<Quotes> entitylist2 = new ArrayList<Quotes>();
 		List<Payments> entitylist3 = new ArrayList<Payments>();
+		List<Claims> entitylist4= new ArrayList<Claims>();
 		
 		double totalpaidpremium =0;
 
@@ -132,11 +138,26 @@ public class PolicyServiceImpl implements PolicyService {
 			modellist.add(model2);
 		}
 		
+		entitylist4 = claimRepository.getClaimByPolicy(id);
+		
+		if(!entitylist4.isEmpty()){
+		
+		Claim model3=new Claim();
+
+		for (Claims c : entitylist4) {
+			model3.setClaimdate(c.getClaimdate());
+			model3.setClaimreason(c.getClaimreason());
+		}
+		
+		model1.setClaim(model3);
+		
+		}
+		
 		model1.setTotalpaidpremium(totalpaidpremium);
 		
 		model1.setPaymentList(modellist);
 		
-		//System.out.println(model1.getPaymentList());
+		System.out.println(model1.getClaim());
 		
 		//modellist.add(model1);
 

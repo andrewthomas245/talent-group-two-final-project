@@ -62,9 +62,9 @@
 	color: red;
 	background-image: none;
 }
-.yellow {
+.maroon {
 	font-weight: bolder;
-	color: yellow;
+	color: maroon;
 	background-image: none;
 }
 .orange {
@@ -140,7 +140,7 @@
 						<h:outputText value="Status:" />
 						<h:outputText value="#{policy.policystatus}" rendered="#{policy.policystatus =='Active'}" styleClass="green"/>
 						<h:outputText value="#{policy.policystatus}" rendered="#{policy.policystatus =='Pending'}" styleClass="orange"/>
-						<h:outputText value="#{policy.policystatus}" rendered="#{policy.policystatus =='Claimed'}" styleClass="yellow"/>
+						<h:outputText value="#{policy.policystatus}" rendered="#{policy.policystatus =='Claimed'}" styleClass="maroon"/>
 					</h:panelGrid>
 					<h:commandButton value="Details" class="btn btn-primary"
 						action="#{policyController.fetchByQuote(policy.id)}" />

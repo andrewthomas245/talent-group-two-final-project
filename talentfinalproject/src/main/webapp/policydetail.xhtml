@@ -70,11 +70,13 @@
 	color: red;
 	background-image: none;
 }
-.yellow {
+
+.maroon{
 	font-weight: bolder;
-	color: yellow;
+	color: maroon;
 	background-image: none;
 }
+
 .orange {
 	font-weight: bolder;
 	color: orange;
@@ -133,9 +135,15 @@
 						styleClass="outputLabel" />
 
 					<h:outputText value="Policy Status: " />
-					<h:outputText value="#{policyController.policy.policystatus}" rendered="#{policyController.policy.policystatus =='Active'}" styleClass="green"/>
-					<h:outputText value="#{policyController.policy.policystatus}" rendered="#{policyController.policy.policystatus =='Pending'}" styleClass="orange"/>
-					<h:outputText value="#{policyController.policy.policystatus}" rendered="#{policyController.policy.policystatus =='Claimed'}" styleClass="yellow"/>
+					<h:outputText value="#{policyController.policy.policystatus}"
+						rendered="#{policyController.policy.policystatus =='Active'}"
+						styleClass="green" />
+					<h:outputText value="#{policyController.policy.policystatus}"
+						rendered="#{policyController.policy.policystatus =='Pending'}"
+						styleClass="orange" />
+					<h:outputText value="#{policyController.policy.policystatus}"
+						rendered="#{policyController.policy.policystatus =='Claimed'}"
+						styleClass="maroon" />
 				</h:panelGrid>
 			</p:panel>
 			<br />
@@ -189,11 +197,26 @@
 				</h:panelGrid>
 			</p:panel>
 			<br />
-			<p:commandButton value="Claim Form"
+			<p:panel header="Claim Information" rendered="#{not empty policyController.policy.claim}">
+				<h:panelGrid columns="2" columnClasses="label, value">
+					<h:outputText value="Claim Date: " />
+					<h:outputText value="#{policyController.policy.claim.claimdate}"
+						styleClass="outputLabel" />
+
+					<h:outputText value="Claim Reason: " />
+					<h:outputText value="#{policyController.policy.claim.claimreason}"
+						styleClass="outputLabel" />
+				</h:panelGrid>
+			</p:panel>
+			<br />
+			<p:commandButton value="Back to My Policies"
+				action="mypolicies?faces-redirect=true"/>&nbsp;
+			<p:commandButton value="Claim Form" rendered="#{empty policyController.policy.claim}"
 				action="#{claimController.getToClaim(policyController.policy)}"
 				update="growl" process="@this" />&nbsp;
-			<p:commandButton value="Pay Premium"
-				action="#{paymentController.getToPayment(policyController.policy)}" update="growl" process="@this"  />
+			<p:commandButton value="Pay Premium" rendered="#{empty policyController.policy.claim}"
+				action="#{paymentController.getToPayment(policyController.policy)}"
+				update="growl" process="@this" />
 		</h:form>
 	</div>
 

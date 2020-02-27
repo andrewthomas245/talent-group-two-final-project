@@ -26,6 +26,8 @@ public class Policy {
 	private Double totalpaidpremium;
 
 	List<Payment> PaymentList = new ArrayList<Payment>();
+	
+	private Claim claim;
 
 	public long getId() {
 		return id;
@@ -145,6 +147,14 @@ public class Policy {
 
 	public void setPaymentList(List<Payment> paymentList) {
 		PaymentList = paymentList;
+	}
+
+	public Claim getClaim() {
+		return claim;
+	}
+
+	public void setClaim(Claim claim) {
+		this.claim = claim;
 	}
 
 }
