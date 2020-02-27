@@ -15,10 +15,12 @@ import com.talent.grouptwofinalproject.entities.AccountState;
 import com.talent.grouptwofinalproject.entities.Addresses;
 import com.talent.grouptwofinalproject.entities.Benificiaries;
 import com.talent.grouptwofinalproject.entities.Quotes;
-import com.talent.grouptwofinalproject.models.Quote;
+import com.talent.grouptwofinalproject.entities.Users;
+import com.talent.grouptwofinalproject.models.*;
 import com.talent.grouptwofinalproject.repositories.AddressRepository;
 import com.talent.grouptwofinalproject.repositories.BeneficiaryRepository;
 import com.talent.grouptwofinalproject.repositories.QuoteRepository;
+import com.talent.grouptwofinalproject.repositories.UserRepository;
 
 @Service
 @Transactional
@@ -26,6 +28,12 @@ public class QuoteServiceImpl implements QuoteService {
 	
 	@PersistenceContext
 	EntityManager em;
+	
+	@Autowired
+	public UserRepository userRepository;
+	
+	@Autowired
+	public UserService userService;
 	
 	@Autowired
 	public QuoteRepository quoteRepository;
@@ -80,6 +88,9 @@ public class QuoteServiceImpl implements QuoteService {
 		
 		quotesEntity.setAddresses(addressesEntity);
 		quotesEntity.setBenificiaries(benificiariesEntity);
+		
+		Users u=userRepository.findByName(quo.getUsername());
+		quotesEntity.setUsers(u);
 
 		quoteRepository.save(quotesEntity);
 
@@ -89,8 +100,12 @@ public class QuoteServiceImpl implements QuoteService {
 	public List<Quote> getQuotes(Quote quo) {
 		List<Quote> modellist = new ArrayList<Quote>();
 		List<Quotes> entitylist = new ArrayList<Quotes>();
+		
+		Users u=userRepository.findByName(userService.getLoginUserName());
+		Long id=u.getUserid();
 
-		entitylist = quoteRepository.findAll();
+		entitylist = quoteRepository.getQuoteByUserID(id);
+		
 		System.out.println("find all " + entitylist);
 		for (Quotes q : entitylist) {
 			Quote model = new Quote();
@@ -195,7 +210,7 @@ public class QuoteServiceImpl implements QuoteService {
 				yearlypremium = suminsured * 0.202800;
 			} else if (age == 59) {
 				yearlypremium = suminsured * 0.204000;
-			} else {
+			} else if (age == 60) {
 				yearlypremium = suminsured * 0.205200;
 			}
 		}
@@ -223,8 +238,6 @@ public class QuoteServiceImpl implements QuoteService {
 				yearlypremium = suminsured * 0.141600;
 			} else if (age == 58) {
 				yearlypremium = suminsured * 0.144000;
-			} else {
-
 			}
 		}
 		if (policyterm == 10) {
@@ -248,8 +261,6 @@ public class QuoteServiceImpl implements QuoteService {
 				yearlypremium = suminsured * 0.096000;
 			} else if (age == 55) {
 				yearlypremium = suminsured * 0.097200;
-			} else {
-
 			}
 		}
 

@@ -8,5 +8,7 @@ public interface CustomPolicyRepository {
 	List<Policies> getDetailByID(Long id);
 	
 	List<Policies> getPolicyByQuote(Long id);
+
+	List<Policies> findByUser(Long id);
 	
 }

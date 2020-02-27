@@ -6,6 +6,8 @@ import lombok.Data;
 
 @Data
 public class Quote {
+	private String username;
+	
 	private Long id;
 	private String name;
 	private String gender;
@@ -37,8 +39,12 @@ public class Quote {
 	private double yearlypremium;
 	private double totalpayamount;
 	
-	
-	
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
+	}
 	public Long getId() {
 		return id;
 	}

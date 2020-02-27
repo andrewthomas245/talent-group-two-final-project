@@ -22,8 +22,8 @@ public class Users {
 	private String email;
 	private String password;
 
-	//@OneToMany(mappedBy = "users", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	//private List<Quotes> quotes;
+	@OneToMany(mappedBy = "users", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private List<Quotes> quotes;
 
 	public Long getUserid() {
 		return userid;
@@ -41,15 +41,13 @@ public class Users {
 		this.name = name;
 	}
 
-	//public List<Quotes> getQuotes() {
-	//	return quotes;
-	//}
+	public List<Quotes> getQuotes() {
+		return quotes;
+	}
 
-	//public void setQuotes(List<Quotes> quotes) {
-	//	this.quotes = quotes;
-	//}
-	
-	
+	public void setQuotes(List<Quotes> quotes) {
+		this.quotes = quotes;
+	}
 
 	public Users() {
 	}
@@ -75,13 +73,10 @@ public class Users {
 		this.name = name;
 	}
 
-	//public Users(Long userid, String name, List<Quotes> quotes) {
-	//	this.userid = userid;
-	//	this.name = name;
-	//	this.quotes = quotes;
-	//}
-	
-	
-
+	public Users(Long userid, String name, List<Quotes> quotes) {
+		this.userid = userid;
+		this.name = name;
+		this.quotes = quotes;
+	}
 
 }

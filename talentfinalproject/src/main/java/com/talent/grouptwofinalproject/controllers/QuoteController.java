@@ -23,6 +23,7 @@ import com.talent.grouptwofinalproject.entities.Policies;
 import com.talent.grouptwofinalproject.models.Quote;
 import com.talent.grouptwofinalproject.services.PolicyService;
 import com.talent.grouptwofinalproject.services.QuoteService;
+import com.talent.grouptwofinalproject.services.UserService;
 
 @Named
 @ViewScoped
@@ -56,6 +57,9 @@ public class QuoteController {
 	public void setSkip(boolean skip) {
 		this.skip = skip;
 	}
+	
+	@Autowired
+	public UserService userservice;
 
 	@Autowired
 	public QuoteService quoteservice;
@@ -64,6 +68,7 @@ public class QuoteController {
 	public PolicyService policyservice;
 
 	public String save() {
+		quote.setUsername(userservice.getLoginUserName());
 		quoteservice.createQuote(quote);
 		FacesMessage msg = new FacesMessage("Successful",
 				"Quote with Name: " + quote.getName() + " is created successfully.");

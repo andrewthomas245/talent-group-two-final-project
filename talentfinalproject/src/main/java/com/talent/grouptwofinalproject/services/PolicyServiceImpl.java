@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import com.talent.grouptwofinalproject.entities.Payments;
 import com.talent.grouptwofinalproject.entities.Policies;
 import com.talent.grouptwofinalproject.entities.Quotes;
+import com.talent.grouptwofinalproject.entities.Users;
 import com.talent.grouptwofinalproject.models.Payment;
 import com.talent.grouptwofinalproject.models.Policy;
 import com.talent.grouptwofinalproject.models.Quote;
@@ -25,6 +26,12 @@ public class PolicyServiceImpl implements PolicyService {
 
 	@PersistenceContext
 	EntityManager em;
+	
+	@Autowired
+	public UserRepository userRepository;
+	
+	@Autowired
+	public UserService userService;
 
 	@Autowired
 	public PolicyRepository policyRepository;
@@ -61,8 +68,12 @@ public class PolicyServiceImpl implements PolicyService {
 	public List<Policy> getPolicies(Policy pol) {
 		List<Policy> modellist = new ArrayList<Policy>();
 		List<Policies> entitylist = new ArrayList<Policies>();
+		
+		Users u=userRepository.findByName(userService.getLoginUserName());
+		Long id=u.getUserid();
 
-		entitylist = policyRepository.findAll();
+		entitylist = policyRepository.findByUser(id);
+		
 		System.out.println("find all " + entitylist);
 		for (Policies p : entitylist) {
 			Policy model = new Policy();

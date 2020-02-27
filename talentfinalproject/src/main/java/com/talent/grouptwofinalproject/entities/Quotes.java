@@ -32,6 +32,12 @@ public class Quotes {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long quoteid;
+	
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@JoinColumn(name = "user_id", nullable = false)
+	@OnDelete(action = OnDeleteAction.CASCADE)
+	private Users users;
+	
 	private String name;
 	private String gender;
 	private String fathername;
@@ -64,11 +70,6 @@ public class Quotes {
 	private AccountState state;
 	
 	private Date deletedate;
-
-	//@ManyToOne(fetch = FetchType.LAZY, optional = false)
-	//@JoinColumn(name = "user_id", nullable = false)
-	//@OnDelete(action = OnDeleteAction.CASCADE)
-	//private Users user;
 
 	public Long getQuoteid() {
 		return quoteid;
@@ -158,13 +159,13 @@ public class Quotes {
 		this.benificiaries = benificiaries;
 	}
 
-	//public Users getUser() {
-	//	return user;
-	//}
+	public Users getUsers() {
+		return users;
+	}
 
-	//public void setUser(Users user) {
-	//	this.user = user;
-	//}
+	public void setUsers(Users users) {
+		this.users = users;
+	}
 
 	public double getSuminsured() {
 		return suminsured;
@@ -245,7 +246,7 @@ public class Quotes {
 	public Quotes(Long quoteid, String name, String gender, String fathername, int age, Date dob, String nrc,
 			String occupation, String phone, Addresses addresses, Benificiaries benificiaries, Policies policies,
 			double suminsured, int policyterm, int premiumplan, double monthlypremium, double yearlypremium,
-			double totalpayamount, AccountState state, Date deletedate) {
+			double totalpayamount, AccountState state, Date deletedate, Users users) {
 		super();
 		this.quoteid = quoteid;
 		this.name = name;
@@ -267,6 +268,7 @@ public class Quotes {
 		this.totalpayamount = totalpayamount;
 		this.state = state;
 		this.deletedate = deletedate;
+		this.users = users;
 	}
 
 	@PreRemove

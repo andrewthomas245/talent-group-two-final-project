@@ -1,12 +1,22 @@
 package com.talent.grouptwofinalproject.models;
 
 public class UserModel {
+	
+	private Long userid;
 	 
     private String username;
      
     private String password;
     
     private String email;
+
+	public Long getUserid() {
+		return userid;
+	}
+
+	public void setUserid(Long userid) {
+		this.userid = userid;
+	}
 
 	public String getUsername() {
 		return username;

@@ -7,6 +7,13 @@ import javax.inject.Named;
 
 import org.primefaces.event.FlowEvent;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.event.ApplicationReadyEvent;
+import org.springframework.context.event.EventListener;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+
+import java.security.Principal;
 
 import com.talent.grouptwofinalproject.models.UserModel;
 import com.talent.grouptwofinalproject.services.UserService;
@@ -16,20 +23,14 @@ import com.talent.grouptwofinalproject.services.UserService;
 public class UserController {
 	
     private UserModel user = new UserModel();
-     
+    
     private boolean skip;
     
-    public UserModel getUser() {
-        return user;
-    }
- 
-    public void setUser(UserModel user) {
-        this.user = user;
-    }
-    @Autowired
+	@Autowired
     UserService userService;
     
     public void save() {
+    	
     	System.out.println("Here");
     	userService.createUser(user);
     	
@@ -58,4 +59,21 @@ public class UserController {
             return event.getNewStep();
         }
     }
+    
+    @EventListener(ApplicationReadyEvent.class)
+    public void doSomethingAfterStartup() {
+        System.out.println("hello world, I have just started up");
+    }
+
+	public UserModel getUser() {
+		return user;
+	}
+
+	public void setUser(UserModel user) {
+		this.user = user;
+	}
+    
+    
+    
+
 }

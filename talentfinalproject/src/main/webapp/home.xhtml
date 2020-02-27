@@ -51,16 +51,19 @@
 					class="nav-link dropdown-toggle" href="#"
 					id="navbarDropdownMenuLink" data-toggle="dropdown"
 					aria-haspopup="true" aria-expanded="false"> <i
-						class="fa fa-user-circle-o" aria-hidden="true"/> Kyaw Kyaw Latt</a>
+						class="fa fa-user-circle-o" aria-hidden="true" /> #{request.userPrincipal.name}
+				</a>
 					<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-						<a class="dropdown-item" href="#"><i class="fa fa-list-alt" aria-hidden="true"></i> My Quotes</a> <a
-							class="dropdown-item" href="#"><i class="fa fa-product-hunt" aria-hidden="true"></i> My Policies</a> <a
-							class="dropdown-item" href="#"><i class="fa fa-user" aria-hidden="true"></i> My Account</a>
+						<a class="dropdown-item" href="#"><i class="fa fa-list-alt"
+							aria-hidden="true"></i> My Quotes</a> <a class="dropdown-item"
+							href="#"><i class="fa fa-product-hunt" aria-hidden="true"></i>
+							My Policies</a> <a class="dropdown-item" href="#"><i
+							class="fa fa-user" aria-hidden="true"></i> My Account</a>
 					</div></li>
-				<li class="nav-item active"><a href="/login.xhtml"><button
-							type="button" class="btn btn-primary">
-							<i class="fa fa-sign-out"></i> Logout
-						</button></a></li>
+				<li class="nav-item">
+				<h:form onsubmit="this.action='#{request.contextPath}/logout';">
+					<p:commandButton value="Logout" ajax="false" />
+				</h:form></li>
 			</ul>
 		</div>
 	</div>
@@ -80,35 +83,8 @@
 	<div class="container">
 		<f:view contentType="text/html">
 			<h:form>
-				<p:panel>
-					<f:facet name="header">
-                Class Form
-                <p:commandButton icon="pi pi-refresh" update="classform"
-							process="@this" style="margin-right:20px;">
-							<p:resetInput target="classform" />
-						</p:commandButton>
-					</f:facet>
-					<h:panelGrid columns="3" id="classform">
-						<p:outputLabel for="classid" value="Class ID" />
-						<p:inputText id="classid"
-							value="#{classController.stuclass.stuclass_id}" required="true"
-							validatorMessage="The input does not match the pattern 'CL' + six numbers.">
-							<f:validateRegex pattern="^CL[0-9]{3,3}$" />
-						</p:inputText>
-						<p:message for="classid" />
-						<p:outputLabel for="classname" value="Class Name" />
-						<p:inputText id="classname"
-							value="#{classController.stuclass.name}" required="true"
-							validatorMessage="Name must be characters only and no spaces.">
-							<f:validateRegex pattern="^[a-zA-Z_]+( [a-zA-Z_]+)*$" />
-						</p:inputText>
-						<p:message for="classname" />
-						<p:outputLabel />
-						<p:commandButton value="Save" validateClient="true"
-							onclick="myFunction()" action="#{classController.save()}"
-							update="@form" process="@parent" />
-					</h:panelGrid>
-				</p:panel>
+				<p:commandButton value="Submit" action="#{userController.getName}"	process="@this" />
+				
 				<br />
 			</h:form>
 		</f:view>
