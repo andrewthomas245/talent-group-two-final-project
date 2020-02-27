@@ -34,6 +34,9 @@ public class ClaimServiceImpl implements ClaimService {
 		claimEntity.setClaimdate(date);
 		claimEntity.setPaymentdate(date);
 		claimEntity.setReviewdate(date);
+		claimEntity.setClaimsign(claim.getClaimsign());
+		
+		System.out.println(claim.getClaimsign());
 		
 		claimEntity.setClaimreason(claim.getClaimreason());
 		

@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -23,6 +24,11 @@ public class Claims {
 	private String claimreason;
 	private Date reviewdate;
 	private Date paymentdate;
+	
+	@Lob
+	@Column( length = 100000 )
+	private String claimsign;
+	
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "policy_id", referencedColumnName = "policyid", unique = true)
@@ -64,6 +70,12 @@ public class Claims {
 	}
 	public void setPolicies(Policies policies) {
 		this.policies = policies;
+	}
+	public String getClaimsign() {
+		return claimsign;
+	}
+	public void setClaimsign(String claimsign) {
+		this.claimsign = claimsign;
 	}
 	
 }

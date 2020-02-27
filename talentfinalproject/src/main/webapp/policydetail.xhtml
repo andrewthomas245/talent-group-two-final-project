@@ -201,7 +201,9 @@
 				<h:panelGrid columns="2" columnClasses="label, value">
 					<h:outputText value="Claim Date: " />
 					<h:outputText value="#{policyController.policy.claim.claimdate}"
-						styleClass="outputLabel" />
+						styleClass="outputLabel">
+						<f:convertDateTime pattern="dd/MM/yyyy" type="date" />
+						</h:outputText>
 
 					<h:outputText value="Claim Reason: " />
 					<h:outputText value="#{policyController.policy.claim.claimreason}"

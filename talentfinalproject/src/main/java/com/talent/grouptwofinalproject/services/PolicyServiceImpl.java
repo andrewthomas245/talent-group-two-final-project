@@ -147,6 +147,9 @@ public class PolicyServiceImpl implements PolicyService {
 		for (Claims c : entitylist4) {
 			model3.setClaimdate(c.getClaimdate());
 			model3.setClaimreason(c.getClaimreason());
+			model3.setClaimsign(c.getClaimsign());
+			
+			System.out.println(c.getClaimsign());
 		}
 		
 		model1.setClaim(model3);

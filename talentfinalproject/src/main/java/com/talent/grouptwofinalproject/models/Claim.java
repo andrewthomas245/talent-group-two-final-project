@@ -9,6 +9,7 @@ public class Claim {
 	private Date reviewdate;
 	private Date paymentdate;
 	private Long policyid;
+	private String claimsign;
 	
 	public Long getClaimid() {
 		return claimid;
@@ -46,6 +47,11 @@ public class Claim {
 	public void setPolicyid(Long policyid) {
 		this.policyid = policyid;
 	}
-	
+	public String getClaimsign() {
+		return claimsign;
+	}
+	public void setClaimsign(String claimsign) {
+		this.claimsign = claimsign;
+	}
 	
 }
