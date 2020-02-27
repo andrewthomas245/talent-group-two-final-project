@@ -70,6 +70,16 @@
 	color: red;
 	background-image: none;
 }
+.yellow {
+	font-weight: bolder;
+	color: yellow;
+	background-image: none;
+}
+.orange {
+	font-weight: bolder;
+	color: orange;
+	background-image: none;
+}
 </style>
 </h:head>
 
@@ -123,8 +133,9 @@
 						styleClass="outputLabel" />
 
 					<h:outputText value="Policy Status: " />
-					<h:outputText value="#{policyController.policy.policystatus}"
-						styleClass="#{(policyController.policy.policystatus=='Active') ? 'green' : 'red'}" />
+					<h:outputText value="#{policyController.policy.policystatus}" rendered="#{policyController.policy.policystatus =='Active'}" styleClass="green"/>
+					<h:outputText value="#{policyController.policy.policystatus}" rendered="#{policyController.policy.policystatus =='Pending'}" styleClass="orange"/>
+					<h:outputText value="#{policyController.policy.policystatus}" rendered="#{policyController.policy.policystatus =='Claimed'}" styleClass="yellow"/>
 				</h:panelGrid>
 			</p:panel>
 			<br />
@@ -139,7 +150,7 @@
 						styleClass="outputLabel" />
 
 					<h:outputText value="Premium Plan: " />
-					<h:outputText value="#{policyController.policy.premiumplan} Years"
+					<h:outputText value="#{policyController.policy.premiumplan} Months"
 						styleClass="outputLabel" />
 
 					<h:outputText value="Monthly Premium: " />

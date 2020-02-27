@@ -62,6 +62,16 @@
 	color: red;
 	background-image: none;
 }
+.yellow {
+	font-weight: bolder;
+	color: yellow;
+	background-image: none;
+}
+.orange {
+	font-weight: bolder;
+	color: orange;
+	background-image: none;
+}
 </style>
 </h:head>
 
@@ -125,10 +135,12 @@
 						<h:outputText value="Policy Term:" />
 						<h:outputText value="#{policy.policyterm} Years" />
 						<h:outputText value="Premium Plan:" />
-						<h:outputText value="#{policy.premiumplan}" />
+						<h:outputText value="#{policy.premiumplan} Months" />
+						
 						<h:outputText value="Status:" />
-						<h:outputText value="#{policy.policystatus}"
-							styleClass="#{(policy.policystatus=='Active') ? 'green' : 'red'}" />
+						<h:outputText value="#{policy.policystatus}" rendered="#{policy.policystatus =='Active'}" styleClass="green"/>
+						<h:outputText value="#{policy.policystatus}" rendered="#{policy.policystatus =='Pending'}" styleClass="orange"/>
+						<h:outputText value="#{policy.policystatus}" rendered="#{policy.policystatus =='Claimed'}" styleClass="yellow"/>
 					</h:panelGrid>
 					<h:commandButton value="Details" class="btn btn-primary"
 						action="#{policyController.fetchByQuote(policy.id)}" />
