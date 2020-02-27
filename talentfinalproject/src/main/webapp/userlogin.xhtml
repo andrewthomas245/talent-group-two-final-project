@@ -123,7 +123,8 @@ body {
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }
-.red{
+
+.red {
 	color: red;
 	line-height: 40px;
 }
@@ -156,6 +157,7 @@ body {
 		<br />
 		<div class="form">
 			<h:form prependId="false" class="login-form" id="login">
+				<p:growl id="growl" showDetail="true" />
 				<h1>LOGIN</h1>
 				<p:outputLabel value="Login failed. Try again." styleClass="red"
 					rendered="${!empty param['error']}" />
@@ -163,8 +165,8 @@ body {
 				<p:inputText placeholder="Password" id="password" />
 				<p:commandButton value="Login" ajax="false" />
 				<p class="message">
-					Not registered? <a href="/register.xhtml" onclick="registerFunction()">Create
-						an account</a>
+					Not registered? <a href="/register.xhtml"
+						onclick="registerFunction()">Create an account</a>
 				</p>
 			</h:form>
 		</div>

@@ -14,7 +14,9 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
 import java.security.Principal;
+import java.util.List;
 
+import com.talent.grouptwofinalproject.entities.Users;
 import com.talent.grouptwofinalproject.models.UserModel;
 import com.talent.grouptwofinalproject.services.UserService;
 
@@ -31,19 +33,31 @@ public class UserController {
     
     public String save() {
     	
-    	System.out.println("Here");
-    	userService.createUser(user);
-    	
-		FacesMessage msg = new FacesMessage("Successful",
-				"User with Name: " + user.getUsername() + " is created successfully.");
+    	Users FindUser=userService.findByName(user.getUsername());
+    	if (FindUser!=null) {
+    		System.out.println("DUPLICATE");
+			FacesContext context = FacesContext.getCurrentInstance();
+			context.addMessage("Error", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Fail",
+					"The Username: "+user.getUsername()+" has already been taken.Try again with a new user name."));
+			context.getExternalContext().getFlash().setKeepMessages(true);
+    		
+    	}else {
+    		System.out.println("Here");
+        	userService.createUser(user);
+        	
+    		FacesMessage msg = new FacesMessage("Successful",
+    				"Username: " + user.getUsername() + " is created successfully.");
 
-		FacesContext context = FacesContext.getCurrentInstance();
-		context.addMessage(null, msg);
-		context.getExternalContext().getFlash().setKeepMessages(true);
-		
-		user= new UserModel();
-		
-		return "/userlogin.xhtml?faces-redirect=true";
+    		FacesContext context = FacesContext.getCurrentInstance();
+    		context.addMessage(null, msg);
+    		context.getExternalContext().getFlash().setKeepMessages(true);
+    		
+    		user= new UserModel();
+    		
+    		return "/userlogin.xhtml?faces-redirect=true";	
+    	}
+    	return null;
+    	
     }
      
     public boolean isSkip() {
