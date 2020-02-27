@@ -26,10 +26,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 
-		http.authorizeRequests().antMatchers("/index.xhtml", "/UserRegister.xhtml").permitAll()
+		http.authorizeRequests().antMatchers("/index.xhtml", "/register.xhtml").permitAll()
 				.antMatchers("/home.xhtml","/myaccount.xhtml").authenticated();
 
-		http.formLogin().loginPage("/login.xhtml").permitAll().failureUrl("/login.xhtml?error=false");
+		http.formLogin().loginPage("/userlogin.xhtml").permitAll().failureUrl("/userlogin.xhtml?error=false");
 
 		http.logout().logoutSuccessUrl("/index.xhtml");
 
@@ -55,8 +55,3 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
 	}
 
 }
-//@Autowired
-//public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-//	auth.inMemoryAuthentication().withUser("john.doe").password("{noop}1234").roles("USER").and()
-//			.withUser("jane.doe").password("{noop}5678").roles("ADMIN");
-//}

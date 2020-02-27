@@ -29,7 +29,7 @@ public class UserController {
 	@Autowired
     UserService userService;
     
-    public void save() {
+    public String save() {
     	
     	System.out.println("Here");
     	userService.createUser(user);
@@ -40,6 +40,10 @@ public class UserController {
 		FacesContext context = FacesContext.getCurrentInstance();
 		context.addMessage(null, msg);
 		context.getExternalContext().getFlash().setKeepMessages(true);
+		
+		user= new UserModel();
+		
+		return "/userlogin.xhtml?faces-redirect=true";
     }
      
     public boolean isSkip() {

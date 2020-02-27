@@ -123,10 +123,6 @@ body {
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }
-.red{
-	color: red;
-	line-height: 40px;
-}
 </style>
 	<script>
 		$('.message a').click(function() {
@@ -155,16 +151,22 @@ body {
 		</center>
 		<br />
 		<div class="form">
-			<h:form prependId="false" class="login-form" id="login">
-				<h1>LOGIN</h1>
-				<p:outputLabel value="Login failed. Try again." styleClass="red"
-					rendered="${!empty param['error']}" />
-				<p:inputText placeholder="Username" id="username" />
-				<p:inputText placeholder="Password" id="password" />
-				<p:commandButton value="Login" ajax="false" />
+			<h:form class="login-form" id="login">
+				<p:growl id="growl" sticky="true" showDetail="true" />
+				<h1>REGISTER</h1>
+				<p:inputText placeholder="User Name"
+					value="#{userController.user.username}" />
+				<p:inputText placeholder="Email Address"
+					value="#{userController.user.email}" />
+				<p:password placeholder="Password"
+					value="#{userController.user.password}" />
+				<p:password placeholder="Confrim Password" />
+
+				<p:commandButton value="Create" action="#{userController.save}"
+					update="growl" />
 				<p class="message">
-					Not registered? <a href="/register.xhtml" onclick="registerFunction()">Create
-						an account</a>
+					Already registered? <a href="/userlogin.xhtml"
+						onclick="loginFunction()">Log In</a>
 				</p>
 			</h:form>
 		</div>
