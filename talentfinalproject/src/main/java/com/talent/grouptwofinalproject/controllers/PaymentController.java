@@ -10,8 +10,10 @@ import javax.inject.Named;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.talent.grouptwofinalproject.entities.Claims;
 import com.talent.grouptwofinalproject.models.Payment;
 import com.talent.grouptwofinalproject.models.Policy;
+import com.talent.grouptwofinalproject.services.ClaimService;
 import com.talent.grouptwofinalproject.services.PaymentService;
 
 @Named
@@ -50,35 +52,47 @@ public class PaymentController {
 
 	@Autowired
 	public PaymentService paymentService;
+	
+	@Autowired
+	public ClaimService claimService;
 
 	public String getToPayment(Policy pol) {
-		boolean checkpaidpremium = paymentService.checkTotalPayment(pol);
-		System.out.println(checkpaidpremium);
-		
-		if (!checkpaidpremium) {
-			FacesContext context= FacesContext.getCurrentInstance();
-			context.addMessage("Error", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Fail",
-					"You have already paid premium in full."));
+		List<Claims> findclaims = claimService.findPolicyInClaims(pol.getId());
+		if (!findclaims.isEmpty()) {
+			System.out.println("DUPLICATE");
+			FacesContext context = FacesContext.getCurrentInstance();
+			context.addMessage("Error",
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Fail", "You can't pay anymore premiums as this policy is already claimed."));
 			context.getExternalContext().getFlash().setKeepMessages(true);
 		} else {
-			System.out.println("Here");
-			payment.setPolicyid(pol.getId());
-			System.out.println(payment.getPolicyid());
-			return "/payment.xhtml?faces-redirect=true";
+			boolean checkpaidpremium = paymentService.checkTotalPayment(pol);
+			System.out.println(checkpaidpremium);
+
+			if (!checkpaidpremium) {
+				FacesContext context = FacesContext.getCurrentInstance();
+				context.addMessage("Error", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Fail",
+						"You have already paid premium in full."));
+				context.getExternalContext().getFlash().setKeepMessages(true);
+			} else {
+				System.out.println("Here");
+				payment.setPolicyid(pol.getId());
+				System.out.println(payment.getPolicyid());
+				return "/payment.xhtml?faces-redirect=true";
+			}
 		}
 		return null;
 	}
 
 	public String save() {
 		paymentService.createPayment(payment);
-		
+
 		FacesMessage msg = new FacesMessage("Successful",
 				"The Amount: " + payment.getPaymentamount() + " is paid successfully.");
 
 		FacesContext context = FacesContext.getCurrentInstance();
 		context.addMessage(null, msg);
 		context.getExternalContext().getFlash().setKeepMessages(true);
-		
+
 		payment = new Payment();
 
 		return "/mypolicies.xhtml?faces-redirect=true";
