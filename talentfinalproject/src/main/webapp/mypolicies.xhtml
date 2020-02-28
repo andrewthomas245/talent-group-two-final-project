@@ -89,20 +89,41 @@
 		</button>
 		<div class="collapse navbar-collapse" id="navbarResponsive">
 			<ul class="navbar-nav ml-auto">
-				<li class="nav-item active"><a class="nav-link" href="#">Home
-						<span class="sr-only">(current)</span>
+				<li class="nav-item"><a class="nav-link" href="/home.xhtml"><i
+							class="fa fa-home" aria-hidden="true"></i> Home
 				</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">About</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">Services</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
 				<li class="nav-item dropdown"><a
 					class="nav-link dropdown-toggle" href="#"
 					id="navbarDropdownMenuLink" data-toggle="dropdown"
-					aria-haspopup="true" aria-expanded="false"> Procedures </a>
+					aria-haspopup="true" aria-expanded="false"> <i
+						class="fa fa-certificate" aria-hidden="true" /> Quotes
+				</a>
 					<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-						<a class="dropdown-item" href="#">Application Procedure</a> <a
-							class="dropdown-item" href="#">Claim Procedure</a>
+						<a class="dropdown-item" href="/createquote.xhtml"><i
+							class="fa fa-plus" aria-hidden="true"></i> Create A New Quote</a>
+						<a class="dropdown-item" href="/myquotes.xhtml"><i
+							class="fa fa-list-alt" aria-hidden="true"></i> My Quotes</a>
 					</div></li>
+				<li class="nav-item active"><a class="nav-link"
+					href="/mypolicies.xhtml"><i class="fa fa-product-hunt"
+						aria-hidden="true"></i> My Policies</a></li>
+				<li class="nav-item dropdown"><a
+					class="nav-link dropdown-toggle" href="#"
+					id="navbarDropdownMenuLink" data-toggle="dropdown"
+					aria-haspopup="true" aria-expanded="false"> <i
+						class="fa fa-user-circle-o" aria-hidden="true" />
+						#{request.userPrincipal.name}
+				</a>
+					<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+						<a class="dropdown-item" href="#"><i class="fa fa-user"
+							aria-hidden="true"></i> My Account</a>
+					</div></li>
+				<li class="nav-item"><h:form
+						onsubmit="this.action='#{request.contextPath}/logout';">
+						<button type="submit" class="btn btn-primary" ajax="false">
+							<i class="fa fa-sign-out"></i> Logout
+						</button>
+					</h:form></li>
 			</ul>
 		</div>
 	</div>
