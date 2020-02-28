@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.authentication.event.InteractiveAuthenticationSuccessEvent;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
@@ -81,6 +82,11 @@ public class UserController {
     @EventListener(ApplicationReadyEvent.class)
     public void doSomethingAfterStartup() {
         System.out.println("hello world, I have just started up");
+    }
+    
+    @EventListener
+    public void doSomething(InteractiveAuthenticationSuccessEvent event) {
+    	System.out.println("hello world, I have just logged in");
     }
 
 	public UserModel getUser() {

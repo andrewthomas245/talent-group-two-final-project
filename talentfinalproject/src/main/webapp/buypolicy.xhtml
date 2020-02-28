@@ -143,8 +143,6 @@
 				</p:tab>
 				<p:tab id="confirm" title="Confirmation">
 					<p:panel header="Confirmation">
-						<h:panelGrid id="confirmation" columns="2"
-							columnClasses="grid,grid,grid">
 							<h:panelGrid columns="2" columnClasses="label, value">
 								<h:outputText value="Quote ID: " />
 								<h:outputText value="#{policyController.policy.quoteid}"
@@ -158,7 +156,6 @@
 								<h:outputText value="#{policyController.policy.enddate}"
 									styleClass="outputLabel" />
 							</h:panelGrid>
-						</h:panelGrid>
 					</p:panel>
 					<p:commandButton value="Submit" action="#{policyController.save()}"
 						update="growl" process="@this"

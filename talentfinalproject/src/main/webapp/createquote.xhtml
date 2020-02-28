@@ -63,9 +63,8 @@
 		<div class="collapse navbar-collapse" id="navbarResponsive">
 			<ul class="navbar-nav ml-auto">
 				<li class="nav-item"><a class="nav-link" href="/home.xhtml"><i
-							class="fa fa-home" aria-hidden="true"></i> Home
-						<span class="sr-only">(current)</span>
-				</a></li>
+						class="fa fa-home" aria-hidden="true"></i> Home <span
+						class="sr-only">(current)</span> </a></li>
 				<li class="nav-item active dropdown"><a
 					class="nav-link dropdown-toggle" href="#"
 					id="navbarDropdownMenuLink" data-toggle="dropdown"
@@ -74,8 +73,8 @@
 				</a>
 					<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 						<a class="dropdown-item" href="/createquote.xhtml"><i
-							class="fa fa-plus" aria-hidden="true"></i> Create A New Quote</a>
-						<a class="dropdown-item" href="/myquotes.xhtml"><i
+							class="fa fa-plus" aria-hidden="true"></i> Create A New Quote</a> <a
+							class="dropdown-item" href="/myquotes.xhtml"><i
 							class="fa fa-list-alt" aria-hidden="true"></i> My Quotes</a>
 					</div></li>
 				<li class="nav-item"><a class="nav-link"
@@ -117,25 +116,34 @@
 			<p:wizard flowListener="#{quoteController.onFlowProcess}">
 				<p:tab id="personal" title="Personal">
 					<p:panel header="Fill your personal details here.">
-						<p:messages />
+						<p:messages id="msgLastname" />
 						<h:panelGrid columns="2" columnClasses="label, value">
 							<h:outputText value="Name of Insured: *" />
-							<p:inputText value="#{quoteController.quote.name}" />
+							<p:inputText value="#{quoteController.quote.name}" validatorMessage="Name must be characters only and no spaces.">
+								<f:validateRegex pattern="^[a-zA-Z_]+( [a-zA-Z_]+)*$" />
+								<p:ajax update="msgLastname" event="keyup" />
+							</p:inputText>
 
 							<h:outputText value="Gender: *" />
 							<p:selectOneRadio id="gender"
-								value="#{quoteController.quote.gender}" unselectable="true">
+								value="#{quoteController.quote.gender}" unselectable="true"
+								required="true" requiredMessage="Gender must be selected.">
 								<f:selectItem itemLabel="Male" itemValue="Male" />
 								<f:selectItem itemLabel="Female" itemValue="Female" />
 							</p:selectOneRadio>
 
 							<h:outputText value="Father's Name: *" />
-							<p:inputText value="#{quoteController.quote.fathername}" />
+							<p:inputText value="#{quoteController.quote.fathername}"
+								required="true"
+								validatorMessage="Father's Name must be characters only and no spaces.">
+								<f:validateRegex pattern="^[a-zA-Z_]+( [a-zA-Z_]+)*$" />
+								<p:ajax update="msgLastname" event="keyup" />
+							</p:inputText>
 
 							<h:outputText value="Date of Birth: *" />
 							<p:calendar yearRange="1960:2010"
 								value="#{quoteController.quote.dob}" navigator="true"
-								required="true">
+								required="true" locale="de" pattern="dd.MM.yyyy">
 								<p:ajax event="dateSelect"
 									listener="#{quoteController.onDateSelect}" update="@form" />
 							</p:calendar>
@@ -148,8 +156,8 @@
 							<p:inputText value="#{quoteController.quote.occupation}" />
 
 							<h:outputText value="Phone (+95) :*" />
-							<p:inputNumber value="#{quoteController.quote.phone}" maxlength="9"
-								maxValue="999999999" decimalPlaces="0"/>
+							<p:inputNumber value="#{quoteController.quote.phone}"
+								maxlength="10" maxValue="9999999999" decimalPlaces="0" />
 						</h:panelGrid>
 					</p:panel>
 				</p:tab>
@@ -160,7 +168,8 @@
 						<h:panelGrid columns="2" columnClasses="label, value">
 
 							<h:outputText value="Residence No: *" />
-							<p:inputText value="#{quoteController.quote.residenceno}" />
+							<p:inputNumber value="#{quoteController.quote.residenceno}"
+								maxlength="3" maxValue="999" decimalPlaces="0" />
 
 							<h:outputText value="Road or Street: *" />
 							<p:inputText value="#{quoteController.quote.roadstreet}" />
@@ -180,7 +189,10 @@
 						<h:panelGrid columns="2" columnClasses="label, value">
 							<h:outputText value="Sum Insured: *" />
 							<p:inputNumber id="amount"
-								value="#{quoteController.quote.suminsured}"  maxValue="99999999" decimalPlaces="0" />
+								value="#{quoteController.quote.suminsured}" maxValue="99999999"
+								decimalPlaces="0">
+								<f:validateLongRange minimum="1000000" maximum="50000000" />
+							</p:inputNumber>
 
 							<h:outputText value="Policy Term: *" />
 							<p:selectOneMenu id="policy1"
@@ -253,8 +265,8 @@
 								mask="99/99/9999" />
 
 							<h:outputText value="Phone: *" />
-							<p:inputMask value="#{quoteController.quote.benificiaryphone}"
-								mask="99/99/9999" />
+							<p:inputNumber value="#{quoteController.quote.benificiaryphone}"
+								maxlength="10" maxValue="9999999999" decimalPlaces="0" />
 						</h:panelGrid>
 					</p:panel>
 				</p:tab>
