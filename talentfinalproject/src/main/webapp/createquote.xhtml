@@ -10,8 +10,6 @@
 	<f:metadata name="viewport"
 		content="width=device-width, initial-scale=1" />
 
-	<script src="js\jquery.mask.js" />
-
 	<script src="js\bootstrap.bundle.min.js" />
 
 	<link rel="stylesheet" type="text/css" href="css\bootstrap.min.css" />
@@ -20,12 +18,16 @@
 	<link rel="stylesheet" type="text/css" href="css\allcss.css" />
 	<style type="text/css">
 .label {
-	width: 40%;
+	width: 15%;
 	padding: 4px;
 }
 
 .value {
-	width: 60%;
+	width: 20%;
+	padding: 4px;
+}
+.message {
+	width: 65%;
 	padding: 4px;
 }
 
@@ -116,88 +118,129 @@
 			<p:wizard flowListener="#{quoteController.onFlowProcess}">
 				<p:tab id="personal" title="Personal">
 					<p:panel header="Fill your personal details here.">
-						<p:messages id="msgLastname" />
-						<h:panelGrid columns="2" columnClasses="label, value">
+						<h:panelGrid columns="3" columnClasses="label, value, message">
 							<h:outputText value="Name of Insured: *" />
-							<p:inputText value="#{quoteController.quote.name}" validatorMessage="Name must be characters only and no spaces.">
+							<p:inputText id="qname" value="#{quoteController.quote.name}"
+								validatorMessage="Name must be characters only with no spaces.">
 								<f:validateRegex pattern="^[a-zA-Z_]+( [a-zA-Z_]+)*$" />
-								<p:ajax update="msgLastname" event="keyup" />
+								<p:ajax update="qnamem" event="keyup" />
 							</p:inputText>
+							<p:message id="qnamem" for="qname" />
 
 							<h:outputText value="Gender: *" />
-							<p:selectOneRadio id="gender"
-								value="#{quoteController.quote.gender}" unselectable="true"
+							<p:selectOneRadio id="qgender"
+								value="#{quoteController.quote.gender}"
 								required="true" requiredMessage="Gender must be selected.">
 								<f:selectItem itemLabel="Male" itemValue="Male" />
 								<f:selectItem itemLabel="Female" itemValue="Female" />
 							</p:selectOneRadio>
+							<p:message id="qgenderm" for="qgender" />
 
 							<h:outputText value="Father's Name: *" />
-							<p:inputText value="#{quoteController.quote.fathername}"
-								required="true"
-								validatorMessage="Father's Name must be characters only and no spaces.">
+							<p:inputText id="fathername" value="#{quoteController.quote.fathername}"
+								required="true" requiredMessage="Father's Name is required."
+								validatorMessage="Father's Name must be characters only with no spaces.">
 								<f:validateRegex pattern="^[a-zA-Z_]+( [a-zA-Z_]+)*$" />
-								<p:ajax update="msgLastname" event="keyup" />
+								<p:ajax update="fathernamem" event="keyup" />
 							</p:inputText>
+							<p:message id="fathernamem" for="fathername" />
 
 							<h:outputText value="Date of Birth: *" />
-							<p:calendar yearRange="1960:2010"
+							<p:calendar id="dob" yearRange="1960:2010"
 								value="#{quoteController.quote.dob}" navigator="true"
-								required="true" locale="de" pattern="dd.MM.yyyy">
+								required="true"
+								requiredMessage="Date of Birth must be selected." locale="de"
+								pattern="dd.MM.yyyy">
 								<p:ajax event="dateSelect"
-									listener="#{quoteController.onDateSelect}" update="@form" />
+									listener="#{quoteController.onDateSelect}" update="paymentdetails" />
 							</p:calendar>
+							<p:message id="dobm" for="dob" />
 
 							<h:outputText value="NRC: *" />
-							<p:inputMask value="#{quoteController.quote.nrc}"
-								mask="99/99/9999" />
+							<p:inputMask id="qnrc" value="#{quoteController.quote.nrc}"
+								mask="99/aaaaaa(a)999999" required="true"
+								requiredMessage="NRC is required.">
+								<p:ajax update="qnrcm" event="keyup" />
+							</p:inputMask>
+							<p:message id="qnrcm" for="qnrc" />
 
 							<h:outputText value="Occupation: *" />
-							<p:inputText value="#{quoteController.quote.occupation}" />
+							<p:inputText id="occupation" value="#{quoteController.quote.occupation}"
+								required="true" requiredMessage="Occupation is required."
+								validatorMessage="Occupation must be characters only with no spaces.">
+								<f:validateRegex pattern="^[a-zA-Z_]+( [a-zA-Z_]+)*$" />
+								<p:ajax update="occupationm" event="keyup" />
+							</p:inputText>
+							<p:message id="occupationm" for="occupation" />
 
 							<h:outputText value="Phone (+95) :*" />
-							<p:inputNumber value="#{quoteController.quote.phone}"
-								maxlength="10" maxValue="9999999999" decimalPlaces="0" />
+							<p:inputNumber id="qphone" value="#{quoteController.quote.phone}"
+								maxlength="10" maxValue="9999999999" decimalPlaces="0"
+								required="true" requiredMessage="Phone is required.">
+							<p:ajax update="qphonem" event="keyup" />
+							</p:inputNumber>
+							<p:message id="qphonem" for="qphone" />
 						</h:panelGrid>
 					</p:panel>
 				</p:tab>
 
 				<p:tab id="address" title="Address">
 					<p:panel header="Fill your address information here.">
-						<p:messages />
-						<h:panelGrid columns="2" columnClasses="label, value">
+						<h:panelGrid columns="3" columnClasses="label, value, message">
 
 							<h:outputText value="Residence No: *" />
-							<p:inputNumber value="#{quoteController.quote.residenceno}"
-								maxlength="3" maxValue="999" decimalPlaces="0" />
+							<p:inputNumber id="qresidence" value="#{quoteController.quote.residenceno}"
+								maxlength="3" maxValue="999" decimalPlaces="0" minValue="1" validatorMessage="Residence must be between 1 and 100.">
+							<p:ajax update="qresidencem" event="keyup" />
+							</p:inputNumber>
+							<p:message id="qresidencem" for="qresidence" />
 
 							<h:outputText value="Road or Street: *" />
-							<p:inputText value="#{quoteController.quote.roadstreet}" />
+							<p:inputText id="qroad" value="#{quoteController.quote.roadstreet}"
+								required="true" requiredMessage="Road or Street is required."
+								validatorMessage="Road or Street must be characters only with no spaces.">
+								<f:validateRegex pattern="^[a-zA-Z_]+( [a-zA-Z_]+)*$" />
+								<p:ajax update="qroadm" event="keyup" />
+							</p:inputText>
+							<p:message id="qroadm" for="qroad" />
 
 							<h:outputText value="Township: *" />
-							<p:inputText value="#{quoteController.quote.township}" />
+							<p:inputText id="qtownship" value="#{quoteController.quote.township}"
+								required="true" requiredMessage="Township is required."
+								validatorMessage="Township must be characters only with no spaces.">
+								<f:validateRegex pattern="^[a-zA-Z_]+( [a-zA-Z_]+)*$" />
+								<p:ajax update="qtownshipm" event="keyup" />
+							</p:inputText>
+							<p:message id="qtownshipm" for="qtownship" />
 
 							<h:outputText value="City: *" />
-							<p:inputText value="#{quoteController.quote.city}" />
+							<p:inputText id="qcity" value="#{quoteController.quote.city}"
+								required="true" requiredMessage="City is required."
+								validatorMessage="City must be characters only with no spaces.">
+								<f:validateRegex pattern="^[a-zA-Z_]+( [a-zA-Z_]+)*$" />
+								<p:ajax update="qcitym" event="keyup" />
+							</p:inputText>
+							<p:message id="qcitym" for="qcity" />
 						</h:panelGrid>
 					</p:panel>
 				</p:tab>
 
 				<p:tab id="paymentdetails" title="Payment Details">
 					<p:panel header="Fill payment details for your insurance here.">
-						<p:messages />
-						<h:panelGrid columns="2" columnClasses="label, value">
+						<h:panelGrid columns="3" columnClasses="label, value, message">
 							<h:outputText value="Sum Insured: *" />
 							<p:inputNumber id="amount"
 								value="#{quoteController.quote.suminsured}" maxValue="99999999"
-								decimalPlaces="0">
+								decimalPlaces="0" validatorMessage="Sum Insured must be between 1000000 and 50000000.">
 								<f:validateLongRange minimum="1000000" maximum="50000000" />
+								<p:ajax update="amountm" event="keyup" />
 							</p:inputNumber>
+							<p:message id="amountm" for="amount" />
 
 							<h:outputText value="Policy Term: *" />
 							<p:selectOneMenu id="policy1"
 								value="#{quoteController.quote.policyterm}" required="true"
-								rendered="#{quoteController.quote.age &gt;= 10 and quoteController.quote.age &lt;= 55}">
+								rendered="#{quoteController.quote.age &gt;= 10 and quoteController.quote.age &lt;= 55}" requiredMessage="Policy Term must be selected.">
 								<f:selectItem itemLabel="
 								Select One"
 									itemValue="#{null}" noSelectionOption="true" />
@@ -207,7 +250,7 @@
 							</p:selectOneMenu>
 							<p:selectOneMenu id="policy2"
 								value="#{quoteController.quote.policyterm}" required="true"
-								rendered="#{quoteController.quote.age &gt;= 56 and quoteController.quote.age &lt;= 58}">
+								rendered="#{quoteController.quote.age &gt;= 56 and quoteController.quote.age &lt;= 58}" requiredMessage="Policy Term must be selected.">
 								<f:selectItem itemLabel="Select One" itemValue="#{null}"
 									noSelectionOption="true" />
 								<f:selectItem itemLabel="5 Years" itemValue="5" />
@@ -215,15 +258,18 @@
 							</p:selectOneMenu>
 							<p:selectOneMenu id="policy3"
 								value="#{quoteController.quote.policyterm}" required="true"
-								rendered="#{quoteController.quote.age &gt;= 59 and quoteController.quote.age &lt;= 60}">
+								rendered="#{quoteController.quote.age &gt;= 59 and quoteController.quote.age &lt;= 60}" requiredMessage="Policy Term must be selected.">
 								<f:selectItem itemLabel="Select One" itemValue="#{null}"
 									noSelectionOption="true" />
 								<f:selectItem itemLabel="5 Years" itemValue="5" />
 							</p:selectOneMenu>
+							<p:message id="policym1" for="policy1" rendered="#{quoteController.quote.age &gt;= 10 and quoteController.quote.age &lt;= 55}"/>
+							<p:message id="policym2" for="policy2" rendered="#{quoteController.quote.age &gt;= 56 and quoteController.quote.age &lt;= 58}"/>
+							<p:message id="policym3" for="policy3" rendered="#{quoteController.quote.age &gt;= 59 and quoteController.quote.age &lt;= 60}"/>
 
 							<h:outputText value="Premium Plan: *" />
 							<p:selectOneMenu id="premiumplan"
-								value="#{quoteController.quote.premiumplan}" required="true">
+								value="#{quoteController.quote.premiumplan}" required="true" requiredMessage="Premium Plan must be selected.">
 								<f:selectItem itemLabel="Select One" itemValue="#{null}"
 									noSelectionOption="true" />
 								<f:selectItem itemLabel="1 Month" itemValue="1" />
@@ -231,23 +277,45 @@
 								<f:selectItem itemLabel="6 Months" itemValue="6" />
 								<f:selectItem itemLabel="12 Months" itemValue="12" />
 							</p:selectOneMenu>
+							<p:message id="premiumplanm" for="premiumplan" />
 						</h:panelGrid>
 					</p:panel>
 				</p:tab>
 
 				<p:tab id="beneficiary" title="Beneficiary">
 					<p:panel header="Fill your beneficiary's information here.">
-						<p:messages />
-						<h:panelGrid columns="2" columnClasses="label, value">
+						<h:panelGrid columns="3" columnClasses="label, value, message">
 							<h:outputText value="Beneficiary's Name: *" />
-							<p:inputText value="#{quoteController.quote.benificiaryname}" />
+							<p:inputText id="bname" value="#{quoteController.quote.benificiaryname}"
+								required="true"
+								requiredMessage="Beneficiary's Name is required."
+								validatorMessage="Beneficiary's Name must be characters only with no spaces.">
+								<f:validateRegex pattern="^[a-zA-Z_]+( [a-zA-Z_]+)*$" />
+								<p:ajax update="bnamem" event="keyup" />
+							</p:inputText>
+							<p:message id="bnamem" for="bname" />
+							
+
+							<h:outputText value="Gender: *" />
+							<p:selectOneRadio id="genderb"
+								value="#{quoteController.quote.benificiarygender}"
+								required="true"
+								requiredMessage="Gender must be selected.">
+								<f:selectItem itemLabel="Male" itemValue="Male" />
+								<f:selectItem itemLabel="Female" itemValue="Female" />
+							</p:selectOneRadio>
+							<p:message id="genderbm" for="genderb" />
 
 							<h:outputText value="NRC: *" />
-							<p:inputText value="#{quoteController.quote.benificiarynrc}" />
+							<p:inputMask id="nrcb" value="#{quoteController.quote.benificiarynrc}"
+								mask="99/aaaaaa(a)999999" required="true" requiredMessage="NRC is required.">
+							</p:inputMask>
+							<p:message id="nrcbm" for="nrcb" />
 
 							<h:outputText value="Relationship with Insurer: *" />
 							<p:selectOneMenu id="relationship"
-								value="#{quoteController.quote.relationship}" required="true">
+								value="#{quoteController.quote.relationship}" required="true"
+								requiredMessage="Relationship with Insurer is required.">
 								<f:selectItem itemLabel="Select One" itemValue="#{null}"
 									noSelectionOption="true" />
 								<f:selectItem itemLabel="Spouse" itemValue="Spouse" />
@@ -259,14 +327,20 @@
 								<f:selectItem itemLabel="Nibling" itemValue="Nibling" />
 								<f:selectItem itemLabel="Friend" itemValue="Friend" />
 							</p:selectOneMenu>
+							<p:message id="relationshipm" for="relationship" />
 
 							<h:outputText value="Address: *" />
-							<p:inputMask value="#{quoteController.quote.benificiaryaddress}"
-								mask="99/99/9999" />
+							<p:inputTextarea id="addressb" value="#{quoteController.quote.benificiaryaddress}"
+								required="true" requiredMessage="Address is required.">
+								<p:ajax update="relationshipm" event="keyup" />
+							</p:inputTextarea>
+							<p:message id="addressbm" for="addressb" />
 
-							<h:outputText value="Phone: *" />
-							<p:inputNumber value="#{quoteController.quote.benificiaryphone}"
-								maxlength="10" maxValue="9999999999" decimalPlaces="0" />
+							<h:outputText value="Phone: (+95)*" />
+							<p:inputNumber id="phoneb" value="#{quoteController.quote.benificiaryphone}"
+								maxlength="10" maxValue="9999999999" decimalPlaces="0"
+								required="true" requiredMessage="Phone is required." />
+							<p:message id="phonebm" for="phoneb" />
 						</h:panelGrid>
 					</p:panel>
 				</p:tab>

@@ -61,6 +61,7 @@ public class QuoteServiceImpl implements QuoteService {
 		Benificiaries benificiariesEntity = new Benificiaries();
 
 		benificiariesEntity.setName(quo.getBenificiaryname());
+		benificiariesEntity.setPhone(quo.getBenificiaryphone());
 		benificiariesEntity.setNrc(quo.getBenificiarynrc());
 		benificiariesEntity.setRelationship(quo.getRelationship());
 		benificiariesEntity.setAddress(quo.getBenificiaryaddress());
@@ -77,6 +78,7 @@ public class QuoteServiceImpl implements QuoteService {
 		quotesEntity.setDob(quo.getDob());
 		quotesEntity.setNrc(quo.getNrc());
 		quotesEntity.setOccupation(quo.getOccupation());
+		quotesEntity.setPhone(quo.getPhone());
 
 		quotesEntity.setPolicyterm(quo.getPolicyterm());
 		quotesEntity.setPremiumplan(quo.getPremiumplan());
@@ -136,6 +138,7 @@ public class QuoteServiceImpl implements QuoteService {
 		for (Quotes q : entitylist) {
 			model.setId(q.getQuoteid());
 			model.setName(q.getName());
+			model.setGender(q.getGender());
 			model.setFathername(q.getFathername());
 			model.setAge(q.getAge());
 			model.setDob(q.getDob());
@@ -166,6 +169,7 @@ public class QuoteServiceImpl implements QuoteService {
 		for (Benificiaries b : entitylist3) {
 			model.setBenificiaryid(b.getBenificiaryid());
 			model.setBenificiaryname(b.getName());
+			model.setBenificiarygender(b.getGender());
 			model.setBenificiarynrc(b.getNrc());
 			model.setRelationship(b.getRelationship());
 			model.setBenificiaryaddress(b.getAddress());
@@ -292,6 +296,7 @@ public class QuoteServiceImpl implements QuoteService {
 		benificiariesUpdate.setRelationship(quo.getRelationship());
 		benificiariesUpdate.setAddress(quo.getBenificiaryaddress());
 		benificiariesUpdate.setPhone(quo.getBenificiaryphone());
+		benificiariesUpdate.setGender(quo.getBenificiarygender());
 
 		Quotes quotesUpdate = quotesDb.get();
 		quotesUpdate.setName(quo.getName());
@@ -300,6 +305,7 @@ public class QuoteServiceImpl implements QuoteService {
 		quotesUpdate.setDob(quo.getDob());
 		quotesUpdate.setNrc(quo.getNrc());
 		quotesUpdate.setOccupation(quo.getOccupation());
+		quotesUpdate.setGender(quo.getGender());
 
 		quotesUpdate.setPolicyterm(quo.getPolicyterm());
 		quotesUpdate.setPremiumplan(quo.getPremiumplan());

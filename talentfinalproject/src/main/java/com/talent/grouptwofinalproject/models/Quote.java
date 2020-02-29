@@ -26,6 +26,7 @@ public class Quote {
 	
 	private Long benificiaryid;
 	private String benificiaryname;
+	private String benificiarygender;
 	private String benificiarynrc;
 	private String relationship;
 	private String benificiaryphone;
@@ -144,6 +145,13 @@ public class Quote {
 	}
 	public void setBenificiaryname(String benificiaryname) {
 		this.benificiaryname = benificiaryname;
+	}
+	
+	public String getBenificiarygender() {
+		return benificiarygender;
+	}
+	public void setBenificiarygender(String benificiarygender) {
+		this.benificiarygender = benificiarygender;
 	}
 	public String getBenificiarynrc() {
 		return benificiarynrc;

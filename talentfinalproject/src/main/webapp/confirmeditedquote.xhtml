@@ -62,8 +62,7 @@
 		<div class="collapse navbar-collapse" id="navbarResponsive">
 			<ul class="navbar-nav ml-auto">
 				<li class="nav-item"><a class="nav-link" href="/home.xhtml"><i
-							class="fa fa-home" aria-hidden="true"></i> Home
-				</a></li>
+						class="fa fa-home" aria-hidden="true"></i> Home </a></li>
 				<li class="nav-item active dropdown"><a
 					class="nav-link dropdown-toggle" href="#"
 					id="navbarDropdownMenuLink" data-toggle="dropdown"
@@ -72,8 +71,8 @@
 				</a>
 					<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 						<a class="dropdown-item" href="/createquote.xhtml"><i
-							class="fa fa-plus" aria-hidden="true"></i> Create A New Quote</a>
-						<a class="dropdown-item" href="/myquotes.xhtml"><i
+							class="fa fa-plus" aria-hidden="true"></i> Create A New Quote</a> <a
+							class="dropdown-item" href="/myquotes.xhtml"><i
 							class="fa fa-list-alt" aria-hidden="true"></i> My Quotes</a>
 					</div></li>
 				<li class="nav-item"><a class="nav-link"
@@ -171,10 +170,14 @@
 					</h:panelGrid>
 				</p:panel>
 				<br />
-				<p:panel header="Address Information">
+				<p:panel header="Benificiary Information">
 					<h:panelGrid columns="2" columnClasses="label, value">
 						<h:outputText value="Benificiary's Name: " />
 						<h:outputText value="#{quoteController.quote.benificiaryname}"
+							styleClass="outputLabel" />
+
+						<h:outputText value="Benificiary's Gender: " />
+						<h:outputText value="#{quoteController.quote.benificiarygender}"
 							styleClass="outputLabel" />
 
 						<h:outputText value="Benificiary's NRC" />
@@ -199,7 +202,10 @@
 					<h:panelGrid columns="2" columnClasses="label, value">
 						<h:outputText value="Sum Insured: " />
 						<h:outputText value="#{quoteController.quote.suminsured}"
-							styleClass="outputLabel" />
+							styleClass="outputLabel">
+							<f:convertNumber maxIntegerDigits="10" maxFractionDigits="1"
+								pattern="######## Kyats" />
+						</h:outputText>
 
 						<h:outputText value="Policy Term: " />
 						<h:outputText value="#{quoteController.quote.policyterm}"
@@ -207,15 +213,24 @@
 
 						<h:outputText value="Monthly Premium: " />
 						<h:outputText value="#{quoteController.quote.monthlypremium}"
-							styleClass="outputLabel" />
+							styleClass="outputLabel">
+							<f:convertNumber maxIntegerDigits="10" maxFractionDigits="1"
+								pattern="######## Kyats" />
+						</h:outputText>
 
 						<h:outputText value="Yearly Premium: " />
 						<h:outputText value="#{quoteController.quote.yearlypremium}"
-							styleClass="outputLabel" />
+							styleClass="outputLabel">
+							<f:convertNumber maxIntegerDigits="10" maxFractionDigits="1"
+								pattern="######## Kyats" />
+						</h:outputText>
 
 						<h:outputText value="Total Pay Amount: " />
 						<h:outputText value="#{quoteController.quote.totalpayamount}"
 							styleClass="outputLabel" />
+						<f:convertNumber maxIntegerDigits="10" maxFractionDigits="1"
+							pattern="######## Kyats" />
+						</h:outputText>
 					</h:panelGrid>
 				</p:panel>
 				<br />

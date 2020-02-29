@@ -9,10 +9,6 @@
 	<f:metadata name="viewport"
 		content="width=device-width, initial-scale=1" />
 
-	<script src="js\jquery.min.js">
-		
-	</script>
-
 	<script src="js\bootstrap.bundle.min.js">
 		
 	</script>
@@ -23,12 +19,12 @@
 	<link rel="stylesheet" type="text/css" href="css\allcss.css" />
 	<style type="text/css">
 .label {
-	width: 50%;
+	width: 20%;
 	padding: 4px;
 }
 
 .value {
-	width: 50%;
+	width: 80%;
 	padding: 4px;
 	font-weight: bold;
 }
@@ -71,7 +67,7 @@
 	background-image: none;
 }
 
-.maroon{
+.maroon {
 	font-weight: bolder;
 	color: maroon;
 	background-image: none;
@@ -99,10 +95,9 @@
 		</button>
 		<div class="collapse navbar-collapse" id="navbarResponsive">
 			<ul class="navbar-nav ml-auto">
-				<li class="nav-item active"><a class="nav-link" href="/home.xhtml"><i
-							class="fa fa-home" aria-hidden="true"></i> Home
-						<span class="sr-only">(current)</span>
-				</a></li>
+				<li class="nav-item active"><a class="nav-link"
+					href="/home.xhtml"><i class="fa fa-home" aria-hidden="true"></i>
+						Home <span class="sr-only">(current)</span> </a></li>
 				<li class="nav-item dropdown"><a
 					class="nav-link dropdown-toggle" href="#"
 					id="navbarDropdownMenuLink" data-toggle="dropdown"
@@ -111,8 +106,8 @@
 				</a>
 					<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 						<a class="dropdown-item" href="/createquote.xhtml"><i
-							class="fa fa-plus" aria-hidden="true"></i> Create A New Quote</a>
-						<a class="dropdown-item" href="/myquotes.xhtml"><i
+							class="fa fa-plus" aria-hidden="true"></i> Create A New Quote</a> <a
+							class="dropdown-item" href="/myquotes.xhtml"><i
 							class="fa fa-list-alt" aria-hidden="true"></i> My Quotes</a>
 					</div></li>
 				<li class="nav-item"><a class="nav-link"
@@ -173,27 +168,45 @@
 				<h:panelGrid columns="2" columnClasses="label, value">
 					<h:outputText value="Quote ID: " />
 					<h:outputText value="#{policyController.policy.quoteid}"
-						styleClass="outputLabel" />
+						styleClass="outputLabel">
+						<f:convertNumber maxIntegerDigits="10" maxFractionDigits="1"
+							pattern="######## Kyats" />
+					</h:outputText>
 
 					<h:outputText value="Quote Name: " />
 					<h:outputText value="#{policyController.policy.quotename}"
-						styleClass="outputLabel" />
+						styleClass="outputLabel">
+						<f:convertNumber maxIntegerDigits="10" maxFractionDigits="1"
+							pattern="######## Kyats" />
+					</h:outputText>
 
 					<h:outputText value="Premium Plan: " />
 					<h:outputText value="#{policyController.policy.premiumplan} Months"
-						styleClass="outputLabel" />
+						styleClass="outputLabel">
+						<f:convertNumber maxIntegerDigits="10" maxFractionDigits="1"
+							pattern="######## Kyats" />
+					</h:outputText>
 
 					<h:outputText value="Monthly Premium: " />
 					<h:outputText value="#{policyController.policy.monthlypremium}"
-						styleClass="outputLabel" />
+						styleClass="outputLabel">
+						<f:convertNumber maxIntegerDigits="10" maxFractionDigits="1"
+							pattern="######## Kyats" />
+					</h:outputText>
 
 					<h:outputText value="Yearly Premium: " />
 					<h:outputText value="#{policyController.policy.yearlypremium}"
-						styleClass="outputLabel" />
+						styleClass="outputLabel">
+						<f:convertNumber maxIntegerDigits="10" maxFractionDigits="1"
+							pattern="######## Kyats" />
+					</h:outputText>
 
 					<h:outputText value="Total Premium: " />
 					<h:outputText value="#{policyController.policy.totalpremium}"
-						styleClass="outputLabel" />
+						styleClass="outputLabel">
+						<f:convertNumber maxIntegerDigits="10" maxFractionDigits="1"
+							pattern="######## Kyats" />
+					</h:outputText>
 				</h:panelGrid>
 			</p:panel>
 			<br />
@@ -207,7 +220,10 @@
 						</h:outputText>
 					</p:column>
 					<p:column headerText="Payment Amount">
-						<h:outputText value="#{payment.paymentamount} Kyats" />
+						<h:outputText value="#{payment.paymentamount}">
+						<f:convertNumber maxIntegerDigits="10" maxFractionDigits="1"
+							pattern="######## Kyats" />
+						</h:outputText>
 					</p:column>
 				</p:dataTable>
 				<br />
@@ -219,26 +235,37 @@
 				</h:panelGrid>
 			</p:panel>
 			<br />
-			<p:panel header="Claim Information" rendered="#{not empty policyController.policy.claim}">
+			<p:panel header="Claim Information"
+				rendered="#{not empty policyController.policy.claim}">
 				<h:panelGrid columns="2" columnClasses="label, value">
 					<h:outputText value="Claim Date: " />
 					<h:outputText value="#{policyController.policy.claim.claimdate}"
 						styleClass="outputLabel">
 						<f:convertDateTime pattern="dd/MM/yyyy" type="date" />
-						</h:outputText>
+					</h:outputText>
 
 					<h:outputText value="Claim Reason: " />
 					<h:outputText value="#{policyController.policy.claim.claimreason}"
 						styleClass="outputLabel" />
+
+					<h:outputText
+						rendered="#{not empty policyController.policy.claim.claimsign}"
+						value="Signature:" />
+					<p:signature style="width:300px;height:180px;"
+						value="#{policyController.policy.claim.claimsign}" readonly="true"
+						rendered="#{not empty policyController.policy.claim.claimsign}"
+						backgroundColor="#eaeaea" color="#03a9f4" />
 				</h:panelGrid>
 			</p:panel>
 			<br />
 			<p:commandButton value="Back to My Policies"
-				action="mypolicies?faces-redirect=true"/>&nbsp;
-			<p:commandButton value="Claim Form" rendered="#{empty policyController.policy.claim}"
+				action="mypolicies?faces-redirect=true" />&nbsp;
+			<p:commandButton value="Claim Form"
+				rendered="#{empty policyController.policy.claim}"
 				action="#{claimController.getToClaim(policyController.policy)}"
 				update="growl" process="@this" />&nbsp;
-			<p:commandButton value="Pay Premium" rendered="#{empty policyController.policy.claim}"
+			<p:commandButton value="Pay Premium"
+				rendered="#{empty policyController.policy.claim}"
 				action="#{paymentController.getToPayment(policyController.policy)}"
 				update="growl" process="@this" />
 		</h:form>

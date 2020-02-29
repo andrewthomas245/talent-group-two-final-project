@@ -24,6 +24,7 @@ public class Benificiaries {
 	@Column(name = "benificiaryid")
 	private Long benificiaryid;
 	private String name;
+	private String gender;
 
 	private String nrc;
 	private String relationship;
@@ -53,6 +54,15 @@ public class Benificiaries {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
 	}
 
 	public String getNrc() {
@@ -114,11 +124,12 @@ public class Benificiaries {
 	public Benificiaries() {
 	}
 
-	public Benificiaries(Long benificiaryid, String name, String nrc, String relationship, String phone, String address,
-			AccountState state, Date deletedate, Quotes quotes) {
+	public Benificiaries(Long benificiaryid, String name, String gender, String nrc, String relationship, String phone,
+			String address, AccountState state, Date deletedate, Quotes quotes) {
 		super();
 		this.benificiaryid = benificiaryid;
 		this.name = name;
+		this.gender = gender;
 		this.nrc = nrc;
 		this.relationship = relationship;
 		this.phone = phone;

@@ -9,8 +9,6 @@
 	<f:metadata name="viewport"
 		content="width=device-width, initial-scale=1" />
 
-	<script src="js\jquery.mask.js" />
-
 	<script src="js\bootstrap.bundle.min.js" />
 
 	<link rel="stylesheet" type="text/css" href="css\bootstrap.min.css" />
@@ -172,11 +170,15 @@
 					</h:panelGrid>
 				</p:panel>
 				<br />
-				<p:panel header="Address Information">
-					<h:panelGrid columns="2" columnClasses="label, value">
-						<h:outputText value="Benificiary's Name: " />
-						<h:outputText value="#{quoteController.quote.benificiaryname}"
-							styleClass="outputLabel" />
+			<p:panel header="Benificiary Information">
+				<h:panelGrid columns="2" columnClasses="label, value">
+					<h:outputText value="Benificiary's Name: " />
+					<h:outputText value="#{quoteController.quote.benificiaryname}"
+						styleClass="outputLabel" />
+						
+					<h:outputText value="Benificiary's Gender: " />
+					<h:outputText value="#{quoteController.quote.benificiarygender}"
+						styleClass="outputLabel" />
 
 						<h:outputText value="Benificiary's NRC" />
 						<h:outputText value="#{quoteController.quote.benificiarynrc}"
@@ -202,35 +204,35 @@
 						<h:outputText value="#{quoteController.quote.suminsured}"
 							styleClass="outputLabel">
 							<f:convertNumber maxIntegerDigits="10" maxFractionDigits="1"
-								pattern="########" />
+								pattern="######## Kyats" />
 						</h:outputText>
 
 						<h:outputText value="Policy Term: " />
 						<h:outputText value="#{quoteController.quote.policyterm}"
 							styleClass="outputLabel">
 							<f:convertNumber maxIntegerDigits="10" maxFractionDigits="1"
-								pattern="########" />
+								pattern="######## Kyats" />
 						</h:outputText>
 
 						<h:outputText value="Monthly Premium: " />
 						<h:outputText value="#{quoteController.quote.monthlypremium}"
 							styleClass="outputLabel">
 							<f:convertNumber maxIntegerDigits="10" maxFractionDigits="1"
-								pattern="########" />
+								pattern="######## Kyats" />
 						</h:outputText>
 
 						<h:outputText value="Yearly Premium: " />
 						<h:outputText value="#{quoteController.quote.yearlypremium}"
 							styleClass="outputLabel">
 							<f:convertNumber maxIntegerDigits="10" maxFractionDigits="1"
-								pattern="########" />
+								pattern="######## Kyats" />
 						</h:outputText>
 
 						<h:outputText value="Total Pay Amount: " />
 						<h:outputText value="#{quoteController.quote.totalpayamount}"
 							styleClass="outputLabel">
 							<f:convertNumber maxIntegerDigits="10" maxFractionDigits="1"
-								pattern="########" />
+								pattern="######## Kyats" />
 						</h:outputText>
 					</h:panelGrid>
 				</p:panel>

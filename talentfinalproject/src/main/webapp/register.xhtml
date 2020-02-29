@@ -10,7 +10,7 @@
 
 .login-page {
 	width: 360px;
-	padding: 6% 0 0;
+	padding: 3% 0 0;
 	margin: auto;
 }
 
@@ -152,18 +152,35 @@ body {
 		<br />
 		<div class="form">
 			<h:form class="login-form" id="login">
-				<p:growl id="growl" sticky="true" showDetail="true" />
 				<h1>REGISTER</h1>
-				<p:inputText placeholder="User Name"
-					value="#{userController.user.username}" />
+				<p:messages autoUpdate="true" style="font-size:12px;text-align: justify;" id="msgs"
+					showIcon="false" />
+				<p:inputText id="username" placeholder="User Name"
+					value="#{userController.user.username}" required="true"
+					requiredMessage="User Name is required."
+					validatorMessage="Name must be characters and numbers only with no spaces.">
+					<f:validateRegex pattern="^[a-zA-Z0-9_]+( [a-zA-Z0-9_]+)*$" />
+					<p:ajax update="msgs" event="keyup" />
+				</p:inputText>
 				<p:inputText placeholder="Email Address"
-					value="#{userController.user.email}" />
-				<p:password placeholder="Password"
-					value="#{userController.user.password}" />
-				<p:password placeholder="Confrim Password" />
+					value="#{userController.user.email}" required="true"
+					requiredMessage="Email Address is required." validatorMessage="Email Address must be in correct format.">
+					<f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+					<p:ajax update="msgs" event="keyup" />
+				</p:inputText>
+				<p:password placeholder="Password" id="pw"
+					value="#{userController.user.password}" required="true"
+					requiredMessage="Password is required."	match="pw2" validatorMessage="Password and Confirm Password must be matched.">
+					<p:ajax update="msgs" event="keyup" />
+				</p:password>
+				<p:password placeholder="Confrim Password" id="pw2" required="true" value="#{userController.user.password}"
+					requiredMessage="Confirm Password is required." validatorMessage="Password must have minimum eight characters, at least one letter and one number.">
+					<f:validateRegex pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$" />
+					<p:ajax update="msgs" event="keyup" />
+				</p:password>
 
 				<p:commandButton value="Create" action="#{userController.save}"
-					update="growl" />
+					validateClient="true" update="@form" />
 				<p class="message">
 					Already registered? <a href="/userlogin.xhtml"
 						onclick="loginFunction()">Log In</a>
