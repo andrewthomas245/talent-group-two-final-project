@@ -62,6 +62,8 @@ public class Quotes {
 	private int policyterm;
 	private int premiumplan;
 	private double monthlypremium;
+	private double quarterlypremium;
+	private double halfyearpremium;
 	private double yearlypremium;
 	private double totalpayamount;
 	
@@ -199,6 +201,22 @@ public class Quotes {
 		this.monthlypremium = monthlypremium;
 	}
 
+	public double getQuarterlypremium() {
+		return quarterlypremium;
+	}
+
+	public void setQuarterlypremium(double quarterlypremium) {
+		this.quarterlypremium = quarterlypremium;
+	}
+
+	public double getHalfyearpremium() {
+		return halfyearpremium;
+	}
+
+	public void setHalfyearpremium(double halfyearpremium) {
+		this.halfyearpremium = halfyearpremium;
+	}
+
 	public double getYearlypremium() {
 		return yearlypremium;
 	}
@@ -243,12 +261,14 @@ public class Quotes {
 
 	}
 
-	public Quotes(Long quoteid, String name, String gender, String fathername, int age, Date dob, String nrc,
-			String occupation, String phone, Addresses addresses, Benificiaries benificiaries, Policies policies,
-			double suminsured, int policyterm, int premiumplan, double monthlypremium, double yearlypremium,
-			double totalpayamount, AccountState state, Date deletedate, Users users) {
+	public Quotes(Long quoteid, Users users, String name, String gender, String fathername, int age, Date dob,
+			String nrc, String occupation, String phone, Addresses addresses, Benificiaries benificiaries,
+			Policies policies, double suminsured, int policyterm, int premiumplan, double monthlypremium,
+			double quarterlypremium, double halfyearpremium, double yearlypremium, double totalpayamount,
+			AccountState state, Date deletedate) {
 		super();
 		this.quoteid = quoteid;
+		this.users = users;
 		this.name = name;
 		this.gender = gender;
 		this.fathername = fathername;
@@ -264,11 +284,12 @@ public class Quotes {
 		this.policyterm = policyterm;
 		this.premiumplan = premiumplan;
 		this.monthlypremium = monthlypremium;
+		this.quarterlypremium = quarterlypremium;
+		this.halfyearpremium = halfyearpremium;
 		this.yearlypremium = yearlypremium;
 		this.totalpayamount = totalpayamount;
 		this.state = state;
 		this.deletedate = deletedate;
-		this.users = users;
 	}
 
 	@PreRemove

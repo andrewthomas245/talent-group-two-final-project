@@ -68,6 +68,12 @@ public class PolicyController {
 			policy.setQuoteid(quo.getId());
 			policy.setQuotename(quo.getName());
 			policy.setQuotenrc(quo.getNrc());
+			policy.setPremiumplan(quo.getPremiumplan());
+			policy.setPolicyterm(quo.getPolicyterm());
+			policy.setMonthlypremium(quo.getMonthlypremium());
+			policy.setQuarterlypremium(quo.getQuarterlypremium());
+			policy.setHalfyearpremium(quo.getHalfyearpremium());
+			policy.setYearlypremium(quo.getYearlypremium());
 			System.out.println(policy.getQuoteid());
 			return "/buypolicy.xhtml?faces-redirect=true";
 		}

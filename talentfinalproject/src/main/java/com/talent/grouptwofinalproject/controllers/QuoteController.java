@@ -97,6 +97,10 @@ public class QuoteController {
 		return "/myquotes.xhtml?faces-redirect=true";
 
 	}
+	
+	public void refresh() {
+		quote = new Quote();
+	}
 
 	public String delete(Quote quo) {
 		System.out.println("Start: " + quo.getId());

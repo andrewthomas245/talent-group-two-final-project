@@ -217,8 +217,29 @@
 							pattern="######## Years" />
 					</h:outputText>
 
+					<h:outputText value="Payment Plan: " />
+					<h:outputText value="#{quoteController.quote.premiumplan}"
+						styleClass="outputLabel">
+						<f:convertNumber maxIntegerDigits="10" maxFractionDigits="1"
+							pattern="######## Months" />
+					</h:outputText>
+
 					<h:outputText value="Monthly Premium: " />
 					<h:outputText value="#{quoteController.quote.monthlypremium}"
+						styleClass="outputLabel">
+						<f:convertNumber maxIntegerDigits="10" maxFractionDigits="1"
+							pattern="######## Kyats" />
+					</h:outputText>
+
+					<h:outputText value="Quarterly Premium: " />
+					<h:outputText value="#{quoteController.quote.quarterlypremium}"
+						styleClass="outputLabel">
+						<f:convertNumber maxIntegerDigits="10" maxFractionDigits="1"
+							pattern="######## Kyats" />
+					</h:outputText>
+
+					<h:outputText value="Bi-annually Premium: " />
+					<h:outputText value="#{quoteController.quote.halfyearpremium}"
 						styleClass="outputLabel">
 						<f:convertNumber maxIntegerDigits="10" maxFractionDigits="1"
 							pattern="######## Kyats" />

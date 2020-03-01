@@ -126,6 +126,8 @@ public class PolicyServiceImpl implements PolicyService {
 			model1.setPolicyterm(q.getPolicyterm());
 			model1.setPremiumplan(q.getPremiumplan());
 			model1.setMonthlypremium(q.getMonthlypremium());
+			model1.setQuarterlypremium(q.getQuarterlypremium());
+			model1.setHalfyearpremium(q.getHalfyearpremium());
 			model1.setYearlypremium(q.getYearlypremium());
 			model1.setTotalpremium(q.getTotalpayamount());
 		}

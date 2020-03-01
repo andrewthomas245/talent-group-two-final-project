@@ -17,7 +17,7 @@
 	<link rel="stylesheet" type="text/css" href="css\allcss.css" />
 	<style type="text/css">
 .label {
-	width: 50%;
+	width: 40%;
 	padding: 4px;
 }
 
@@ -59,10 +59,9 @@
 		</button>
 		<div class="collapse navbar-collapse" id="navbarResponsive">
 			<ul class="navbar-nav ml-auto">
-				<li class="nav-item active"><a class="nav-link" href="/home.xhtml"><i
-							class="fa fa-home" aria-hidden="true"></i> Home
-						<span class="sr-only">(current)</span>
-				</a></li>
+				<li class="nav-item active"><a class="nav-link"
+					href="/home.xhtml"><i class="fa fa-home" aria-hidden="true"></i>
+						Home <span class="sr-only">(current)</span> </a></li>
 				<li class="nav-item dropdown"><a
 					class="nav-link dropdown-toggle" href="#"
 					id="navbarDropdownMenuLink" data-toggle="dropdown"
@@ -71,8 +70,8 @@
 				</a>
 					<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 						<a class="dropdown-item" href="/createquote.xhtml"><i
-							class="fa fa-plus" aria-hidden="true"></i> Create A New Quote</a>
-						<a class="dropdown-item" href="/myquotes.xhtml"><i
+							class="fa fa-plus" aria-hidden="true"></i> Create A New Quote</a> <a
+							class="dropdown-item" href="/myquotes.xhtml"><i
 							class="fa fa-list-alt" aria-hidden="true"></i> My Quotes</a>
 					</div></li>
 				<li class="nav-item"><a class="nav-link"
@@ -170,15 +169,15 @@
 					</h:panelGrid>
 				</p:panel>
 				<br />
-			<p:panel header="Benificiary Information">
-				<h:panelGrid columns="2" columnClasses="label, value">
-					<h:outputText value="Benificiary's Name: " />
-					<h:outputText value="#{quoteController.quote.benificiaryname}"
-						styleClass="outputLabel" />
-						
-					<h:outputText value="Benificiary's Gender: " />
-					<h:outputText value="#{quoteController.quote.benificiarygender}"
-						styleClass="outputLabel" />
+				<p:panel header="Benificiary Information">
+					<h:panelGrid columns="2" columnClasses="label, value">
+						<h:outputText value="Benificiary's Name: " />
+						<h:outputText value="#{quoteController.quote.benificiaryname}"
+							styleClass="outputLabel" />
+
+						<h:outputText value="Benificiary's Gender: " />
+						<h:outputText value="#{quoteController.quote.benificiarygender}"
+							styleClass="outputLabel" />
 
 						<h:outputText value="Benificiary's NRC" />
 						<h:outputText value="#{quoteController.quote.benificiarynrc}"
@@ -211,11 +210,32 @@
 						<h:outputText value="#{quoteController.quote.policyterm}"
 							styleClass="outputLabel">
 							<f:convertNumber maxIntegerDigits="10" maxFractionDigits="1"
-								pattern="######## Kyats" />
+								pattern="######## Years" />
+						</h:outputText>
+
+						<h:outputText value="Payment Plan: " />
+						<h:outputText value="#{quoteController.quote.premiumplan}"
+							styleClass="outputLabel">
+							<f:convertNumber maxIntegerDigits="10" maxFractionDigits="1"
+								pattern="######## Months" />
 						</h:outputText>
 
 						<h:outputText value="Monthly Premium: " />
 						<h:outputText value="#{quoteController.quote.monthlypremium}"
+							styleClass="outputLabel">
+							<f:convertNumber maxIntegerDigits="10" maxFractionDigits="1"
+								pattern="######## Kyats" />
+						</h:outputText>
+
+						<h:outputText value="Quarterly Premium: " />
+						<h:outputText value="#{quoteController.quote.quarterlypremium}"
+							styleClass="outputLabel">
+							<f:convertNumber maxIntegerDigits="10" maxFractionDigits="1"
+								pattern="######## Kyats" />
+						</h:outputText>
+
+						<h:outputText value="Bi-annually Premium: " />
+						<h:outputText value="#{quoteController.quote.halfyearpremium}"
 							styleClass="outputLabel">
 							<f:convertNumber maxIntegerDigits="10" maxFractionDigits="1"
 								pattern="######## Kyats" />

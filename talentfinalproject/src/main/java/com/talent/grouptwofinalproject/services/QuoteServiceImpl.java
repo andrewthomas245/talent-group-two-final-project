@@ -86,6 +86,8 @@ public class QuoteServiceImpl implements QuoteService {
 		quotesEntity.setPremiumplan(quo.getPremiumplan());
 		quotesEntity.setSuminsured(quo.getSuminsured());
 		quotesEntity.setMonthlypremium(quo.getMonthlypremium());
+		quotesEntity.setQuarterlypremium(quo.getQuarterlypremium());
+		quotesEntity.setHalfyearpremium(quo.getHalfyearpremium());
 		quotesEntity.setYearlypremium(quo.getYearlypremium());
 		quotesEntity.setTotalpayamount(quo.getTotalpayamount());
 		quotesEntity.setState(state);
@@ -152,6 +154,8 @@ public class QuoteServiceImpl implements QuoteService {
 			model.setPremiumplan(q.getPremiumplan());
 			model.setPolicyterm(q.getPolicyterm());
 			model.setMonthlypremium(q.getMonthlypremium());
+			model.setQuarterlypremium(q.getQuarterlypremium());
+			model.setHalfyearpremium(q.getHalfyearpremium());
 			model.setYearlypremium(q.getYearlypremium());
 			model.setTotalpayamount(q.getTotalpayamount());
 		}
@@ -271,11 +275,15 @@ public class QuoteServiceImpl implements QuoteService {
 		}
 
 		double monthlypremium = yearlypremium / 12;
+		double quarterlypremium = yearlypremium / 4;
+		double halfyearpremium = yearlypremium / 2;
 		double totalpayamount = yearlypremium * policyterm;
 
 		quo.setMonthlypremium(monthlypremium);
 		quo.setYearlypremium(yearlypremium);
 		quo.setTotalpayamount(totalpayamount);
+		quo.setQuarterlypremium(quarterlypremium);
+		quo.setHalfyearpremium(halfyearpremium);
 
 		return quo;
 	}
@@ -313,6 +321,8 @@ public class QuoteServiceImpl implements QuoteService {
 		quotesUpdate.setPremiumplan(quo.getPremiumplan());
 		quotesUpdate.setSuminsured(quo.getSuminsured());
 		quotesUpdate.setMonthlypremium(quo.getMonthlypremium());
+		quotesUpdate.setQuarterlypremium(quo.getQuarterlypremium());
+		quotesUpdate.setHalfyearpremium(quo.getHalfyearpremium());
 		quotesUpdate.setYearlypremium(quo.getYearlypremium());
 		quotesUpdate.setTotalpayamount(quo.getTotalpayamount());
 		

@@ -192,6 +192,20 @@
 							pattern="######## Kyats" />
 					</h:outputText>
 
+					<h:outputText value="Quarterly Premium: " />
+					<h:outputText value="#{policyController.policy.quarterlypremium}"
+						styleClass="outputLabel">
+						<f:convertNumber maxIntegerDigits="10" maxFractionDigits="1"
+							pattern="######## Kyats" />
+					</h:outputText>
+
+					<h:outputText value="Bi-annually Premium: " />
+					<h:outputText value="#{policyController.policy.halfyearpremium}"
+						styleClass="outputLabel">
+						<f:convertNumber maxIntegerDigits="10" maxFractionDigits="1"
+							pattern="######## Kyats" />
+					</h:outputText>
+
 					<h:outputText value="Yearly Premium: " />
 					<h:outputText value="#{policyController.policy.yearlypremium}"
 						styleClass="outputLabel">
@@ -227,8 +241,7 @@
 				<br />
 				<h:panelGrid columns="2" columnClasses="totaltext, total">
 					<h:outputText value="Total Paid:" />
-					<h:outputText
-						value="#{policyController.policy.totalpaidpremium}"
+					<h:outputText value="#{policyController.policy.totalpaidpremium}"
 						styleClass="outputLabel">
 						<f:convertNumber maxIntegerDigits="10" maxFractionDigits="1"
 							pattern="######## Kyats" />

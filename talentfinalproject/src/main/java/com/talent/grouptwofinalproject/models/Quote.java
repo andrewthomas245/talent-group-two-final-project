@@ -38,6 +38,8 @@ public class Quote {
 	private int premiumplan;
 	private double monthlypremium;
 	private double yearlypremium;
+	private double quarterlypremium;
+	private double halfyearpremium;
 	private double totalpayamount;
 	
 	public String getUsername() {
@@ -200,6 +202,19 @@ public class Quote {
 	}
 	public void setMonthlypremium(double monthlypremium) {
 		this.monthlypremium = monthlypremium;
+	}
+	
+	public double getQuarterlypremium() {
+		return quarterlypremium;
+	}
+	public void setQuarterlypremium(double quarterlypremium) {
+		this.quarterlypremium = quarterlypremium;
+	}
+	public double getHalfyearpremium() {
+		return halfyearpremium;
+	}
+	public void setHalfyearpremium(double halfyearpremium) {
+		this.halfyearpremium = halfyearpremium;
 	}
 	public double getYearlypremium() {
 		return yearlypremium;

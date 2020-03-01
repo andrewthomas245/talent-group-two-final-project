@@ -118,11 +118,30 @@
 						<p:messages />
 						<h:panelGrid columns="2" columnClasses="label, value">
 							<h:outputText value="Quote ID: " />
-							<h:outputText value="#{policyController.policy.quoteid}" styleClass="outputLabel"/>
+							<h:outputText value="#{policyController.policy.quoteid}"
+								styleClass="outputLabel" />
 
 							<h:outputText value="Quote Name: " />
 							<h:outputText value="#{policyController.policy.quotename}"
 								styleClass="outputLabel" />
+
+							<h:outputText value="NRC: " />
+							<h:outputText value="#{policyController.policy.quotenrc}"
+								styleClass="outputLabel" />
+
+							<h:outputText value="Policy Term: " />
+							<h:outputText value="#{policyController.policy.policyterm}"
+								styleClass="outputLabel">
+								<f:convertNumber maxIntegerDigits="10" maxFractionDigits="1"
+									pattern="######## Years" />
+							</h:outputText>
+
+							<h:outputText value="Payment Plan: " />
+							<h:outputText value="#{policyController.policy.premiumplan}"
+								styleClass="outputLabel">
+								<f:convertNumber maxIntegerDigits="10" maxFractionDigits="1"
+									pattern="######## Months" />
+							</h:outputText>
 
 							<h:outputText value="NRC: " />
 							<h:outputText value="#{policyController.policy.quotenrc}"
@@ -135,16 +154,21 @@
 						<p:messages />
 						<h:panelGrid columns="2" columnClasses="label, value">
 							<h:outputText value="Total Pay Amount: " />
-							<h:outputText value="#{quoteController.quote.totalpayamount}" styleClass="outputLabel">
+							<h:outputText value="#{quoteController.quote.totalpayamount}"
+								styleClass="outputLabel">
 								<f:convertNumber maxIntegerDigits="10" maxFractionDigits="1"
 									pattern="######## Kyats" />
 							</h:outputText>
 							<h:outputText value="Your Payment Amount: *" />
-							<p:inputText
-								value="#{policyController.policy.firstpaymentamount}">
+							<p:inputNumber
+								value="#{policyController.policy.firstpaymentamount}"
+								maxValue="99999999" decimalPlaces="0">
 								<f:convertNumber maxIntegerDigits="10" maxFractionDigits="1"
 									pattern="########" />
-							</p:inputText>
+								<f:validateLongRange
+									minimum="#{quoteController.quote.totalpayamount}"
+									maximum="#{quoteController.quote.totalpayamount}" />
+							</p:inputNumber>
 						</h:panelGrid>
 					</p:panel>
 				</p:tab>
@@ -163,17 +187,32 @@
 							<h:outputText value="#{policyController.policy.quotenrc}"
 								styleClass="outputLabel" />
 
-							<h:outputText value="Total Pay Amount: " />
-							<h:outputText value="#{quoteController.quote.totalpayamount}" styleClass="outputLabel">
+							<h:outputText value="Policy Term: " />
+							<h:outputText value="#{policyController.policy.policyterm}"
+								styleClass="outputLabel">
 								<f:convertNumber maxIntegerDigits="10" maxFractionDigits="1"
-									pattern="######## Kyats"/>
+									pattern="######## Years" />
+							</h:outputText>
+
+							<h:outputText value="Payment Plan: " />
+							<h:outputText value="#{policyController.policy.premiumplan}"
+								styleClass="outputLabel">
+								<f:convertNumber maxIntegerDigits="10" maxFractionDigits="1"
+									pattern="######## Months" />
+							</h:outputText>
+
+							<h:outputText value="Total Pay Amount: " />
+							<h:outputText value="#{quoteController.quote.totalpayamount}"
+								styleClass="outputLabel">
+								<f:convertNumber maxIntegerDigits="10" maxFractionDigits="1"
+									pattern="######## Kyats" />
 							</h:outputText>
 							<h:outputText value="Your Payment Amount: *" />
 							<h:outputText styleClass="outputLabel"
 								value="#{policyController.policy.firstpaymentamount}">
 								<f:convertNumber maxIntegerDigits="10" maxFractionDigits="1"
-									pattern="######## Kyats"/>
-							</h:outputText >
+									pattern="######## Kyats" />
+							</h:outputText>
 						</h:panelGrid>
 					</p:panel>
 					<p:commandButton value="Submit" action="#{policyController.save()}"

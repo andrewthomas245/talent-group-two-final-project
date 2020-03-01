@@ -24,6 +24,8 @@ public class Policy {
 	private int policyterm;
 	private int premiumplan;
 	private Double monthlypremium;
+	private Double quarterlypremium;
+	private Double halfyearpremium;
 	private Double yearlypremium;
 	private Double totalpremium;
 	private Double totalpaidpremium;
@@ -142,6 +144,22 @@ public class Policy {
 
 	public void setMonthlypremium(Double monthlypremium) {
 		this.monthlypremium = monthlypremium;
+	}
+
+	public Double getQuarterlypremium() {
+		return quarterlypremium;
+	}
+
+	public void setQuarterlypremium(Double quarterlypremium) {
+		this.quarterlypremium = quarterlypremium;
+	}
+
+	public Double getHalfyearpremium() {
+		return halfyearpremium;
+	}
+
+	public void setHalfyearpremium(Double halfyearpremium) {
+		this.halfyearpremium = halfyearpremium;
 	}
 
 	public Double getYearlypremium() {

@@ -202,7 +202,7 @@
 								value="#{quoteController.quote.roadstreet}" required="true"
 								requiredMessage="Road or Street is required."
 								validatorMessage="Road or Street must be characters only with no spaces.">
-								<f:validateRegex pattern="^[a-zA-Z_]+( [a-zA-Z_]+)*$" />
+								<f:validateRegex pattern="^[a-zA-Z0-9_]+( [a-zA-Z0-9_]+)*$" />
 								<p:ajax update="qroadm" event="keyup" />
 							</p:inputText>
 							<p:message id="qroadm" for="qroad" />
@@ -212,7 +212,7 @@
 								value="#{quoteController.quote.township}" required="true"
 								requiredMessage="Township is required."
 								validatorMessage="Township must be characters only with no spaces.">
-								<f:validateRegex pattern="^[a-zA-Z_]+( [a-zA-Z_]+)*$" />
+								<f:validateRegex pattern="^[a-zA-Z0-9_]+( [a-zA-Z0-9_]+)*$" />
 								<p:ajax update="qtownshipm" event="keyup" />
 							</p:inputText>
 							<p:message id="qtownshipm" for="qtownship" />

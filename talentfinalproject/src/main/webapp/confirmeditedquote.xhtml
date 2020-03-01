@@ -19,7 +19,7 @@
 	<link rel="stylesheet" type="text/css" href="css\allcss.css" />
 	<style type="text/css">
 .label {
-	width: 50%;
+	width: 40%;
 	padding: 4px;
 }
 
@@ -209,10 +209,34 @@
 
 						<h:outputText value="Policy Term: " />
 						<h:outputText value="#{quoteController.quote.policyterm}"
-							styleClass="outputLabel" />
+							styleClass="outputLabel">
+							<f:convertNumber maxIntegerDigits="10" maxFractionDigits="1"
+								pattern="######## Years" />
+						</h:outputText>
+
+						<h:outputText value="Payment Plan: " />
+						<h:outputText value="#{quoteController.quote.premiumplan}"
+							styleClass="outputLabel">
+							<f:convertNumber maxIntegerDigits="10" maxFractionDigits="1"
+								pattern="######## Months" />
+						</h:outputText>
 
 						<h:outputText value="Monthly Premium: " />
 						<h:outputText value="#{quoteController.quote.monthlypremium}"
+							styleClass="outputLabel">
+							<f:convertNumber maxIntegerDigits="10" maxFractionDigits="1"
+								pattern="######## Kyats" />
+						</h:outputText>
+
+						<h:outputText value="Quarterly Premium: " />
+						<h:outputText value="#{quoteController.quote.quarterlypremium}"
+							styleClass="outputLabel">
+							<f:convertNumber maxIntegerDigits="10" maxFractionDigits="1"
+								pattern="######## Kyats" />
+						</h:outputText>
+
+						<h:outputText value="Bi-annually Premium: " />
+						<h:outputText value="#{quoteController.quote.halfyearpremium}"
 							styleClass="outputLabel">
 							<f:convertNumber maxIntegerDigits="10" maxFractionDigits="1"
 								pattern="######## Kyats" />
@@ -228,8 +252,8 @@
 						<h:outputText value="Total Pay Amount: " />
 						<h:outputText value="#{quoteController.quote.totalpayamount}"
 							styleClass="outputLabel">
-						<f:convertNumber maxIntegerDigits="10" maxFractionDigits="1"
-							pattern="######## Kyats" />
+							<f:convertNumber maxIntegerDigits="10" maxFractionDigits="1"
+								pattern="######## Kyats" />
 						</h:outputText>
 					</h:panelGrid>
 				</p:panel>
