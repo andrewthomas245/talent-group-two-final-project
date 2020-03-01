@@ -88,6 +88,11 @@ public class UserController {
     public void doSomething(InteractiveAuthenticationSuccessEvent event) {
     	System.out.println("hello world, I have just logged in");
     }
+    
+	public void fetchUser() {
+		System.out.println("Here");
+		user = userService.getUserInfo();
+	}
 
 	public UserModel getUser() {
 		return user;

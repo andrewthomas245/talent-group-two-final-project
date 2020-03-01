@@ -59,5 +59,17 @@ public class UserServiceImpl implements UserService
 		
 		return userRepository.findByName(name);
 	}
+
+	@Override
+	public UserModel getUserInfo() {
+		String name = getLoginUserName();
+		Users user=userRepository.findByName(name);
+		
+		UserModel myaccount= new UserModel();
+		myaccount.setUsername(user.getName());
+		myaccount.setEmail(user.getEmail());
+		System.out.println(myaccount);
+		return myaccount;
+	}
 	
 }

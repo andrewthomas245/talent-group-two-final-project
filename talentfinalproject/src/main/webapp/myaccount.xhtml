@@ -5,13 +5,12 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui">
 <h:head>
+	<f:metadata>
+		<f:viewAction action="#{userController.fetchUser()}" />
+	</f:metadata>
 	<f:metadata charset="UTF-8" />
 	<f:metadata name="viewport"
 		content="width=device-width, initial-scale=1" />
-
-	<script src="js\jquery.min.js">
-		
-	</script>
 
 	<script src="js\bootstrap.bundle.min.js">
 		
@@ -28,7 +27,7 @@
 }
 
 .value {
-	width: 80%;
+	width: 50%;
 	padding: 4px;
 }
 
@@ -47,6 +46,9 @@
 .grid {
 	width: 33%;
 	padding: 4px;
+}
+.header {
+	text-align: center;
 }
 </style>
 </h:head>
@@ -88,153 +90,62 @@
 	<br />
 
 	<div class="container">
-		<h2>Create a New Quote</h2>
-		<p>Fill the form below and submit to create a new quote for you.</p>
+		<h2>My Account</h2>
 		<br />
 		<h:form>
+			<p:panel header="User Information"
+				style="margin: 0 auto;width:300px;">
+				<h:panelGrid columns="2" columnClasses="label, value">
+					<h:outputText value="Username: " />
+					<h:outputText value="#{userController.user.username}"
+						styleClass="outputLabel" />
 
-			<p:growl id="growl" sticky="true" showDetail="true" />
-
-			<p:wizard flowListener="#{userController.onFlowProcess}">
-				<p:tab id="personal" title="Personal">
-					<p:panel header="Fill your personal details here.">
-						<p:messages />
-						<h:panelGrid columns="2" columnClasses="label, value">
-							<h:outputText value="Name of Insured: *" />
-							<p:inputText value="#{userController.user.firstname}" />
-
-							<h:outputText value="Father's Name: *" />
-							<p:inputText value="#{userController.user.lastname}" />
-
-							<h:outputText value="Age: *" />
-							<p:inputText value="#{userController.user.age}" />
-
-							<h:outputText value="Date of Birth: *" />
-							<p:inputMask value="#{userController.user.age}" mask="99/99/9999" />
-
-							<h:outputText value="NRC: *" />
-							<p:inputMask value="#{userController.user.age}" mask="99/99/9999" />
-
-							<h:outputText value="Occupation: *" />
-							<p:inputMask value="#{userController.user.age}" mask="99/99/9999" />
-						</h:panelGrid>
-					</p:panel>
-				</p:tab>
-
-				<p:tab id="address" title="Address">
-					<p:panel header="Fill your address information here.">
-						<p:messages />
-						<h:panelGrid columns="2" columnClasses="label, value">
-
-							<h:outputText value="Residence No: *" />
-							<p:inputText value="#{userController.user.street}" />
-
-							<h:outputText value="Rd, Street: *" />
-							<p:inputText value="#{userController.user.street}" />
-
-							<h:outputText value="Township: *" />
-							<p:inputText value="#{userController.user.postalCode}" />
-
-							<h:outputText value="City: *" />
-							<p:inputText value="#{userController.user.city}" />
-						</h:panelGrid>
-					</p:panel>
-				</p:tab>
-
-				<p:tab id="paymentdetails" title="Payment Details">
-					<p:panel header="Fill payment details for your insurance here.">
-						<p:messages />
-						<h:panelGrid columns="2" columnClasses="label, value">
-							<h:outputText value="Sum Insured: *" />
-							<p:inputText value="#{userController.user.firstname}" />
-
-							<h:outputText value="Premium: *" />
-							<p:inputText value="#{userController.user.lastname}" />
-
-							<h:outputText value="Age: *" />
-							<p:inputText value="#{userController.user.age}" />
-
-							<h:outputText value="Relationship with Insurer: *" />
-							<p:inputMask value="#{userController.user.age}" mask="99/99/9999" />
-
-							<h:outputText value="Persentage: *" />
-							<p:inputMask value="#{userController.user.age}" mask="99/99/9999" />
-						</h:panelGrid>
-					</p:panel>
-				</p:tab>
-
-				<p:tab id="beneficiary" title="Beneficiary">
-					<p:panel header="Fill your beneficiary's information here.">
-						<p:messages />
-						<h:panelGrid columns="2" columnClasses="label, value">
-							<h:outputText value="Beneficiary's Name: *" />
-							<p:inputText value="#{userController.user.firstname}" />
-
-							<h:outputText value="Father's Name: *" />
-							<p:inputText value="#{userController.user.lastname}" />
-
-							<h:outputText value="Age: *" />
-							<p:inputText value="#{userController.user.age}" />
-
-							<h:outputText value="Relationship with Insurer: *" />
-							<p:inputMask value="#{userController.user.age}" mask="99/99/9999" />
-
-							<h:outputText value="Persentage: *" />
-							<p:inputMask value="#{userController.user.age}" mask="99/99/9999" />
-						</h:panelGrid>
-					</p:panel>
-				</p:tab>
-
-				<p:tab id="confirm" title="Confirmation">
-					<p:panel header="Confirmation">
-						<h:panelGrid id="confirmation" columns="3"
-							columnClasses="grid,grid,grid">
-							<h:panelGrid columns="2" columnClasses="label, value">
-								<h:outputText value="Firstname: " />
-								<h:outputText value="#{userController.user.firstname}"
-									styleClass="outputLabel" />
-
-								<h:outputText value="Lastname: " />
-								<h:outputText value="#{userController.user.lastname}"
-									styleClass="outputLabel" />
-
-								<h:outputText value="Age: " />
-								<h:outputText value="#{userController.user.age}"
-									styleClass="outputLabel" />
-							</h:panelGrid>
-							<h:panelGrid columns="2" columnClasses="label, value">
-								<h:outputText value="Street: " />
-								<h:outputText value="#{userController.user.street}"
-									styleClass="outputLabel" />
-
-								<h:outputText value="Postal: " />
-								<h:outputText value="#{userController.user.postalCode}"
-									styleClass="outputLabel" />
-
-								<h:outputText value="City: " />
-								<h:outputText value="#{userController.user.city}"
-									styleClass="outputLabel" />
-							</h:panelGrid>
-							<h:panelGrid columns="2" columnClasses="label, value">
-								<h:outputText value="Email: " />
-								<h:outputText value="#{userController.user.email}"
-									styleClass="outputLabel" />
-
-								<h:outputText value="Phone " />
-								<h:outputText value="#{userController.user.phone}"
-									styleClass="outputLabel" />
-
-								<h:outputText value="Info: " />
-								<h:outputText value="#{userController.user.info}"
-									styleClass="outputLabel" />
-							</h:panelGrid>
-						</h:panelGrid>
-
-						<p:commandButton value="Submit" action="#{userController.save}"
-							update="growl" process="@this" />
-					</p:panel>
-				</p:tab>
-			</p:wizard>
+					<h:outputText value="Email: " />
+					<h:outputText value="#{userController.user.email}"
+						styleClass="outputLabel" />
+				</h:panelGrid>
+			</p:panel>
+<!-- 			<br/>
+			<p:panel header="User Information" style="margin: 0 auto;">
+				<h:panelGrid columns="3" style="margin: 0 auto;">
+					<h:column>
+						<div class="card" style="width: 18rem;">
+							<div class="card-body">
+								<h5 class="card-title">Quote 1</h5>
+								<h6 class="card-subtitle mb-2 text-muted">Insurance 1</h6>
+								<p class="card-text">Some quick example text to build on the
+									card title and make up the bulk of the card's content.</p>
+								<a href="#" class="card-link">Card link</a> <a href="#"
+									class="card-link">Another link</a>
+							</div>
+						</div>
+					</h:column>
+					<h:column>
+						<div class="card" style="width: 18rem;">
+							<div class="card-body">
+								<h5 class="card-title">Quote 1</h5>
+								<h6 class="card-subtitle mb-2 text-muted">Insurance 1</h6>
+								<p class="card-text">Some quick example text to build on the
+									card title and make up the bulk of the card's content.</p>
+								<a href="#" class="card-link">Card link</a> <a href="#"
+									class="card-link">Another link</a>
+							</div>
+						</div>
+					</h:column>
+					<h:column>
+						<div class="card" style="width: 18rem;">
+							<div class="card-body">
+								<h5 class="card-title">Quote 1</h5>
+								<h6 class="card-subtitle mb-2 text-muted">Insurance 1</h6>
+								<p class="card-text">Some quick example text to build on the
+									card title and make up the bulk of the card's content.</p>
+								<a href="#" class="card-link">Card link</a> <a href="#"
+									class="card-link">Another link</a>
+							</div>
+						</div>
+					</h:column>
+				</h:panelGrid>
+			</p:panel> -->
 		</h:form>
 	</div>
 

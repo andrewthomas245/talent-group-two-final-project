@@ -1,6 +1,5 @@
 package com.talent.grouptwofinalproject.services;
 
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 import com.talent.grouptwofinalproject.entities.Users;
@@ -13,4 +12,6 @@ public interface UserService extends UserDetailsService
 	public String getLoginUserName();
 
 	Users findByName(String name);
+	
+	public UserModel getUserInfo();
 }
