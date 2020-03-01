@@ -67,6 +67,7 @@ public class PolicyController {
 			System.out.println("Here");
 			policy.setQuoteid(quo.getId());
 			policy.setQuotename(quo.getName());
+			policy.setQuotenrc(quo.getNrc());
 			System.out.println(policy.getQuoteid());
 			return "/buypolicy.xhtml?faces-redirect=true";
 		}

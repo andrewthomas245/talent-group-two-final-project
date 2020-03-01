@@ -61,10 +61,9 @@
 		</button>
 		<div class="collapse navbar-collapse" id="navbarResponsive">
 			<ul class="navbar-nav ml-auto">
-				<li class="nav-item active"><a class="nav-link" href="/home.xhtml"><i
-							class="fa fa-home" aria-hidden="true"></i> Home
-						<span class="sr-only">(current)</span>
-				</a></li>
+				<li class="nav-item active"><a class="nav-link"
+					href="/home.xhtml"><i class="fa fa-home" aria-hidden="true"></i>
+						Home <span class="sr-only">(current)</span> </a></li>
 				<li class="nav-item dropdown"><a
 					class="nav-link dropdown-toggle" href="#"
 					id="navbarDropdownMenuLink" data-toggle="dropdown"
@@ -73,8 +72,8 @@
 				</a>
 					<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 						<a class="dropdown-item" href="/createquote.xhtml"><i
-							class="fa fa-plus" aria-hidden="true"></i> Create A New Quote</a>
-						<a class="dropdown-item" href="/myquotes.xhtml"><i
+							class="fa fa-plus" aria-hidden="true"></i> Create A New Quote</a> <a
+							class="dropdown-item" href="/myquotes.xhtml"><i
 							class="fa fa-list-alt" aria-hidden="true"></i> My Quotes</a>
 					</div></li>
 				<li class="nav-item"><a class="nav-link"
@@ -119,13 +118,15 @@
 						<p:messages />
 						<h:panelGrid columns="2" columnClasses="label, value">
 							<h:outputText value="Quote ID: " />
-							<h:outputText value="#{policyController.policy.quoteid}" />
+							<h:outputText value="#{policyController.policy.quoteid}" styleClass="outputLabel"/>
 
-							<h:outputText value="Effective Date: *" />
-							<p:inputText value="#{policyController.policy.effectivedate}" />
+							<h:outputText value="Quote Name: " />
+							<h:outputText value="#{policyController.policy.quotename}"
+								styleClass="outputLabel" />
 
-							<h:outputText value="Enddate: *" />
-							<p:inputText value="#{policyController.policy.enddate}" />
+							<h:outputText value="NRC: " />
+							<h:outputText value="#{policyController.policy.quotenrc}"
+								styleClass="outputLabel" />
 						</h:panelGrid>
 					</p:panel>
 				</p:tab>
@@ -134,28 +135,46 @@
 						<p:messages />
 						<h:panelGrid columns="2" columnClasses="label, value">
 							<h:outputText value="Total Pay Amount: " />
-							<h:outputText value="#{quoteController.quote.totalpayamount}" />
+							<h:outputText value="#{quoteController.quote.totalpayamount}" styleClass="outputLabel">
+								<f:convertNumber maxIntegerDigits="10" maxFractionDigits="1"
+									pattern="######## Kyats" />
+							</h:outputText>
 							<h:outputText value="Your Payment Amount: *" />
 							<p:inputText
-								value="#{policyController.policy.firstpaymentamount}" />
+								value="#{policyController.policy.firstpaymentamount}">
+								<f:convertNumber maxIntegerDigits="10" maxFractionDigits="1"
+									pattern="########" />
+							</p:inputText>
 						</h:panelGrid>
 					</p:panel>
 				</p:tab>
 				<p:tab id="confirm" title="Confirmation">
 					<p:panel header="Confirmation">
-							<h:panelGrid columns="2" columnClasses="label, value">
-								<h:outputText value="Quote ID: " />
-								<h:outputText value="#{policyController.policy.quoteid}"
-									styleClass="outputLabel" />
+						<h:panelGrid columns="2" columnClasses="label, value">
+							<h:outputText value="Quote ID: " />
+							<h:outputText value="#{policyController.policy.quoteid}"
+								styleClass="outputLabel" />
 
-								<h:outputText value="Effective Date: " />
-								<h:outputText value="#{policyController.policy.effectivedate}"
-									styleClass="outputLabel" />
+							<h:outputText value="Quote Name: " />
+							<h:outputText value="#{policyController.policy.quotename}"
+								styleClass="outputLabel" />
 
-								<h:outputText value="End Date: " />
-								<h:outputText value="#{policyController.policy.enddate}"
-									styleClass="outputLabel" />
-							</h:panelGrid>
+							<h:outputText value="NRC: " />
+							<h:outputText value="#{policyController.policy.quotenrc}"
+								styleClass="outputLabel" />
+
+							<h:outputText value="Total Pay Amount: " />
+							<h:outputText value="#{quoteController.quote.totalpayamount}" styleClass="outputLabel">
+								<f:convertNumber maxIntegerDigits="10" maxFractionDigits="1"
+									pattern="######## Kyats"/>
+							</h:outputText>
+							<h:outputText value="Your Payment Amount: *" />
+							<h:outputText styleClass="outputLabel"
+								value="#{policyController.policy.firstpaymentamount}">
+								<f:convertNumber maxIntegerDigits="10" maxFractionDigits="1"
+									pattern="######## Kyats"/>
+							</h:outputText >
+						</h:panelGrid>
 					</p:panel>
 					<p:commandButton value="Submit" action="#{policyController.save()}"
 						update="growl" process="@this"

@@ -120,6 +120,9 @@ public class PolicyServiceImpl implements PolicyService {
 		for (Quotes q : entitylist2) {
 			model1.setQuoteid(q.getQuoteid());
 			model1.setQuotename(q.getName());
+			model1.setQuotenrc(q.getNrc());
+			model1.setBenificiaryname(q.getBenificiaries().getName());
+			model1.setBenificiarynrc(q.getBenificiaries().getNrc());
 			model1.setPolicyterm(q.getPolicyterm());
 			model1.setPremiumplan(q.getPremiumplan());
 			model1.setMonthlypremium(q.getMonthlypremium());
@@ -184,6 +187,13 @@ public class PolicyServiceImpl implements PolicyService {
 		if (totalpaidpremium >= yearlypremium) {
 			check=false;
 		}
+		return check;
+	}
+
+	@Override
+	public String checkStatus(Policy pol) {
+		String check = pol.getPolicystatus();
+		System.out.println(pol.getPolicystatus());
 		return check;
 	}
 

@@ -16,4 +16,6 @@ public interface PolicyService {
 	
 	public Boolean checkYearlyPayment(Policy pol);
 	
+	public String checkStatus(Policy pol);
+	
 }

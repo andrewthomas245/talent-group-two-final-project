@@ -66,6 +66,7 @@ public class QuoteServiceImpl implements QuoteService {
 		benificiariesEntity.setRelationship(quo.getRelationship());
 		benificiariesEntity.setAddress(quo.getBenificiaryaddress());
 		benificiariesEntity.setPhone(quo.getBenificiaryphone());
+		benificiariesEntity.setGender(quo.getBenificiarygender());
 		benificiariesEntity.setState(state);
 
 		// benificiaryRepository.save(benificiariesEntity);
@@ -79,6 +80,7 @@ public class QuoteServiceImpl implements QuoteService {
 		quotesEntity.setNrc(quo.getNrc());
 		quotesEntity.setOccupation(quo.getOccupation());
 		quotesEntity.setPhone(quo.getPhone());
+		quotesEntity.setGender(quo.getGender());
 
 		quotesEntity.setPolicyterm(quo.getPolicyterm());
 		quotesEntity.setPremiumplan(quo.getPremiumplan());

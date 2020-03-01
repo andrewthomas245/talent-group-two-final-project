@@ -17,12 +17,12 @@
 	<link rel="stylesheet" type="text/css" href="css\allcss.css" />
 	<style type="text/css">
 .label {
-	width: 30%;
+	width: 20%;
 	padding: 4px;
 }
 
 .value {
-	width: 60%;
+	width: 80%;
 	padding: 4px;
 }
 
@@ -117,6 +117,12 @@
 							<h:outputText value="Policy ID: " />
 							<h:outputText value="#{claimController.claim.policyid}" />
 
+							<h:outputText value="Quote ID: " />
+							<h:outputText value="#{policyController.policy.quoteid}" />
+
+							<h:outputText value="Quote Name: " />
+							<h:outputText value="#{policyController.policy.quotename}" />
+
 							<h:outputText value="Claim Type: *" />
 							<p:selectOneMenu id="claimtype"
 								value="#{claimController.claim.claimreason}">
@@ -131,11 +137,11 @@
 							<h:outputText value="#{currentDate}">
 								<f:convertDateTime pattern="dd/MM/yyyy" type="date" />
 							</h:outputText>
-							
+
 							<h:outputText value="Signature: " />
-							<p:signature style="width:400px;height:200px" widgetVar="sig"
+							<p:signature style="width:300px;height:180px;" widgetVar="sig"
 								value="#{claimController.claim.claimsign}" required="true"
-								guideline="true" />
+								guideline="true" requiredMessage="Your signature is required to claim."/>
 						</h:panelGrid>
 					</p:panel>
 				</p:tab>
@@ -146,12 +152,27 @@
 							<h:outputText value="#{claimController.claim.policyid}"
 								styleClass="outputLabel" />
 
+							<h:outputText value="Quote ID: " />
+							<h:outputText value="#{policyController.policy.quoteid}"
+								styleClass="outputLabel" />
+
+							<h:outputText value="Quote Name: " />
+							<h:outputText value="#{policyController.policy.quotename}"
+								styleClass="outputLabel" />
+
 							<h:outputText value="Claim Reason: " />
 							<h:outputText value="#{claimController.claim.claimreason}"
 								styleClass="outputLabel" />
-								
-							<h:outputText rendered="#{not empty claimController.claim.claimsign}" style="font-size:24px;display:block" value="Your Signature" />
-							<p:signature style="width:400px;height:200px;"
+
+							<h:outputText value="Claim Date: " />
+							<h:outputText value="#{currentDate}" styleClass="outputLabel">
+								<f:convertDateTime pattern="dd/MM/yyyy" type="date" />
+							</h:outputText>
+
+							<h:outputText
+								rendered="#{not empty claimController.claim.claimsign}"
+								value="Signature:" />
+							<p:signature style="width:300px;height:180px;"
 								value="#{claimController.claim.claimsign}" readonly="true"
 								rendered="#{not empty claimController.claim.claimsign}"
 								backgroundColor="#eaeaea" color="#03a9f4" />

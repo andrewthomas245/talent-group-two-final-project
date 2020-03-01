@@ -17,6 +17,9 @@ public class Policy {
 
 	private long quoteid;
 	private String quotename;
+	private String quotenrc;
+	private String benificiaryname;
+	private String benificiarynrc;
 	private Double suminsured;
 	private int policyterm;
 	private int premiumplan;
@@ -83,6 +86,30 @@ public class Policy {
 
 	public void setQuotename(String quotename) {
 		this.quotename = quotename;
+	}
+
+	public String getQuotenrc() {
+		return quotenrc;
+	}
+
+	public void setQuotenrc(String quotenrc) {
+		this.quotenrc = quotenrc;
+	}
+
+	public String getBenificiaryname() {
+		return benificiaryname;
+	}
+
+	public void setBenificiaryname(String benificiaryname) {
+		this.benificiaryname = benificiaryname;
+	}
+
+	public String getBenificiarynrc() {
+		return benificiarynrc;
+	}
+
+	public void setBenificiarynrc(String benificiarynrc) {
+		this.benificiarynrc = benificiarynrc;
 	}
 
 	public Double getSuminsured() {

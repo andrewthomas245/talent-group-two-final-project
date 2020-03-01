@@ -169,8 +169,6 @@
 					<h:outputText value="Quote ID: " />
 					<h:outputText value="#{policyController.policy.quoteid}"
 						styleClass="outputLabel">
-						<f:convertNumber maxIntegerDigits="10" maxFractionDigits="1"
-							pattern="######## Kyats" />
 					</h:outputText>
 
 					<h:outputText value="Quote Name: " />
@@ -221,8 +219,8 @@
 					</p:column>
 					<p:column headerText="Payment Amount">
 						<h:outputText value="#{payment.paymentamount}">
-						<f:convertNumber maxIntegerDigits="10" maxFractionDigits="1"
-							pattern="######## Kyats" />
+							<f:convertNumber maxIntegerDigits="10" maxFractionDigits="1"
+								pattern="######## Kyats" />
 						</h:outputText>
 					</p:column>
 				</p:dataTable>
@@ -230,8 +228,11 @@
 				<h:panelGrid columns="2" columnClasses="totaltext, total">
 					<h:outputText value="Total Paid:" />
 					<h:outputText
-						value="#{policyController.policy.totalpaidpremium} Kyats"
-						styleClass="outputLabel" />
+						value="#{policyController.policy.totalpaidpremium}"
+						styleClass="outputLabel">
+						<f:convertNumber maxIntegerDigits="10" maxFractionDigits="1"
+							pattern="######## Kyats" />
+					</h:outputText>
 				</h:panelGrid>
 			</p:panel>
 			<br />

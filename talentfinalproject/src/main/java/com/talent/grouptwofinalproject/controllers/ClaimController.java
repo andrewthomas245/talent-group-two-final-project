@@ -51,18 +51,26 @@ public class ClaimController {
 		if (!findclaims.isEmpty()) {
 			System.out.println("DUPLICATE");
 			FacesContext context = FacesContext.getCurrentInstance();
-			context.addMessage("Error", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Fail",
-					"This policy is already claimed."));
-			context.getExternalContext().getFlash().setKeepMessages(true);		
+			context.addMessage("Error",
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Fail", "This policy is already claimed."));
+			context.getExternalContext().getFlash().setKeepMessages(true);
 		} else {
 			boolean checkpaidpremium = policyService.checkYearlyPayment(pol);
 			System.out.println(checkpaidpremium);
-			
+
+			String checkpolicystatus = policyService.checkStatus(pol);
+			System.out.println(checkpolicystatus);
+
 			if (checkpaidpremium) {
 				FacesContext context2 = FacesContext.getCurrentInstance();
 				context2.addMessage("Error", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Fail",
 						"Your policy's yearly premium has not been fully paid."));
 				context2.getExternalContext().getFlash().setKeepMessages(true);
+			} else if (checkpolicystatus.equals("Pending")) {
+				FacesContext context3 = FacesContext.getCurrentInstance();
+				context3.addMessage("Error",
+						new FacesMessage(FacesMessage.SEVERITY_ERROR, "Fail", "Your policy status is not ACTIVE."));
+				context3.getExternalContext().getFlash().setKeepMessages(true);
 			} else {
 				System.out.println("Here at claim");
 				claim.setPolicyid(pol.getId());
@@ -76,9 +84,12 @@ public class ClaimController {
 	public String store() {
 		claimService.storeClaim(claim);
 		FacesContext context = FacesContext.getCurrentInstance();
-		context.addMessage("Success", new FacesMessage(FacesMessage.SEVERITY_INFO, "Success",
-				"This policy is successfully claimed."));
-		context.getExternalContext().getFlash().setKeepMessages(true);	
+		context.addMessage("Success",
+				new FacesMessage(FacesMessage.SEVERITY_INFO, "Success", "This policy is successfully claimed."));
+		context.getExternalContext().getFlash().setKeepMessages(true);
+
+		claim = new Claim();
+
 		return "/claimsuccess.xhtml?faces-redirect=true";
 	}
 
