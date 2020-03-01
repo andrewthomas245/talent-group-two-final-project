@@ -14,6 +14,7 @@ public class Policy {
 	private String policystatus;
 
 	private double firstpaymentamount;
+	private String paymentmethod;
 
 	private long quoteid;
 	private String quotename;
@@ -33,6 +34,8 @@ public class Policy {
 	List<Payment> PaymentList = new ArrayList<Payment>();
 	
 	private Claim claim;
+	
+	private Quote quote;
 
 	public long getId() {
 		return id;
@@ -200,6 +203,22 @@ public class Policy {
 
 	public void setClaim(Claim claim) {
 		this.claim = claim;
+	}
+
+	public Quote getQuote() {
+		return quote;
+	}
+
+	public void setQuote(Quote quote) {
+		this.quote = quote;
+	}
+
+	public String getPaymentmethod() {
+		return paymentmethod;
+	}
+
+	public void setPaymentmethod(String paymentmethod) {
+		this.paymentmethod = paymentmethod;
 	}
 
 }

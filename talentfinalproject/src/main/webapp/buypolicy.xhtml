@@ -19,12 +19,12 @@
 	<link rel="stylesheet" type="text/css" href="css\allcss.css" />
 	<style type="text/css">
 .label {
-	width: 40%;
+	width: 25%;
 	padding: 4px;
 }
 
 .value {
-	width: 50%;
+	width: 75%;
 	padding: 4px;
 }
 
@@ -128,7 +128,14 @@
 							<h:outputText value="NRC: " />
 							<h:outputText value="#{policyController.policy.quotenrc}"
 								styleClass="outputLabel" />
-
+						</h:panelGrid>
+					</p:panel>
+				</p:tab>
+				<p:tab id="payment" title="Premium">
+					<p:panel
+						header="Here you must pay first portion of your premium plan.">
+						<p:messages />
+						<h:panelGrid columns="2" columnClasses="label, value">
 							<h:outputText value="Policy Term: " />
 							<h:outputText value="#{policyController.policy.policyterm}"
 								styleClass="outputLabel">
@@ -143,32 +150,29 @@
 									pattern="######## Months" />
 							</h:outputText>
 
-							<h:outputText value="NRC: " />
-							<h:outputText value="#{policyController.policy.quotenrc}"
-								styleClass="outputLabel" />
-						</h:panelGrid>
-					</p:panel>
-				</p:tab>
-				<p:tab id="payment" title="Premium">
-					<p:panel header="Here you must pay 10% of your premium.">
-						<p:messages />
-						<h:panelGrid columns="2" columnClasses="label, value">
 							<h:outputText value="Total Pay Amount: " />
 							<h:outputText value="#{quoteController.quote.totalpayamount}"
 								styleClass="outputLabel">
 								<f:convertNumber maxIntegerDigits="10" maxFractionDigits="1"
 									pattern="######## Kyats" />
 							</h:outputText>
+
 							<h:outputText value="Your Payment Amount: *" />
-							<p:inputNumber
+							<p:inputText
 								value="#{policyController.policy.firstpaymentamount}"
-								maxValue="99999999" decimalPlaces="0">
+								maxValue="99999999" decimalPlaces="0" readonly="true">
 								<f:convertNumber maxIntegerDigits="10" maxFractionDigits="1"
-									pattern="########" />
-								<f:validateLongRange
-									minimum="#{quoteController.quote.totalpayamount}"
-									maximum="#{quoteController.quote.totalpayamount}" />
-							</p:inputNumber>
+									pattern="######## Kyats" />
+							</p:inputText>
+
+							<h:outputText value="Payment Method: *" />
+							<p:selectOneRadio id="pmethod" required="true" value="#{policyController.policy.paymentmethod}"
+								requiredMessage="Payment Method must be selected.">
+								<f:selectItem itemLabel="KBZ" itemValue="KBZ" />
+								<f:selectItem itemLabel="AYA" itemValue="AYA" />
+								<f:selectItem itemLabel="CB" itemValue="CB" />
+								<f:selectItem itemLabel="AGD" itemValue="AGD" />
+							</p:selectOneRadio>
 						</h:panelGrid>
 					</p:panel>
 				</p:tab>
@@ -207,12 +211,16 @@
 								<f:convertNumber maxIntegerDigits="10" maxFractionDigits="1"
 									pattern="######## Kyats" />
 							</h:outputText>
-							<h:outputText value="Your Payment Amount: *" />
+							
+							<h:outputText value="Your Payment Amount: " />
 							<h:outputText styleClass="outputLabel"
 								value="#{policyController.policy.firstpaymentamount}">
 								<f:convertNumber maxIntegerDigits="10" maxFractionDigits="1"
 									pattern="######## Kyats" />
 							</h:outputText>
+							
+							<h:outputText value="Payment Method: " />
+							<h:outputText value="#{policyController.policy.paymentmethod}" styleClass="outputLabel" />
 						</h:panelGrid>
 					</p:panel>
 					<p:commandButton value="Submit" action="#{policyController.save()}"

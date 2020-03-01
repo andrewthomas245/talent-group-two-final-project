@@ -22,6 +22,7 @@ public class Payments {
 	private Long paymentid;
 	private Date paymentdate;
 	private double paymentamount;
+	private String paymentmethod;
 	
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "policy_id", nullable = false)
@@ -46,6 +47,12 @@ public class Payments {
 	}
 	public void setPaymentamount(double paymentamount) {
 		this.paymentamount = paymentamount;
+	}
+	public String getPaymentmethod() {
+		return paymentmethod;
+	}
+	public void setPaymentmethod(String paymentmethod) {
+		this.paymentmethod = paymentmethod;
 	}
 	public Policies getPolicies() {
 		return policies;

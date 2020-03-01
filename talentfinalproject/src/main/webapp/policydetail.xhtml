@@ -224,8 +224,8 @@
 			<br />
 			<p:panel header="Payment Infomation">
 				<p:dataTable var="payment"
-					value="#{policyController.policy.paymentList}" rows="10"
-					paginator="false" style="width:50%;">
+					value="#{policyController.policy.paymentList}" rows="3"
+					paginator="false" style="width:65%;">
 					<p:column headerText="Date Paid">
 						<h:outputText value="#{payment.paymentdate}">
 							<f:convertDateTime pattern="dd/MM/yyyy" type="date" />
@@ -235,6 +235,10 @@
 						<h:outputText value="#{payment.paymentamount}">
 							<f:convertNumber maxIntegerDigits="10" maxFractionDigits="1"
 								pattern="######## Kyats" />
+						</h:outputText>
+					</p:column>
+					<p:column headerText="Payment Amount">
+						<h:outputText value="#{payment.paymentmethod}">
 						</h:outputText>
 					</p:column>
 				</p:dataTable>

@@ -40,6 +40,7 @@ public class PaymentServiceImpl implements PaymentService {
 		Payments paymentEntity= new Payments();
 		paymentEntity.setPaymentamount(pay.getPaymentamount());
 		paymentEntity.setPaymentdate(date);
+		paymentEntity.setPaymentmethod(pay.getPaymentmethod());
 		
 		System.out.println(pay.getPolicyid());
 		

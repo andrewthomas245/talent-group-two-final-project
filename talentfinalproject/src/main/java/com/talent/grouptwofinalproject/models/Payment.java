@@ -8,6 +8,7 @@ public class Payment {
 	private Long policyid;
 	private Date paymentdate;
 	private double paymentamount;
+	private String paymentmethod;
 	
 	public Long getPaymentid() {
 		return paymentid;
@@ -33,7 +34,11 @@ public class Payment {
 	public void setPaymentamount(double paymentamount) {
 		this.paymentamount = paymentamount;
 	}
-	
-	
+	public String getPaymentmethod() {
+		return paymentmethod;
+	}
+	public void setPaymentmethod(String paymentmethod) {
+		this.paymentmethod = paymentmethod;
+	}
 
 }

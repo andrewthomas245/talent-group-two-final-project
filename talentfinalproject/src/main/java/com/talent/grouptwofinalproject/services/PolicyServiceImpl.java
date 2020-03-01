@@ -62,6 +62,7 @@ public class PolicyServiceImpl implements PolicyService {
 		
 		Payments paymentEntity = new Payments();
 		paymentEntity.setPaymentamount(pol.getFirstpaymentamount());
+		paymentEntity.setPaymentmethod(pol.getPaymentmethod());
 		paymentEntity.setPaymentdate(date);
 		paymentEntity.setPolicies(policyEntity);
 
@@ -138,6 +139,7 @@ public class PolicyServiceImpl implements PolicyService {
 			Payment model2= new Payment();
 			model2.setPaymentamount(p.getPaymentamount());
 			model2.setPaymentdate(p.getPaymentdate());
+			model2.setPaymentmethod(p.getPaymentmethod());
 			totalpaidpremium=totalpaidpremium+p.getPaymentamount();
 			System.out.println(totalpaidpremium);
 			modellist.add(model2);

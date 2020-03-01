@@ -69,13 +69,27 @@ public class PolicyController {
 			policy.setQuotename(quo.getName());
 			policy.setQuotenrc(quo.getNrc());
 			policy.setPremiumplan(quo.getPremiumplan());
+			int premiumplan = quo.getPremiumplan();
 			policy.setPolicyterm(quo.getPolicyterm());
 			policy.setMonthlypremium(quo.getMonthlypremium());
 			policy.setQuarterlypremium(quo.getQuarterlypremium());
 			policy.setHalfyearpremium(quo.getHalfyearpremium());
 			policy.setYearlypremium(quo.getYearlypremium());
+
+			if (premiumplan == 1) {
+				policy.setFirstpaymentamount(quo.getMonthlypremium());
+			} else if (premiumplan == 3) {
+				policy.setFirstpaymentamount(quo.getQuarterlypremium());
+			} else if (premiumplan == 6) {
+				policy.setFirstpaymentamount(quo.getHalfyearpremium());
+			} else {
+				policy.setFirstpaymentamount(quo.getYearlypremium());
+			}
+
 			System.out.println(policy.getQuoteid());
+
 			return "/buypolicy.xhtml?faces-redirect=true";
+
 		}
 		return null;
 	}
