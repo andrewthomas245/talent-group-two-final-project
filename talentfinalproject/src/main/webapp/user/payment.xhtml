@@ -141,8 +141,8 @@
 							<h:outputText value="Payment Amount: *" />
 							<p:inputNumber value="#{paymentController.payment.paymentamount}"
 								maxlength="9" maxValue="99999999" decimalPlaces="0"
-								validatorMessage="Payment Amount must be between 100000 and Total Premium.">
-								<f:validateLongRange minimum="100000"
+								validatorMessage="Payment Amount must be between 10000 and Total Premium.">
+								<f:validateLongRange minimum="10000"
 									maximum="#{policyController.policy.totalpremium}" />
 								<f:convertNumber maxIntegerDigits="10" maxFractionDigits="1"
 									pattern="########" />

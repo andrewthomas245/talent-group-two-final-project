@@ -136,8 +136,8 @@
 						<h:panelGrid columns="3" columnClasses="label, value, message">
 							<h:outputText value="Name of Insured: *" />
 							<p:inputText id="qname" value="#{quoteController.quote.name}"
-								validatorMessage="Name must be characters only with no spaces.">
-								<f:validateRegex pattern="^[a-zA-Z_]+( [a-zA-Z_]+)*$" />
+								validatorMessage="Name must be at least 5 characters only with no spaces.">
+								<f:validateRegex pattern="^[a-zA-Z_]{5,}+( [a-zA-Z_]{5,}+)*$" />
 								<p:ajax update="qnamem" event="keyup" />
 							</p:inputText>
 							<p:message id="qnamem" for="qname" />
@@ -155,8 +155,8 @@
 							<p:inputText id="fathername"
 								value="#{quoteController.quote.fathername}" required="true"
 								requiredMessage="Father's Name is required."
-								validatorMessage="Father's Name must be characters only with no spaces.">
-								<f:validateRegex pattern="^[a-zA-Z_]+( [a-zA-Z_]+)*$" />
+								validatorMessage="Father's Name must be at least 5 characters only with no spaces.">
+								<f:validateRegex pattern="^[a-zA-Z_]{5,}+( [a-zA-Z_]{5,}+)*$" />
 								<p:ajax update="fathernamem" event="keyup" />
 							</p:inputText>
 							<p:message id="fathernamem" for="fathername" />
@@ -194,7 +194,9 @@
 							<h:outputText value="Phone (+95) :*" />
 							<p:inputNumber id="qphone" value="#{quoteController.quote.phone}"
 								maxlength="10" maxValue="9999999999" decimalPlaces="0"
-								required="true" requiredMessage="Phone is required.">
+								required="true" requiredMessage="Phone is required."
+								validatorMessage="Phone must have at least seven numbers.">
+								<f:validateRegex pattern="^[0-9]{7,10}$" />
 								<p:ajax update="qphonem" event="keyup" />
 							</p:inputNumber>
 							<p:message id="qphonem" for="qphone" />
@@ -219,8 +221,8 @@
 							<p:inputText id="qroad"
 								value="#{quoteController.quote.roadstreet}" required="true"
 								requiredMessage="Road or Street is required."
-								validatorMessage="Road or Street must be characters only with no spaces.">
-								<f:validateRegex pattern="^[a-zA-Z0-9_]+( [a-zA-Z0-9_]+)*$" />
+								validatorMessage="Road or Street must be at least 5 characters only with no spaces.">
+								<f:validateRegex pattern="^[a-zA-Z_]{5,}+( [a-zA-Z_]{5,}+)*$" />
 								<p:ajax update="qroadm" event="keyup" />
 							</p:inputText>
 							<p:message id="qroadm" for="qroad" />
@@ -229,8 +231,8 @@
 							<p:inputText id="qtownship"
 								value="#{quoteController.quote.township}" required="true"
 								requiredMessage="Township is required."
-								validatorMessage="Township must be characters only with no spaces.">
-								<f:validateRegex pattern="^[a-zA-Z0-9_]+( [a-zA-Z0-9_]+)*$" />
+								validatorMessage="Township must be at least 5 characters only with no spaces.">
+								<f:validateRegex pattern="^[a-zA-Z_]{5,}+( [a-zA-Z_]{5,}+)*$" />
 								<p:ajax update="qtownshipm" event="keyup" />
 							</p:inputText>
 							<p:message id="qtownshipm" for="qtownship" />
@@ -238,8 +240,8 @@
 							<h:outputText value="City: *" />
 							<p:inputText id="qcity" value="#{quoteController.quote.city}"
 								required="true" requiredMessage="City is required."
-								validatorMessage="City must be characters only with no spaces.">
-								<f:validateRegex pattern="^[a-zA-Z_]+( [a-zA-Z_]+)*$" />
+								validatorMessage="City must be at least 5 characters only with no spaces.">
+								<f:validateRegex pattern="^[a-zA-Z_]{5,}+( [a-zA-Z_]{5,}+)*$" />
 								<p:ajax update="qcitym" event="keyup" />
 							</p:inputText>
 							<p:message id="qcitym" for="qcity" />
@@ -319,8 +321,8 @@
 							<p:inputText id="bname"
 								value="#{quoteController.quote.benificiaryname}" required="true"
 								requiredMessage="Beneficiary's Name is required."
-								validatorMessage="Beneficiary's Name must be characters only with no spaces.">
-								<f:validateRegex pattern="^[a-zA-Z_]+( [a-zA-Z_]+)*$" />
+								validatorMessage="Beneficiary's Name must be at least 5 characters only with no spaces.">
+								<f:validateRegex pattern="^[a-zA-Z_]{5,}+( [a-zA-Z_]{5,}+)*$" />
 								<p:ajax update="bnamem" event="keyup" />
 							</p:inputText>
 							<p:message id="bnamem" for="bname" />
@@ -363,8 +365,10 @@
 							<h:outputText value="Address: *" />
 							<p:inputTextarea id="addressb"
 								value="#{quoteController.quote.benificiaryaddress}"
-								required="true" requiredMessage="Address is required.">
-								<p:ajax update="relationshipm" event="keyup" />
+								required="true" requiredMessage="Address is required."
+								validatorMessage="Address must be at least 5 characters only with no spaces.">
+								<f:validateRegex pattern="^[a-zA-Z_]{5,}+( [a-zA-Z_]{5,}+)*$" />
+								<p:ajax update="addressbm" event="keyup" />
 							</p:inputTextarea>
 							<p:message id="addressbm" for="addressb" />
 
@@ -372,7 +376,11 @@
 							<p:inputNumber id="phoneb"
 								value="#{quoteController.quote.benificiaryphone}" maxlength="10"
 								maxValue="9999999999" decimalPlaces="0" required="true"
-								requiredMessage="Phone is required." />
+								requiredMessage="Phone is required."
+								validatorMessage="Phone must have at least seven numbers.">
+								<f:validateRegex pattern="^[0-9]{7,10}$" />
+								<p:ajax update="phonebm" event="keyup" />
+							</p:inputNumber>
 							<p:message id="phonebm" for="phoneb" />
 						</h:panelGrid>
 					</p:panel>
