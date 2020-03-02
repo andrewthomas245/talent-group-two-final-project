@@ -49,6 +49,7 @@
 .totaltext {
 	font-weight: bolder;
 	color: navy;
+	padding:5px;
 }
 
 .total {
@@ -252,8 +253,15 @@
 				</p:dataTable>
 				<br />
 				<h:panelGrid columns="2" columnClasses="totaltext, total">
-					<h:outputText value="Total Paid:" />
+					<h:outputText value="Total Paid: " />
 					<h:outputText value="#{policyController.policy.totalpaidpremium}"
+						styleClass="outputLabel">
+						<f:convertNumber maxIntegerDigits="10" maxFractionDigits="1"
+							pattern="######## Kyats" />
+					</h:outputText>
+					<h:outputText value="Amount Left to Pay: " />
+					<h:outputText
+						value="#{policyController.policy.totalpremium - policyController.policy.totalpaidpremium}"
 						styleClass="outputLabel">
 						<f:convertNumber maxIntegerDigits="10" maxFractionDigits="1"
 							pattern="######## Kyats" />

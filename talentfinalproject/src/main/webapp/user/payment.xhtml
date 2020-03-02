@@ -137,13 +137,19 @@
 									pattern="######## Kyats" />
 							</h:outputText>
 
+							<h:outputText value="Amount Left to Pay: *" />
+							<h:outputText
+								value="#{policyController.policy.totalpremium - policyController.policy.totalpaidpremium}">
+								<f:convertNumber maxIntegerDigits="10" maxFractionDigits="1"
+									pattern="######## Kyats" />
+							</h:outputText>
 
 							<h:outputText value="Payment Amount: *" />
 							<p:inputNumber value="#{paymentController.payment.paymentamount}"
 								maxlength="9" maxValue="99999999" decimalPlaces="0"
-								validatorMessage="Payment Amount must be between 10000 and Total Premium.">
+								validatorMessage="Payment Amount must be between 10000 and Amount Left to Pay.">
 								<f:validateLongRange minimum="10000"
-									maximum="#{policyController.policy.totalpremium}" />
+									maximum="#{policyController.policy.totalpremium - policyController.policy.totalpaidpremium}" />
 								<f:convertNumber maxIntegerDigits="10" maxFractionDigits="1"
 									pattern="########" />
 							</p:inputNumber>
@@ -175,6 +181,13 @@
 							<h:outputText value="Total Premium: *" />
 							<h:outputText value="#{policyController.policy.totalpremium}"
 								styleClass="outputLabel">
+								<f:convertNumber maxIntegerDigits="10" maxFractionDigits="1"
+									pattern="######## Kyats" />s
+							</h:outputText>
+
+							<h:outputText value="Amount Left to Pay: *" />
+							<h:outputText
+								value="#{policyController.policy.totalpremium - policyController.policy.totalpaidpremium}" styleClass="outputLabel">
 								<f:convertNumber maxIntegerDigits="10" maxFractionDigits="1"
 									pattern="######## Kyats" />
 							</h:outputText>
