@@ -201,4 +201,30 @@ public class PolicyServiceImpl implements PolicyService {
 		return check;
 	}
 
+	@Override
+	public Policy getQuoteData(Policy pol,Quote quo) {
+		pol.setQuoteid(quo.getId());
+		pol.setQuotename(quo.getName());
+		pol.setQuotenrc(quo.getNrc());
+		pol.setPremiumplan(quo.getPremiumplan());
+		int premiumplan = quo.getPremiumplan();
+		pol.setPolicyterm(quo.getPolicyterm());
+		pol.setMonthlypremium(quo.getMonthlypremium());
+		pol.setQuarterlypremium(quo.getQuarterlypremium());
+		pol.setHalfyearpremium(quo.getHalfyearpremium());
+		pol.setYearlypremium(quo.getYearlypremium());
+
+		if (premiumplan == 1) {
+			pol.setFirstpaymentamount(quo.getMonthlypremium());
+		} else if (premiumplan == 3) {
+			pol.setFirstpaymentamount(quo.getQuarterlypremium());
+		} else if (premiumplan == 6) {
+			pol.setFirstpaymentamount(quo.getHalfyearpremium());
+		} else {
+			pol.setFirstpaymentamount(quo.getYearlypremium());
+		}
+		
+		return pol;
+	}
+
 }

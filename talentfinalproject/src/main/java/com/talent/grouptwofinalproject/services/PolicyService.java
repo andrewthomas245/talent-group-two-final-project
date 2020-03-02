@@ -18,4 +18,6 @@ public interface PolicyService {
 	
 	public String checkStatus(Policy pol);
 	
+	public Policy getQuoteData(Policy pol,Quote quo);
+	
 }
