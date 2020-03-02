@@ -1,0 +1,313 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<f:metadata charset="UTF-8" />
+	<f:metadata name="viewport"
+		content="width=device-width, initial-scale=1" />
+	<script src="js\calculator.js">
+		
+	</script>
+
+	<script src="js\jquery.slim.min.js">
+		
+	</script>
+	<script src="js\bootstrap.bundle.min.js">
+		
+	</script>
+	<script src="js\bootstrap.jquery.min.js">
+		
+	</script>
+
+	<link rel="stylesheet" type="text/css" href="css\bootstrap.min.css" />
+	<link rel="stylesheet"
+		href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+	<link rel="stylesheet" type="text/css" href="css\allcss.css" />
+	<style>
+.bg {
+	background-image: url(img/stijum12.jpg);
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: 100% 70%;
+	height: 380px;
+	text-align: center;
+	font-style: oblique;
+	left: 0;
+}
+
+#gfg {
+	border-collapse: separate;
+	border-spacing: 0 15px;
+}
+</style>
+</h:head>
+
+<h:body>
+	<!-- Navigation -->
+	<nav class="navbar navbar-expand-lg navbar-dark static-top" id="navbar">
+	<div class="container">
+		<a class="navbar-brand" href="#"> <img src="img/logo_white.svg"
+			style="height: 70px" />
+		</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#navbarResponsive" aria-controls="navbarResponsive"
+			aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarResponsive">
+			<ul class="navbar-nav ml-auto">
+				<li class="nav-item"><a class="nav-link" href="#">Home <span
+						class="sr-only">(current)</span>
+				</a></li>
+				<li class="nav-item dropdown"><a
+					class="nav-link dropdown-toggle" href="#"
+					id="navbarDropdownMenuLink" data-toggle="dropdown"
+					aria-haspopup="true" aria-expanded="false"> About Us </a>
+					<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+						<a class="dropdown-item" href="#">FAQ</a>
+					</div></li>
+				<li class="nav-item dropdown"><a
+					class="nav-link dropdown-toggle" href="#"
+					id="navbarDropdownMenuLink" data-toggle="dropdown"
+					aria-haspopup="true" aria-expanded="false"> Procedures </a>
+					<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+						<a class="dropdown-item" href="/packages.xhtml">Application
+							Procedure</a> <a class="dropdown-item" href="#">Claim Procedure</a>
+					</div></li>
+				<li class="nav-item" style="margin-right: 5px; margin-bottom: 5px;">
+					<button type="submit" class="btn btn-warning" ajax="false">
+						<i class="fa fa-money"></i> Premium Calculator
+					</button>
+				</li>
+				<li class="nav-item"><a href="/home.xhtml"><button
+							type="button" class="btn btn-primary">
+							<i class="fa fa-sign-in"></i> Login
+						</button></a></li>
+			</ul>
+		</div>
+	</div>
+	</nav>
+
+	<!-- Page Content -->
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6 mx-auto calculate-form" id="back-form">
+				<div class="card card-body text-center mt-5" id="form">
+					<h1 class="heading display-5 pb-3">Premium Calculator</h1>
+					<form name="frm-pin" method="post" action="pin-index-a.php"
+						id="myForm">
+
+						<input type="hidden" name="mode" value="PinRequest" />
+						<div class="form-group row">
+							<label class="col-sm-3 col-form-label"><b>Policy Term
+							</b></label>
+							<div class="col-sm-9">
+								<select name="tot_pin_requested" id="policy"
+									class="form-control" required="true">
+									<option value="">Choose Policy Term</option>
+									<option value="5">5-years</option>
+									<option value="7">7-years</option>
+									<option value="10">10-years</option>
+								</select>
+							</div>
+
+						</div>
+						<div class="form-group row">
+
+							<label class="col-sm-3 col-form-label"><b>Insured's
+									Age </b></label>
+							<div class="col-sm-9">
+								<select name="tot_pin_requested" id="age" class="form-control"
+									required="true">
+									<option value="">Choose Your Current Age</option>
+									<option value="1">10-27</option>
+									<option value="2">28-32</option>
+									<option value="3">33-34</option>
+									<option value="4">35-39</option>
+									<option value="5">40</option>
+									<option value="6">41-44</option>
+									<option value="7">45-46</option>
+									<option value="8">47</option>
+									<option value="9">48</option>
+									<option value="10">49</option>
+									<option value="11">50</option>
+									<option value="12">51</option>
+									<option value="13">52</option>
+									<option value="14">53</option>
+									<option value="15">54</option>
+									<option value="16">55</option>
+									<option value="17">56</option>
+									<option value="18">57</option>
+									<option value="19">58</option>
+									<option value="20">59</option>
+									<option value="21">60</option>
+								</select>
+
+							</div>
+						</div>
+						<div class="form-group row">
+							<label class="col-sm-3 col-form-label"><b>Sum Insured
+							</b></label>
+							<div class="col-sm-9">
+								<div class="input-group">
+									<input type="text" name="insured" id="amount"
+										class="form-control"
+										placeholder="between 1000000 and 50000000" />
+									<div class="input-group-prepend">
+										<span class="input-group-text">Kyats</span>
+									</div>
+								</div>
+
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="row">
+								<div class="col" align="right">
+									<input type="button" name="claculate" value="Calculate"
+										onclick="calculateAmount(policy.value,age.value,amount.value)"
+										class="btn btn-primary" />
+								</div>
+								<div class="col" align="left">
+									<input type="reset" value='Reset' class="btn btn-danger" />
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="row">
+								<div class="col">
+									<label><b>Monthly Payment</b></label>
+								</div>
+								<div class="col">
+									<label><b>Quarterly Payment</b></label>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col">
+									<div class="input-group">
+										<input name="mon_amount" id="mon_amount" type="text"
+											class="form-control" readonly="true" />
+										<div class="input-group-prepend">
+											<span class="input-group-text">Kyats</span>
+										</div>
+									</div>
+								</div>
+								<div class="col">
+									<div class="input-group">
+										<input name="qua_amount" id="qua_amount" type="text"
+											class="form-control" readonly="true" />
+										<div class="input-group-prepend">
+											<span class="input-group-text">Kyats</span>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="row">
+								<div class="col">
+									<label><b>Bi-annually Payment</b></label>
+								</div>
+								<div class="col">
+									<label><b>Annually Payment</b></label>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col">
+									<div class="input-group">
+										<input name="half_amount" id="half_amount" type="text"
+											class="form-control" readonly="true" />
+										<div class="input-group-prepend">
+											<span class="input-group-text">Kyats</span>
+										</div>
+									</div>
+								</div>
+								<div class="col">
+									<div class="input-group">
+										<input name="tot_amount" id="tot_amount" type="text"
+											class="form-control" readonly="true" />
+										<div class="input-group-prepend">
+											<span class="input-group-text">Kyats</span>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<hr class="style1"/>
+						<div class="form-group">
+							<div class="row">
+								<div class="col">
+									<label><b>Total Pay Amount</b></label>
+								</div>
+								<div class="col">
+									<label><b>Benefit Amount</b></label>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col">
+									<div class="input-group">
+										<input name="total_amount" id="total_amount" type="text"
+											class="form-control" readonly="true" />
+										<div class="input-group-prepend" />
+										<span class="input-group-text">Kyats</span>
+									</div>
+								</div>
+								<div class="col">
+									<div class="input-group">
+										<input name="benefit_amount" id="benefit_amount" type="text"
+											class="form-control" readonly="true" />
+										<div class="input-group-prepend">
+											<span class="input-group-text">Kyats</span>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- /.container -->
+	<div class="mt-5 pt-5 pb-5 footer">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-5 col-xs-12 about-company">
+					<h2>For More Information</h2>
+					<p class="pr-5 text-white-50">Please contact us via phone or
+						via social media. We are here for you anytime.</p>
+					<p>
+						<a href="#"><i class="fa fa-facebook-square mr-1"
+							style="font-size: 35px;"></i></a><a href="#"><i
+							class="fa fa-linkedin-square" style="font-size: 35px;"></i></a>
+					</p>
+				</div>
+				<div class="col-lg-3 col-xs-12 links"></div>
+				<div class="col-lg-4 col-xs-12 location">
+					<h4 class="mt-lg-0 mt-sm-4">Address</h4>
+					<p>No. 22, Mingalar Road, Pyay Township, Yangon.</p>
+					<p class="mb-0">
+						<i class="fa fa-phone mr-3" style="font-size: 25px;"></i>(+95)
+						9753010834
+					</p>
+					<p>
+						<i class="fa fa-envelope-o mr-3" style="font-size: 25px;"></i>info@insurancemyanmar.com
+					</p>
+				</div>
+			</div>
+			<div class="row mt-5">
+				<div class="col copyright">
+					<p style="text-align: center;">
+						<small class="text-white-50">Copyright 2020 © IG2. All
+							Rights Reserved.</small>
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</h:body>
+
+</html>

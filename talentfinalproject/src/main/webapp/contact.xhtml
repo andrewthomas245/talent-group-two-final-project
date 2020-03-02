@@ -5,14 +5,16 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui">
 <h:head>
-	<f:metadata>
-		<f:viewAction action="#{userController.fetchUser()}" />
-	</f:metadata>
 	<f:metadata charset="UTF-8" />
 	<f:metadata name="viewport"
 		content="width=device-width, initial-scale=1" />
-
+	<script src="js\jquery.slim.min.js">
+		
+	</script>
 	<script src="js\bootstrap.bundle.min.js">
+		
+	</script>
+	<script src="js\bootstrap.jquery.min.js">
 		
 	</script>
 
@@ -20,35 +22,31 @@
 	<link rel="stylesheet"
 		href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 	<link rel="stylesheet" type="text/css" href="css\allcss.css" />
-	<style type="text/css">
-.label {
-	width: 20%;
-	padding: 4px;
-}
-
-.value {
-	width: 50%;
-	padding: 4px;
-}
-
-.grid {
-	width: 100%;
-}
-
-.error {
-	color: red;
-}
-
-.outputLabel {
-	font-weight: bold;
-}
-
-.grid {
-	width: 33%;
-	padding: 4px;
-}
-.header {
+	<link rel="stylesheet" type="text/css" href="css\faqs.css" />
+	<style>
+.bg {
+	background-image: url(img/stijum12.jpg);
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: 100% 70%;
+	height: 380px;
 	text-align: center;
+	font-style: oblique;
+	left: 0;
+}
+
+.mapouter {
+	position: relative;
+	text-align: right;
+	height: 400px;
+	width: 700px;
+}
+
+.gmap_canvas {
+	overflow: hidden;
+	background: none !important;
+	height: 400px;
+	width: 700px;
 }
 </style>
 </h:head>
@@ -67,47 +65,82 @@
 		</button>
 		<div class="collapse navbar-collapse" id="navbarResponsive">
 			<ul class="navbar-nav ml-auto">
-				<li class="nav-item active"><a class="nav-link" href="#">Home
-						<span class="sr-only">(current)</span>
+				<li class="nav-item"><a class="nav-link" href="#">Home <span
+						class="sr-only">(current)</span>
 				</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">About</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">Services</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+				<li class="nav-item dropdown"><a
+					class="nav-link dropdown-toggle" href="#"
+					id="navbarDropdownMenuLink" data-toggle="dropdown"
+					aria-haspopup="true" aria-expanded="false"> About Us </a>
+					<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+						<a class="dropdown-item" href="#">FAQ</a>
+					</div></li>
 				<li class="nav-item dropdown"><a
 					class="nav-link dropdown-toggle" href="#"
 					id="navbarDropdownMenuLink" data-toggle="dropdown"
 					aria-haspopup="true" aria-expanded="false"> Procedures </a>
 					<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-						<a class="dropdown-item" href="#">Application Procedure</a> <a
-							class="dropdown-item" href="#">Claim Procedure</a>
+						<a class="dropdown-item" href="/packages.xhtml">Application
+							Procedure</a> <a class="dropdown-item" href="#">Claim Procedure</a>
 					</div></li>
+				<li class="nav-item" style="margin-right: 5px; margin-bottom: 5px;">
+					<button type="submit" class="btn btn-warning" ajax="false">
+						<i class="fa fa-money"></i> Premium Calculator
+					</button>
+				</li>
+				<li class="nav-item"><a href="/home.xhtml"><button
+							type="button" class="btn btn-primary">
+							<i class="fa fa-sign-in"></i> Login
+						</button></a></li>
 			</ul>
 		</div>
 	</div>
 	</nav>
 
-
-	<br />
-
-	<div class="container">
-		<h2>My Account</h2>
-		<br />
-		<h:form>
-			<p:panel header="User Information"
-				style="margin: 0 auto;width:300px;">
-				<h:panelGrid columns="2" columnClasses="label, value">
-					<h:outputText value="Username: " />
-					<h:outputText value="#{userController.user.username}"
-						styleClass="outputLabel" />
-
-					<h:outputText value="Email: " />
-					<h:outputText value="#{userController.user.email}"
-						styleClass="outputLabel" />
-				</h:panelGrid>
-			</p:panel>
-		</h:form>
+	<div class="jumbotron jumbotron-fluid bg">
+		<div class="container">
+			<p>
+				<br /> <br />
+			</p>
+			<h1>
+				<b>Short Term Endowment Life Insurance</b>
+			</h1>
+			<br />
+			<h4 id="ws">&emsp;Start Planning Today for Save Your Life with
+				Benefit</h4>
+		</div>
 	</div>
 
+	<!-- Page Content -->
+	<div class="container">
+		<h1>
+			<b>Contact Us</b>
+		</h1>
+		<br />
+		<p>&emsp;&emsp;&emsp;Submit your policy/insurance queries or
+			feedback in the form below. Alternatively, you may call our GI2
+			Customer Care, Mondays to Fridays between 8:30 am and 5:30 pm.</p>
+		<table class="table">
+			<tr>
+				<td><img src="img/phone.png" alt="Trulli" width="100"
+					height="100" /></td>
+				<td><h4>TALK TO US NOW</h4>
+					<p>Call our hotline at:</p>
+					<p>
+						<b>(+95) 9753010834</b>
+					</p></td>
+			</tr>
+			<tr>
+				<td><img src="img/home.jpg" alt="Trulli" width="100"
+					height="100" /></td>
+				<td><h4>SERVICE CENTRE LOCATIONS</h4>
+					<p>No. 22, Mingalar Road, Hlaing Township, Yangon.</p>
+					<p>
+						<b>info@insurancemyanmar.com</b>
+					</p></td>
+			</tr>
+		</table>
+	</div>
 
 	<!-- /.container -->
 	<div class="mt-5 pt-5 pb-5 footer">
