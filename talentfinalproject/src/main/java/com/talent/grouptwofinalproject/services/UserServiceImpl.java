@@ -1,5 +1,7 @@
 package com.talent.grouptwofinalproject.services;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +13,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-
+import com.talent.grouptwofinalproject.entities.Policies;
 import com.talent.grouptwofinalproject.entities.Users;
 import com.talent.grouptwofinalproject.models.UserModel;
 import com.talent.grouptwofinalproject.repositories.UserRepository;
@@ -70,6 +72,14 @@ public class UserServiceImpl implements UserService
 		myaccount.setEmail(user.getEmail());
 		System.out.println(myaccount);
 		return myaccount;
+	}
+
+	@Override
+	public Users findUserByEmail(String email) {
+		System.out.println("Finding: "+ email);
+		Users entity = userRepository.findByEmail(email);
+		System.out.println(entity.getEmail());
+		return entity;
 	}
 	
 }

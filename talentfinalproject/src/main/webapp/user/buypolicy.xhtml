@@ -9,20 +9,22 @@
 	<f:metadata name="viewport"
 		content="width=device-width, initial-scale=1" />
 
-	<script src="js\bootstrap.bundle.min.js" />
+	<script src="/js/jquery.mask.js" />
 
-	<link rel="stylesheet" type="text/css" href="css\bootstrap.min.css" />
+	<script src="/js/bootstrap.bundle.min.js" />
+
+	<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" />
 	<link rel="stylesheet"
 		href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-	<link rel="stylesheet" type="text/css" href="css\allcss.css" />
+	<link rel="stylesheet" type="text/css" href="/css/allcss.css" />
 	<style type="text/css">
 .label {
-	width: 20%;
+	width: 25%;
 	padding: 4px;
 }
 
 .value {
-	width: 80%;
+	width: 75%;
 	padding: 4px;
 }
 
@@ -49,7 +51,7 @@
 	<!-- Navigation -->
 	<nav class="navbar navbar-expand-lg navbar-dark static-top" id="navbar">
 	<div class="container">
-		<a class="navbar-brand" href="#"> <img src="img/logo_white.svg"
+		<a class="navbar-brand" href="#"> <img src="/img/logo_white.svg"
 			style="height: 70px" />
 		</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -59,22 +61,24 @@
 		</button>
 		<div class="collapse navbar-collapse" id="navbarResponsive">
 			<ul class="navbar-nav ml-auto">
-				<li class="nav-item"><a class="nav-link" href="/home.xhtml"><i
-						class="fa fa-home" aria-hidden="true"></i> Home </a></li>
-				<li class="nav-item active dropdown"><a
+				<li class="nav-item active"><a class="nav-link"
+					href="/user/home.xhtml"><i class="fa fa-home"
+						aria-hidden="true"></i> Home <span class="sr-only">(current)</span>
+				</a></li>
+				<li class="nav-item dropdown"><a
 					class="nav-link dropdown-toggle" href="#"
 					id="navbarDropdownMenuLink" data-toggle="dropdown"
 					aria-haspopup="true" aria-expanded="false"> <i
 						class="fa fa-certificate" aria-hidden="true" /> Quotes
 				</a>
 					<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-						<a class="dropdown-item" href="/createquote.xhtml"><i
+						<a class="dropdown-item" href="/user/createquote.xhtml"><i
 							class="fa fa-plus" aria-hidden="true"></i> Create A New Quote</a> <a
-							class="dropdown-item" href="/myquotes.xhtml"><i
+							class="dropdown-item" href="/user/myquotes.xhtml"><i
 							class="fa fa-list-alt" aria-hidden="true"></i> My Quotes</a>
 					</div></li>
 				<li class="nav-item"><a class="nav-link"
-					href="/mypolicies.xhtml"><i class="fa fa-product-hunt"
+					href="/user/mypolicies.xhtml"><i class="fa fa-product-hunt"
 						aria-hidden="true"></i> My Policies</a></li>
 				<li class="nav-item dropdown"><a
 					class="nav-link dropdown-toggle" href="#"
@@ -84,9 +88,16 @@
 						#{request.userPrincipal.name}
 				</a>
 					<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-						<a class="dropdown-item" href="#"><i class="fa fa-user"
-							aria-hidden="true"></i> My Account</a>
+						<a class="dropdown-item" href="/user/myaccount.xhtml"><i
+							class="fa fa-user" aria-hidden="true"></i> My Account</a>
 					</div></li>
+				<li class="nav-item" style="margin-right: 5px; margin-bottom: 5px;">
+					<a href="/premiumcalculator.xhtml">
+						<button type="submit" class="btn btn-warning" ajax="false">
+							<i class="fa fa-money"></i> Premium Calculator
+						</button>
+				</a>
+				</li>
 				<li class="nav-item"><h:form
 						onsubmit="this.action='#{request.contextPath}/logout';">
 						<button type="submit" class="btn btn-primary" ajax="false">
@@ -102,8 +113,8 @@
 	<br />
 
 	<div class="container">
-		<h2>Payment</h2>
-		<p>For Policy - #{paymentController.payment.policyid}</p>
+		<h2>Buy A Policy</h2>
+		<p>With Quote - #{quoteController.quote.id}</p>
 		<br />
 		<h:form>
 
@@ -114,34 +125,57 @@
 					<p:panel header="Fill your personal details here.">
 						<p:messages />
 						<h:panelGrid columns="2" columnClasses="label, value">
-							<h:outputText value="Policy ID: " />
-							<h:outputText value="#{paymentController.payment.policyid}" />
+							<h:outputText value="Quote ID: " />
+							<h:outputText value="#{policyController.policy.quoteid}"
+								styleClass="outputLabel" />
 
-							<h:outputText value="Payment Date: *" />
-							<h:outputText value="#{currentDate}">
-								<f:convertDateTime pattern="dd/MM/yyyy" type="date" />
+							<h:outputText value="Quote Name: " />
+							<h:outputText value="#{policyController.policy.quotename}"
+								styleClass="outputLabel" />
+
+							<h:outputText value="NRC: " />
+							<h:outputText value="#{policyController.policy.quotenrc}"
+								styleClass="outputLabel" />
+						</h:panelGrid>
+					</p:panel>
+				</p:tab>
+				<p:tab id="payment" title="Premium">
+					<p:panel
+						header="Here you must pay first portion of your premium plan.">
+						<p:messages />
+						<h:panelGrid columns="2" columnClasses="label, value">
+							<h:outputText value="Policy Term: " />
+							<h:outputText value="#{policyController.policy.policyterm}"
+								styleClass="outputLabel">
+								<f:convertNumber maxIntegerDigits="10" maxFractionDigits="1"
+									pattern="######## Years" />
 							</h:outputText>
 
-							<h:outputText value="Total Premium: *" />
-							<h:outputText value="#{policyController.policy.totalpremium}">
+							<h:outputText value="Payment Plan: " />
+							<h:outputText value="#{policyController.policy.premiumplan}"
+								styleClass="outputLabel">
+								<f:convertNumber maxIntegerDigits="10" maxFractionDigits="1"
+									pattern="######## Months" />
+							</h:outputText>
+
+							<h:outputText value="Total Pay Amount: " />
+							<h:outputText value="#{quoteController.quote.totalpayamount}"
+								styleClass="outputLabel">
 								<f:convertNumber maxIntegerDigits="10" maxFractionDigits="1"
 									pattern="######## Kyats" />
 							</h:outputText>
 
-
-							<h:outputText value="Payment Amount: *" />
-							<p:inputNumber value="#{paymentController.payment.paymentamount}"
-								maxlength="9" maxValue="99999999" decimalPlaces="0"
-								validatorMessage="Payment Amount must be between 100000 and Total Premium.">
-								<f:validateLongRange minimum="100000"
-									maximum="#{policyController.policy.totalpremium}" />
+							<h:outputText value="Your Payment Amount: *" />
+							<p:inputText
+								value="#{policyController.policy.firstpaymentamount}"
+								maxValue="99999999" decimalPlaces="0" readonly="true">
 								<f:convertNumber maxIntegerDigits="10" maxFractionDigits="1"
-									pattern="########" />
-							</p:inputNumber>
+									pattern="######## Kyats" />
+							</p:inputText>
 
 							<h:outputText value="Payment Method: *" />
 							<p:selectOneRadio id="pmethod" required="true"
-								value="#{paymentController.payment.paymentmethod}"
+								value="#{policyController.policy.paymentmethod}"
 								requiredMessage="Payment Method must be selected.">
 								<f:selectItem itemLabel="KBZ" itemValue="KBZ" />
 								<f:selectItem itemLabel="AYA" itemValue="AYA" />
@@ -154,34 +188,52 @@
 				<p:tab id="confirm" title="Confirmation">
 					<p:panel header="Confirmation">
 						<h:panelGrid columns="2" columnClasses="label, value">
-							<h:outputText value="Policy ID: " />
-							<h:outputText value="#{paymentController.payment.policyid}"
+							<h:outputText value="Quote ID: " />
+							<h:outputText value="#{policyController.policy.quoteid}"
 								styleClass="outputLabel" />
 
-							<h:outputText value="Payment Date: " />
-							<h:outputText value="#{currentDate}" styleClass="outputLabel">
-								<f:convertDateTime pattern="dd/MM/yyyy" type="date" />
-							</h:outputText>
+							<h:outputText value="Quote Name: " />
+							<h:outputText value="#{policyController.policy.quotename}"
+								styleClass="outputLabel" />
 
-							<h:outputText value="Total Premium: *" />
-							<h:outputText value="#{policyController.policy.totalpremium}" styleClass="outputLabel" >
+							<h:outputText value="NRC: " />
+							<h:outputText value="#{policyController.policy.quotenrc}"
+								styleClass="outputLabel" />
+
+							<h:outputText value="Policy Term: " />
+							<h:outputText value="#{policyController.policy.policyterm}"
+								styleClass="outputLabel">
 								<f:convertNumber maxIntegerDigits="10" maxFractionDigits="1"
-									pattern="######## Kyats" />
+									pattern="######## Years" />
 							</h:outputText>
 
-							<h:outputText value="Payment Amount: " />
-							<h:outputText value="#{paymentController.payment.paymentamount}"
+							<h:outputText value="Payment Plan: " />
+							<h:outputText value="#{policyController.policy.premiumplan}"
+								styleClass="outputLabel">
+								<f:convertNumber maxIntegerDigits="10" maxFractionDigits="1"
+									pattern="######## Months" />
+							</h:outputText>
+
+							<h:outputText value="Total Pay Amount: " />
+							<h:outputText value="#{quoteController.quote.totalpayamount}"
 								styleClass="outputLabel">
 								<f:convertNumber maxIntegerDigits="10" maxFractionDigits="1"
 									pattern="######## Kyats" />
 							</h:outputText>
 
+							<h:outputText value="Your Payment Amount: " />
+							<h:outputText styleClass="outputLabel"
+								value="#{policyController.policy.firstpaymentamount}">
+								<f:convertNumber maxIntegerDigits="10" maxFractionDigits="1"
+									pattern="######## Kyats" />
+							</h:outputText>
+
 							<h:outputText value="Payment Method: " />
-							<h:outputText value="#{paymentController.payment.paymentmethod}"
+							<h:outputText value="#{policyController.policy.paymentmethod}"
 								styleClass="outputLabel" />
 						</h:panelGrid>
 					</p:panel>
-					<p:commandButton value="Pay" action="#{paymentController.save()}"
+					<p:commandButton value="Submit" action="#{policyController.save()}"
 						update="growl" process="@this"
 						style="float: right; margin-top: 3px; background-color:green; border-color: green;"
 						icon="pi pi-chevron-right" />

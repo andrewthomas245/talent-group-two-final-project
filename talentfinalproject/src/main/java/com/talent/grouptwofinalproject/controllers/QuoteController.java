@@ -1,13 +1,9 @@
 package com.talent.grouptwofinalproject.controllers;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.List;
-import java.util.Locale;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -16,7 +12,6 @@ import javax.inject.Named;
 
 import org.primefaces.event.FlowEvent;
 import org.primefaces.event.SelectEvent;
-import org.primefaces.event.DateViewChangeEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.talent.grouptwofinalproject.entities.Policies;
@@ -79,7 +74,7 @@ public class QuoteController {
 
 		quote = new Quote();
 
-		return "/myquotes.xhtml?faces-redirect=true";
+		return "/user/myquotes.xhtml?faces-redirect=true";
 
 	}
 
@@ -94,7 +89,7 @@ public class QuoteController {
 
 		quote = new Quote();
 
-		return "/myquotes.xhtml?faces-redirect=true";
+		return "/user/myquotes.xhtml?faces-redirect=true";
 
 	}
 	
@@ -125,7 +120,7 @@ public class QuoteController {
 
 			quote = new Quote();
 
-			return "/myquotes.xhtml?faces-redirect=true";
+			return "/user/myquotes.xhtml?faces-redirect=true";
 		}
 		return null;
 
@@ -143,19 +138,19 @@ public class QuoteController {
 			context.getExternalContext().getFlash().setKeepMessages(true);
 		} else {
 			System.out.println("Here");
-			return "/editquote.xhtml?faces-redirect=true";
+			return "/user/editquote.xhtml?faces-redirect=true";
 		}
 		return null;
 	}
 
 	public String confirm() {
 		quote = quoteservice.calculate(quote);
-		return "/confirmquote.xhtml?faces-redirect=true";
+		return "/user/confirmquote.xhtml?faces-redirect=true";
 	}
 
 	public String confirmedited() {
 		quote = quoteservice.calculate(quote);
-		return "/confirmeditedquote.xhtml?faces-redirect=true";
+		return "/user/confirmeditedquote.xhtml?faces-redirect=true";
 	}
 
 	public void fetchAll() {
@@ -164,7 +159,7 @@ public class QuoteController {
 
 	public String fetchByQuote(Long id) {
 		quote = quoteservice.getQuoteDetailById(id);
-		return "/quotedetail.xhtml?faces-redirect=true";
+		return "/user/quotedetail.xhtml?faces-redirect=true";
 	}
 
 	public String onFlowProcess(FlowEvent event) {

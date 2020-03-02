@@ -152,9 +152,10 @@ body {
 		<br />
 		<div class="form">
 			<h:form class="login-form" id="login">
+			<p:growl id="growl" showDetail="true" rendered="#{not facesContext.validationFailed}"/>
 				<h1>REGISTER</h1>
 				<p:messages autoUpdate="true" style="font-size:12px;text-align: justify;" id="msgs"
-					showIcon="false" />
+					showIcon="false" rendered="#{facesContext.validationFailed}" />
 				<p:inputText id="username" placeholder="User Name"
 					value="#{userController.user.username}" required="true"
 					requiredMessage="User Name is required."

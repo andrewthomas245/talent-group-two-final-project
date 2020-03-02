@@ -27,7 +27,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
 	protected void configure(HttpSecurity http) throws Exception {
 
 		http.authorizeRequests().antMatchers("/index.xhtml", "/register.xhtml").permitAll()
-				.antMatchers("/home.xhtml","/myaccount.xhtml").authenticated();
+				.antMatchers("/user/**").authenticated();
 
 		http.formLogin().loginPage("/userlogin.xhtml").permitAll().failureUrl("/userlogin.xhtml?error=false");
 

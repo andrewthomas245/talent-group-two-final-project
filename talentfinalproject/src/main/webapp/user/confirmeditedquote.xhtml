@@ -9,12 +9,14 @@
 	<f:metadata name="viewport"
 		content="width=device-width, initial-scale=1" />
 
-	<script src="js\bootstrap.bundle.min.js" />
+	<script src="/js/jquery.mask.js" />
 
-	<link rel="stylesheet" type="text/css" href="css\bootstrap.min.css" />
+	<script src="/js/bootstrap.bundle.min.js" />
+
+	<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" />
 	<link rel="stylesheet"
 		href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-	<link rel="stylesheet" type="text/css" href="css\allcss.css" />
+	<link rel="stylesheet" type="text/css" href="/css/allcss.css" />
 	<style type="text/css">
 .label {
 	width: 40%;
@@ -49,7 +51,7 @@
 	<!-- Navigation -->
 	<nav class="navbar navbar-expand-lg navbar-dark static-top" id="navbar">
 	<div class="container">
-		<a class="navbar-brand" href="#"> <img src="img/logo_white.svg"
+		<a class="navbar-brand" href="#"> <img src="/img/logo_white.svg"
 			style="height: 70px" />
 		</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -60,8 +62,9 @@
 		<div class="collapse navbar-collapse" id="navbarResponsive">
 			<ul class="navbar-nav ml-auto">
 				<li class="nav-item active"><a class="nav-link"
-					href="/home.xhtml"><i class="fa fa-home" aria-hidden="true"></i>
-						Home <span class="sr-only">(current)</span> </a></li>
+					href="/user/home.xhtml"><i class="fa fa-home"
+						aria-hidden="true"></i> Home <span class="sr-only">(current)</span>
+				</a></li>
 				<li class="nav-item dropdown"><a
 					class="nav-link dropdown-toggle" href="#"
 					id="navbarDropdownMenuLink" data-toggle="dropdown"
@@ -69,13 +72,13 @@
 						class="fa fa-certificate" aria-hidden="true" /> Quotes
 				</a>
 					<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-						<a class="dropdown-item" href="/createquote.xhtml"><i
+						<a class="dropdown-item" href="/user/createquote.xhtml"><i
 							class="fa fa-plus" aria-hidden="true"></i> Create A New Quote</a> <a
-							class="dropdown-item" href="/myquotes.xhtml"><i
+							class="dropdown-item" href="/user/myquotes.xhtml"><i
 							class="fa fa-list-alt" aria-hidden="true"></i> My Quotes</a>
 					</div></li>
 				<li class="nav-item"><a class="nav-link"
-					href="/mypolicies.xhtml"><i class="fa fa-product-hunt"
+					href="/user/mypolicies.xhtml"><i class="fa fa-product-hunt"
 						aria-hidden="true"></i> My Policies</a></li>
 				<li class="nav-item dropdown"><a
 					class="nav-link dropdown-toggle" href="#"
@@ -85,9 +88,16 @@
 						#{request.userPrincipal.name}
 				</a>
 					<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-						<a class="dropdown-item" href="#"><i class="fa fa-user"
-							aria-hidden="true"></i> My Account</a>
+						<a class="dropdown-item" href="/user/myaccount.xhtml"><i
+							class="fa fa-user" aria-hidden="true"></i> My Account</a>
 					</div></li>
+				<li class="nav-item" style="margin-right: 5px; margin-bottom: 5px;">
+					<a href="/premiumcalculator.xhtml">
+						<button type="submit" class="btn btn-warning" ajax="false">
+							<i class="fa fa-money"></i> Premium Calculator
+						</button>
+				</a>
+				</li>
 				<li class="nav-item"><h:form
 						onsubmit="this.action='#{request.contextPath}/logout';">
 						<button type="submit" class="btn btn-primary" ajax="false">
@@ -257,9 +267,9 @@
 					</h:panelGrid>
 				</p:panel>
 				<br />
-				<p:commandButton value="Submit" action="#{quoteController.save}"
+				<p:commandButton value="Update" action="#{quoteController.edit}"
 					update="growl" process="@this" />
-				<p:commandButton value="Edit" action="/createquote.xhtml" />
+				<p:commandButton value="Edit" action="/editquote.xhtml" />
 			</p:tab>
 		</h:form>
 	</div>

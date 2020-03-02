@@ -1,8 +1,6 @@
 package com.talent.grouptwofinalproject.controllers;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
@@ -14,7 +12,6 @@ import org.primefaces.event.FlowEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.talent.grouptwofinalproject.entities.Policies;
-import com.talent.grouptwofinalproject.models.Claim;
 import com.talent.grouptwofinalproject.models.Policy;
 import com.talent.grouptwofinalproject.models.Quote;
 import com.talent.grouptwofinalproject.services.*;
@@ -88,7 +85,7 @@ public class PolicyController {
 
 			System.out.println(policy.getQuoteid());
 
-			return "/buypolicy.xhtml?faces-redirect=true";
+			return "/user/buypolicy.xhtml?faces-redirect=true";
 
 		}
 		return null;
@@ -107,7 +104,7 @@ public class PolicyController {
 		context.addMessage(null, msg);
 		context.getExternalContext().getFlash().setKeepMessages(true);
 
-		return "/mypolicies.xhtml?faces-redirect=true";
+		return "/user/mypolicies.xhtml?faces-redirect=true";
 	}
 
 	public void fetchAll() {
@@ -118,7 +115,7 @@ public class PolicyController {
 
 	public String fetchByQuote(Long id) {
 		policy = policyService.getQuoteAndPaymentById(id);
-		return "/policydetail.xhtml?faces-redirect=true";
+		return "/user/policydetail.xhtml?faces-redirect=true";
 	}
 
 	public String onFlowProcess(FlowEvent event) {

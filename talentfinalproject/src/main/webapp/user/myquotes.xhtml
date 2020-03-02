@@ -7,24 +7,24 @@
 	xmlns:fn="http://java.sun.com/jsp/jstl/functions">
 <h:head>
 	<f:metadata>
-		<f:viewAction action="#{policyController.fetchAll()}" />
+		<f:viewAction action="#{quoteController.fetchAll()}" />
 	</f:metadata>
 	<f:metadata charset="UTF-8" />
 	<f:metadata name="viewport"
 		content="width=device-width, initial-scale=1" />
 
-	<script src="js\jquery.min.js">
+	<script src="/js/jquery.min.js">
 		
 	</script>
 
-	<script src="js\bootstrap.bundle.min.js">
+	<script src="/js/bootstrap.bundle.min.js">
 		
 	</script>
 
-	<link rel="stylesheet" type="text/css" href="css\bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" />
 	<link rel="stylesheet"
 		href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-	<link rel="stylesheet" type="text/css" href="css\allcss.css" />
+	<link rel="stylesheet" type="text/css" href="/css/allcss.css" />
 	<style type="text/css">
 .label {
 	padding: 4px;
@@ -51,26 +51,12 @@
 	padding: 4px;
 }
 
-.green {
-	font-weight: bolder;
-	color: green;
-	background-image: none;
+.label {
+	font-weight: bold;
 }
 
-.red {
-	font-weight: bolder;
-	color: red;
-	background-image: none;
-}
-.maroon {
-	font-weight: bolder;
-	color: maroon;
-	background-image: none;
-}
-.orange {
-	font-weight: bolder;
-	color: orange;
-	background-image: none;
+.value {
+	font-style: inherit;
 }
 </style>
 </h:head>
@@ -79,7 +65,7 @@
 	<!-- Navigation -->
 	<nav class="navbar navbar-expand-lg navbar-dark static-top" id="navbar">
 	<div class="container">
-		<a class="navbar-brand" href="#"> <img src="img/logo_white.svg"
+		<a class="navbar-brand" href="#"> <img src="/img/logo_white.svg"
 			style="height: 70px" />
 		</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -89,8 +75,9 @@
 		</button>
 		<div class="collapse navbar-collapse" id="navbarResponsive">
 			<ul class="navbar-nav ml-auto">
-				<li class="nav-item"><a class="nav-link" href="/home.xhtml"><i
-							class="fa fa-home" aria-hidden="true"></i> Home
+				<li class="nav-item active"><a class="nav-link"
+					href="/user/home.xhtml"><i class="fa fa-home"
+						aria-hidden="true"></i> Home <span class="sr-only">(current)</span>
 				</a></li>
 				<li class="nav-item dropdown"><a
 					class="nav-link dropdown-toggle" href="#"
@@ -99,13 +86,13 @@
 						class="fa fa-certificate" aria-hidden="true" /> Quotes
 				</a>
 					<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-						<a class="dropdown-item" href="/createquote.xhtml"><i
-							class="fa fa-plus" aria-hidden="true"></i> Create A New Quote</a>
-						<a class="dropdown-item" href="/myquotes.xhtml"><i
+						<a class="dropdown-item" href="/user/createquote.xhtml"><i
+							class="fa fa-plus" aria-hidden="true"></i> Create A New Quote</a> <a
+							class="dropdown-item" href="/user/myquotes.xhtml"><i
 							class="fa fa-list-alt" aria-hidden="true"></i> My Quotes</a>
 					</div></li>
-				<li class="nav-item active"><a class="nav-link"
-					href="/mypolicies.xhtml"><i class="fa fa-product-hunt"
+				<li class="nav-item"><a class="nav-link"
+					href="/user/mypolicies.xhtml"><i class="fa fa-product-hunt"
 						aria-hidden="true"></i> My Policies</a></li>
 				<li class="nav-item dropdown"><a
 					class="nav-link dropdown-toggle" href="#"
@@ -115,9 +102,16 @@
 						#{request.userPrincipal.name}
 				</a>
 					<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-						<a class="dropdown-item" href="#"><i class="fa fa-user"
-							aria-hidden="true"></i> My Account</a>
+						<a class="dropdown-item" href="/user/myaccount.xhtml"><i
+							class="fa fa-user" aria-hidden="true"></i> My Account</a>
 					</div></li>
+				<li class="nav-item" style="margin-right: 5px; margin-bottom: 5px;">
+					<a href="/premiumcalculator.xhtml">
+						<button type="submit" class="btn btn-warning" ajax="false">
+							<i class="fa fa-money"></i> Premium Calculator
+						</button>
+				</a>
+				</li>
 				<li class="nav-item"><h:form
 						onsubmit="this.action='#{request.contextPath}/logout';">
 						<button type="submit" class="btn btn-primary" ajax="false">
@@ -133,39 +127,40 @@
 	<br />
 
 	<div class="container">
-		<h2>My Policies</h2>
-		<p>View your policies or claim them with relevant information.</p>
+		<h2>My Quotes</h2>
+		<p>Upgrade your quotes or get a policy with a specific quote.</p>
 		<br />
 
 		<h:form id="form">
 			<p:growl id="growl" showDetail="true" />
 			<center>
 				<h4 style="color: #073b8c;">
-					Number of Policies: <span class="badge badge-secondary">#{fn:length(policyController.policies)}</span>
+					Number of Quotes: <span class="badge badge-secondary">#{fn:length(quoteController.quotes)}</span>
 				</h4>
 			</center>
-			<p:dataGrid var="policy" value="#{policyController.policies}"
-				columns="3" layout="grid" rows="12" paginator="true" id="quotes"
+			<p:dataGrid var="quote" value="#{quoteController.quotes}"
+				emptyMessage="You haven't created any quotes yet." columns="3"
+				layout="grid" rows="30" paginator="true" id="quotes"
 				paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-				rowsPerPageTemplate="6,12,16" columnClasses="label, value">
-				<p:panel header="Policy ID - #{policy.id}" style="text-align:center">
+				rowsPerPageTemplate="6,12,16">
+
+				<p:panel header="Quote ID - #{quote.id}" style="text-align:center">
 					<h:panelGrid columns="2" columnClasses="label, value"
 						style="margin: 0 auto; text-align:left; height:80px;">
 						<h:outputText value="Name:" style="font-style: bold;" />
-						<h:outputText value="#{policy.quotename}" />
+						<h:outputText value="#{quote.name}" />
+						<h:outputText value="Sum Insured:" />
+						<h:outputText value="#{quote.suminsured}">
+							<f:convertNumber maxIntegerDigits="10" maxFractionDigits="1"
+								pattern="######## Kyats" />
+						</h:outputText>
 						<h:outputText value="Policy Term:" />
-						<h:outputText value="#{policy.policyterm} Years" />
-						<h:outputText value="Premium Plan:" />
-						<h:outputText value="#{policy.premiumplan} Months" />
-						
-						<h:outputText value="Status:" />
-						<h:outputText value="#{policy.policystatus}" rendered="#{policy.policystatus =='Active'}" styleClass="green"/>
-						<h:outputText value="#{policy.policystatus}" rendered="#{policy.policystatus =='Pending'}" styleClass="orange"/>
-						<h:outputText value="#{policy.policystatus}" rendered="#{policy.policystatus =='Claimed'}" styleClass="maroon"/>
+						<h:outputText value="#{quote.policyterm} Years" />
 					</h:panelGrid>
 					<h:commandButton value="Details" class="btn btn-primary"
-						action="#{policyController.fetchByQuote(policy.id)}" />
+						action="#{quoteController.fetchByQuote(quote.id)}" />
 				</p:panel>
+
 			</p:dataGrid>
 		</h:form>
 	</div>
@@ -179,8 +174,9 @@
 					<p class="pr-5 text-white-50">Please contact us via phone or
 						via social media. We are here for you anytime.</p>
 					<p>
-						<a href="#"><i class="fa fa-facebook-square mr-1"></i></a><a
-							href="#"><i class="fa fa-linkedin-square"></i></a>
+						<a href="#"><i class="fa fa-facebook-square mr-1"
+							style="font-size: 35px;"></i></a><a href="#"><i
+							class="fa fa-linkedin-square" style="font-size: 35px;"></i></a>
 					</p>
 				</div>
 				<div class="col-lg-3 col-xs-12 links"></div>
@@ -188,17 +184,19 @@
 					<h4 class="mt-lg-0 mt-sm-4">Address</h4>
 					<p>No. 22, Mingalar Road, Pyay Township, Yangon.</p>
 					<p class="mb-0">
-						<i class="fa fa-phone mr-3"></i>(+95) 9753010834
+						<i class="fa fa-phone mr-3" style="font-size: 25px;"></i>(+95)
+						9753010834
 					</p>
 					<p>
-						<i class="fa fa-envelope-o mr-3"></i>info@insurancemyanmar.com
+						<i class="fa fa-envelope-o mr-3" style="font-size: 25px;"></i>info@insurancemyanmar.com
 					</p>
 				</div>
 			</div>
 			<div class="row mt-5">
 				<div class="col copyright">
-					<p class="">
-						<small class="text-white-50">© 2020. All Rights Reserved.</small>
+					<p style="text-align: center;">
+						<small class="text-white-50">Copyright 2020 © IG2. All
+							Rights Reserved.</small>
 					</p>
 				</div>
 			</div>

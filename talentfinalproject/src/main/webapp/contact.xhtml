@@ -22,7 +22,6 @@
 	<link rel="stylesheet"
 		href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 	<link rel="stylesheet" type="text/css" href="css\allcss.css" />
-	<link rel="stylesheet" type="text/css" href="css\faqs.css" />
 	<style>
 .bg {
 	background-image: url(img/stijum12.jpg);
@@ -55,8 +54,8 @@
 	<!-- Navigation -->
 	<nav class="navbar navbar-expand-lg navbar-dark static-top" id="navbar">
 	<div class="container">
-		<a class="navbar-brand" href="#"> <img src="img/logo_white.svg"
-			style="height: 70px" />
+		<a class="navbar-brand" href="index.xhtml"> <img
+			src="/img/logo_white.svg" style="height: 70px" />
 		</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbarResponsive" aria-controls="navbarResponsive"
@@ -65,30 +64,35 @@
 		</button>
 		<div class="collapse navbar-collapse" id="navbarResponsive">
 			<ul class="navbar-nav ml-auto">
-				<li class="nav-item"><a class="nav-link" href="#">Home <span
-						class="sr-only">(current)</span>
+				<li class="nav-item active"><a class="nav-link"
+					href="/index.xhtml">Home </a></li>
+				<li class="nav-item"><a class="nav-link" href="/contact.xhtml">Contact
 				</a></li>
-				<li class="nav-item dropdown"><a
+				<li class="nav-item dropdown" style="margin-bottom: 5px;"><a
 					class="nav-link dropdown-toggle" href="#"
 					id="navbarDropdownMenuLink" data-toggle="dropdown"
-					aria-haspopup="true" aria-expanded="false"> About Us </a>
+					aria-haspopup="true" aria-expanded="false"> About </a>
 					<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-						<a class="dropdown-item" href="#">FAQ</a>
+						<a class="dropdown-item" href="/aboutus.xhtml">IG2</a> <a
+							class="dropdown-item" href="/faqs.xhtml">FAQs</a>
 					</div></li>
-				<li class="nav-item dropdown"><a
+				<li class="nav-item dropdown"
+					style="margin-right: 5px; margin-bottom: 5px;"><a
 					class="nav-link dropdown-toggle" href="#"
 					id="navbarDropdownMenuLink" data-toggle="dropdown"
 					aria-haspopup="true" aria-expanded="false"> Procedures </a>
 					<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-						<a class="dropdown-item" href="/packages.xhtml">Application
-							Procedure</a> <a class="dropdown-item" href="#">Claim Procedure</a>
+						<a class="dropdown-item" href="/applicationprocedure.xhtml">Application
+							Procedure</a> <a class="dropdown-item" href="/claimprocedure.xhtml">Claim
+							Procedure</a>
 					</div></li>
-				<li class="nav-item" style="margin-right: 5px; margin-bottom: 5px;">
-					<button type="submit" class="btn btn-warning" ajax="false">
-						<i class="fa fa-money"></i> Premium Calculator
-					</button>
-				</li>
-				<li class="nav-item"><a href="/home.xhtml"><button
+				<li class="nav-item" style="margin-right: 5px; margin-bottom: 5px;"><a
+					href="/premiumcalculator.xhtml">
+						<button type="submit" class="btn btn-warning" ajax="false">
+							<i class="fa fa-money"></i> Premium Calculator
+						</button>
+				</a></li>
+				<li class="nav-item active"><a href="/user/home.xhtml"><button
 							type="button" class="btn btn-primary">
 							<i class="fa fa-sign-in"></i> Login
 						</button></a></li>
@@ -120,26 +124,26 @@
 		<p>&emsp;&emsp;&emsp;Submit your policy/insurance queries or
 			feedback in the form below. Alternatively, you may call our GI2
 			Customer Care, Mondays to Fridays between 8:30 am and 5:30 pm.</p>
-		<table class="table">
-			<tr>
-				<td><img src="img/phone.png" alt="Trulli" width="100"
-					height="100" /></td>
-				<td><h4>TALK TO US NOW</h4>
-					<p>Call our hotline at:</p>
-					<p>
-						<b>(+95) 9753010834</b>
-					</p></td>
-			</tr>
-			<tr>
-				<td><img src="img/home.jpg" alt="Trulli" width="100"
-					height="100" /></td>
-				<td><h4>SERVICE CENTRE LOCATIONS</h4>
-					<p>No. 22, Mingalar Road, Hlaing Township, Yangon.</p>
-					<p>
-						<b>info@insurancemyanmar.com</b>
-					</p></td>
-			</tr>
-		</table>
+			<table class="table">
+				<tr>
+					<td><img src="img/phone.png" alt="Trulli" width="100"
+						height="100" /></td>
+					<td><h4>TALK TO US NOW</h4>
+						<p>Call our hotline at:</p>
+						<p>
+							<b>(+95) 9753010834</b>
+						</p></td>
+				</tr>
+				<tr>
+					<td><img src="img/home.jpg" alt="Trulli" width="100"
+						height="100" /></td>
+					<td><h4>SERVICE CENTRE LOCATIONS</h4>
+						<p>No. 22, Mingalar Road, Hlaing Township, Yangon.</p>
+						<p>
+							<b>info@insurancemyanmar.com</b>
+						</p></td>
+				</tr>
+			</table>
 	</div>
 
 	<!-- /.container -->

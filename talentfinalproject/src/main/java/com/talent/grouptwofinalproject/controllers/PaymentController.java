@@ -77,7 +77,7 @@ public class PaymentController {
 				System.out.println("Here");
 				payment.setPolicyid(pol.getId());
 				System.out.println(payment.getPolicyid());
-				return "/payment.xhtml?faces-redirect=true";
+				return "/user/payment.xhtml?faces-redirect=true";
 			}
 		}
 		return null;
@@ -95,7 +95,7 @@ public class PaymentController {
 
 		payment = new Payment();
 
-		return "/mypolicies.xhtml?faces-redirect=true";
+		return "/user/mypolicies.xhtml?faces-redirect=true";
 	}
 
 }

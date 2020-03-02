@@ -8,23 +8,23 @@
 	<f:metadata charset="UTF-8" />
 	<f:metadata name="viewport"
 		content="width=device-width, initial-scale=1" />
-	<script src="js\jquery.slim.min.js">
+	<script src="/js/jquery.slim.min.js">
 		
 	</script>
-	<script src="js\bootstrap.bundle.min.js">
+	<script src="/js/bootstrap.bundle.min.js">
 		
 	</script>
-	<script src="js\bootstrap.jquery.min.js">
+	<script src="/js/bootstrap.jquery.min.js">
 		
 	</script>
 
-	<link rel="stylesheet" type="text/css" href="css\bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" />
 	<link rel="stylesheet"
 		href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-	<link rel="stylesheet" type="text/css" href="css\allcss.css" />
+	<link rel="stylesheet" type="text/css" href="/css/allcss.css" />
 	<style>
 .bg {
-	background-image: url(img/bg_health.jpg);
+	background-image: url(/img/bg_health.jpg);
 }
 
 #Hover_con .hover_content_block {
@@ -123,7 +123,7 @@
 	<!-- Navigation -->
 	<nav class="navbar navbar-expand-lg navbar-dark static-top" id="navbar">
 	<div class="container">
-		<a class="navbar-brand" href="#"> <img src="img/logo_white.svg"
+		<a class="navbar-brand" href="#"> <img src="/img/logo_white.svg"
 			style="height: 70px" />
 		</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -134,8 +134,9 @@
 		<div class="collapse navbar-collapse" id="navbarResponsive">
 			<ul class="navbar-nav ml-auto">
 				<li class="nav-item active"><a class="nav-link"
-					href="/home.xhtml"><i class="fa fa-home" aria-hidden="true"></i>
-						Home <span class="sr-only">(current)</span> </a></li>
+					href="/user/home.xhtml"><i class="fa fa-home"
+						aria-hidden="true"></i> Home <span class="sr-only">(current)</span>
+				</a></li>
 				<li class="nav-item dropdown"><a
 					class="nav-link dropdown-toggle" href="#"
 					id="navbarDropdownMenuLink" data-toggle="dropdown"
@@ -143,15 +144,15 @@
 						class="fa fa-certificate" aria-hidden="true" /> Quotes
 				</a>
 					<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-						<a class="dropdown-item" href="/createquote.xhtml"><i
+						<a class="dropdown-item" href="/user/createquote.xhtml"><i
 							class="fa fa-plus" aria-hidden="true"></i> Create A New Quote</a> <a
-							class="dropdown-item" href="/myquotes.xhtml"><i
+							class="dropdown-item" href="/user/myquotes.xhtml"><i
 							class="fa fa-list-alt" aria-hidden="true"></i> My Quotes</a>
 					</div></li>
 				<li class="nav-item"><a class="nav-link"
-					href="/mypolicies.xhtml"><i class="fa fa-product-hunt"
+					href="/user/mypolicies.xhtml"><i class="fa fa-product-hunt"
 						aria-hidden="true"></i> My Policies</a></li>
-				<li class="nav-item dropdown" style="margin-right: 5px;"><a
+				<li class="nav-item dropdown"><a
 					class="nav-link dropdown-toggle" href="#"
 					id="navbarDropdownMenuLink" data-toggle="dropdown"
 					aria-haspopup="true" aria-expanded="false"> <i
@@ -159,15 +160,15 @@
 						#{request.userPrincipal.name}
 				</a>
 					<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-						<a class="dropdown-item" href="#"><i class="fa fa-user"
-							aria-hidden="true"></i> My Account</a>
+						<a class="dropdown-item" href="/user/myaccount.xhtml"><i
+							class="fa fa-user" aria-hidden="true"></i> My Account</a>
 					</div></li>
 				<li class="nav-item" style="margin-right: 5px; margin-bottom: 5px;">
 					<a href="/premiumcalculator.xhtml">
-					<button type="submit" class="btn btn-warning" ajax="false">
-						<i class="fa fa-money"></i> Premium Calculator
-					</button>
-					</a>
+						<button type="submit" class="btn btn-warning" ajax="false">
+							<i class="fa fa-money"></i> Premium Calculator
+						</button>
+				</a>
 				</li>
 				<li class="nav-item"><h:form
 						onsubmit="this.action='#{request.contextPath}/logout';">
@@ -185,9 +186,9 @@
 			<h3 class="display-4">WELCOME, #{request.userPrincipal.name}.</h3>
 			<p>We are committed to helping individuals and families in
 				Myanmar to live in healthier and happier lives.</p>
-			<a href="/createquote.xhtml"><button type="button"
+			<a href="/user/createquote.xhtml"><button type="button"
 					class="btn btn-primary">Create A New Quote</button></a> <a
-				href="/myquotes.xhtml"><button type="button"
+				href="/user/myquotes.xhtml"><button type="button"
 					class="btn btn-success">See Your Quotes</button></a>
 		</center>
 	</div>
@@ -205,7 +206,7 @@
 					<p>We are providing life insurance products and programs to
 						with our commitment to being the most professional life insurer.</p>
 					<p>
-						<a href="#" class="btn btn-primary">Learn More</a>
+						<a href="/aboutus.xhtml" class="btn btn-primary">Learn More</a>
 					</p>
 				</div>
 			</div>
@@ -220,7 +221,7 @@
 						call us anytime. We will make sure to reach out as quick as
 						possible.</p>
 					<p>
-						<a href="#" class="btn btn-primary">Contact IG2</a>
+						<a href="/contact.xhtml" class="btn btn-primary">Contact IG2</a>
 					</p>
 				</div>
 			</div>
@@ -236,13 +237,14 @@
 						<b>"Short Term Life Endowment Insurance"</b>.
 					</p>
 					<p>
-						<a href="#" class="btn btn-primary">Click Here</a>
+						<a href="/faqs.xhtml" class="btn btn-primary">Click Here</a>
 					</p>
 				</div>
 			</div>
 		</div>
 	</div>
 	</section>
+
 	<!-- /.container -->
 	<div class="mt-5 pt-5 pb-5 footer">
 		<div class="container">
@@ -252,8 +254,9 @@
 					<p class="pr-5 text-white-50">Please contact us via phone or
 						via social media. We are here for you anytime.</p>
 					<p>
-						<a href="#"><i class="fa fa-facebook-square mr-1"></i></a><a
-							href="#"><i class="fa fa-linkedin-square"></i></a>
+						<a href="#"><i class="fa fa-facebook-square mr-1"
+							style="font-size: 35px;"></i></a><a href="#"><i
+							class="fa fa-linkedin-square" style="font-size: 35px;"></i></a>
 					</p>
 				</div>
 				<div class="col-lg-3 col-xs-12 links"></div>
@@ -261,17 +264,19 @@
 					<h4 class="mt-lg-0 mt-sm-4">Address</h4>
 					<p>No. 22, Mingalar Road, Pyay Township, Yangon.</p>
 					<p class="mb-0">
-						<i class="fa fa-phone mr-3"></i>(+95) 9753010834
+						<i class="fa fa-phone mr-3" style="font-size: 25px;"></i>(+95)
+						9753010834
 					</p>
 					<p>
-						<i class="fa fa-envelope-o mr-3"></i>info@insurancemyanmar.com
+						<i class="fa fa-envelope-o mr-3" style="font-size: 25px;"></i>info@insurancemyanmar.com
 					</p>
 				</div>
 			</div>
 			<div class="row mt-5">
 				<div class="col copyright">
-					<p class="">
-						<small class="text-white-50">© 2020. All Rights Reserved.</small>
+					<p style="text-align: center;">
+						<small class="text-white-50">Copyright 2020 © IG2. All
+							Rights Reserved.</small>
 					</p>
 				</div>
 			</div>

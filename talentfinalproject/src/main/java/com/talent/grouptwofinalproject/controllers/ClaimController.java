@@ -75,7 +75,7 @@ public class ClaimController {
 				System.out.println("Here at claim");
 				claim.setPolicyid(pol.getId());
 				System.out.println(claim.getPolicyid());
-				return "/claim.xhtml?faces-redirect=true";
+				return "/user/claim.xhtml?faces-redirect=true";
 			}
 		}
 		return null;
@@ -90,7 +90,7 @@ public class ClaimController {
 
 		claim = new Claim();
 
-		return "/claimsuccess.xhtml?faces-redirect=true";
+		return "/user/claimsuccess.xhtml?faces-redirect=true";
 	}
 
 	public String onFlowProcess(FlowEvent event) {

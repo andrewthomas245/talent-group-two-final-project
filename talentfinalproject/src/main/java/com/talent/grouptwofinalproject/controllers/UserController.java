@@ -9,13 +9,7 @@ import org.primefaces.event.FlowEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
-import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.authentication.event.InteractiveAuthenticationSuccessEvent;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-
-import java.security.Principal;
-import java.util.List;
 
 import com.talent.grouptwofinalproject.entities.Users;
 import com.talent.grouptwofinalproject.models.UserModel;
@@ -35,11 +29,19 @@ public class UserController {
     public String save() {
     	
     	Users FindUser=userService.findByName(user.getUsername());
+    	Users FindUserByMail=userService.findUserByEmail(user.getEmail());
     	if (FindUser!=null) {
     		System.out.println("DUPLICATE");
 			FacesContext context = FacesContext.getCurrentInstance();
 			context.addMessage("Error", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Fail",
-					"The Username: "+user.getUsername()+" has already been taken.Try again with a new user name."));
+					"The Username: "+user.getUsername()+" has already been taken. Try again with a new user name."));
+			context.getExternalContext().getFlash().setKeepMessages(true);
+    		
+    	}else if (FindUserByMail!=null) {
+    		System.out.println("DUPLICATE");
+			FacesContext context = FacesContext.getCurrentInstance();
+			context.addMessage("Error", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Fail",
+					"The Email: "+user.getEmail()+" has already been registered. Try again with a new email."));
 			context.getExternalContext().getFlash().setKeepMessages(true);
     		
     	}else {
@@ -55,7 +57,7 @@ public class UserController {
     		
     		user= new UserModel();
     		
-    		return "/userlogin.xhtml?faces-redirect=true";	
+    		return "/user/userlogin.xhtml?faces-redirect=true";	
     	}
     	return null;
     	
