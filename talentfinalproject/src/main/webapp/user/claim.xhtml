@@ -137,9 +137,16 @@
 
 							<h:outputText value="Claim Type: *" />
 							<p:selectOneMenu id="claimtype"
-								value="#{claimController.claim.claimreason}">
+								value="#{claimController.claim.claimreason}" rendered="#{policyController.policy.totalpaidpremium==policyController.policy.totalpremium}">
 								<f:selectItem itemLabel="Select One" noSelectionOption="true" />
 								<f:selectItem itemLabel="Maturity" itemValue="Maturity" />
+								<f:selectItem itemLabel="Permenently Disabled"
+									itemValue="Permenently Disabled" />
+								<f:selectItem itemLabel="Death" itemValue="Death" />
+							</p:selectOneMenu>
+							<p:selectOneMenu id="claimtype2"
+								value="#{claimController.claim.claimreason}" rendered="#{policyController.policy.totalpaidpremium!=policyController.policy.totalpremium}">
+								<f:selectItem itemLabel="Select One" noSelectionOption="true" />
 								<f:selectItem itemLabel="Permenently Disabled"
 									itemValue="Permenently Disabled" />
 								<f:selectItem itemLabel="Death" itemValue="Death" />
@@ -152,15 +159,16 @@
 							</h:outputText>
 							<h:outputText></h:outputText>
 
-							<h:outputText value="Signature: "/>
-							<p:signature id="sign" style="width:300px;height:180px;" widgetVar="sig"
-								value="#{claimController.claim.claimsign}" required="true"
-								guideline="true"
+							<h:outputText value="Signature: " />
+							<p:signature id="sign" style="width:300px;height:180px;"
+								widgetVar="sig" value="#{claimController.claim.claimsign}"
+								required="true" guideline="true"
 								requiredMessage="Your signature is required to claim." />
 							<p:message id="signm" for="sign" />
-							
+
 							<h:outputText></h:outputText>
-							<p:commandButton value="Clear" icon="pi pi-times" type="button" onclick="PF('sig').clear()"/>
+							<p:commandButton value="Clear" icon="pi pi-times" type="button"
+								onclick="PF('sig').clear()" />
 							<h:outputText></h:outputText>
 						</h:panelGrid>
 					</p:panel>
