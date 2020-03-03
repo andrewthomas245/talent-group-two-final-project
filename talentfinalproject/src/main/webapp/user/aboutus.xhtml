@@ -25,103 +25,14 @@
 	<link rel="stylesheet" type="text/css" href="/css/allcss.css" />
 	<style>
 .bg {
-	background-image: url(/img/bg_health.jpg);
-}
-
-#Hover_con .hover_content_block {
-	text-align: center;
-	font-size: 16px;
-	min-height: 300px;
-	vertical-align: middle;
-	padding: 40px;
-	background: #fff;
-	-webkit-box-shadow: 7px 14px 42px 3px rgba(163, 174, 184, 0.4);
-	-moz-box-shadow: 7px 14px 42px 3px rgba(163, 174, 184, 0.4);
-	-ms-box-shadow: 7px 14px 42px 3px rgba(163, 174, 184, 0.4);
-	-o-box-shadow: 7px 14px 42px 3px rgba(163, 174, 184, 0.4);
-	box-shadow: 7px 14px 42px 3px rgba(163, 174, 184, 0.4);
-	z-index: 7;
-	flex-grow: 1;
-	background-size: cover;
-	position: relative;
+	background-image: url(/img/stijum12.jpg);
 	background-repeat: no-repeat;
-}
-
-#Hover_con .hover_content_block>.overlay-darker {
-	z-index: 8;
-	opacity: .8;
-	background: #474747;
-	position: absolute;
-	left: 0;
-	right: 0;
-	top: 0;
-	bottom: 0;
-}
-
-#Hover_con .hover_content_block>.overlay {
-	background: #fff;
-	opacity: 1;
-	z-index: 9;
-	position: absolute;
-	top: 0;
-	bottom: 0;
-	left: 0;
-	right: 0;
-	-webkit-transition: 0.5s;
-	-o-transition: 0.5s;
-	transition: 0.5s;
-}
-
-#Hover_con .hover_content_block>.Hover_con_text {
-	position: relative;
-	z-index: 10;
-}
-
-#Hover_con .hover_content_block>.Hover_con_text .Hover_con_icon {
-	font-size: 50px;
-	color: #2941ab;
-	margin-bottom: 30px;
-	display: block;
-}
-
-#Hover_con .hover_content_block h2 {
-	font-size: 24px;
-	font-weight: 400;
-}
-
-#Hover_con .hover_content_block:hover>.overlay, #Hover_con .hover_content_block:focus>.overlay
-	{
-	opacity: 0;
-	z-index: 9;
-}
-
-#Hover_con .hover_content_block:hover>.Hover_con_text .Hover_con_icon,
-	#Hover_con .hover_content_block:focus>.Hover_con_text .Hover_con_icon {
-	color: #fff;
-}
-
-#Hover_con .hover_content_block:hover h2, #Hover_con .hover_content_block:focus h2,
-	#Hover_con .hover_content_block:hover>.Hover_con_text, #Hover_con .hover_content_block:focus>.Hover_con_text
-	{
-	color: #fff;
-}
-
-#Hover_con .hover_content_block:hover .btn, #Hover_con .hover_content_block:focus .btn
-	{
-	border: 2px solid #fff !important;
-	background: transparent;
-}
-
-#Hover_con .hover_content_block:hover .btn:hover, #Hover_con .hover_content_block:focus .btn:hover
-	{
-	background: #2941ab !important;
-	border: 2px solid #2941ab !important;
-}
-center>p{
+	background-size: cover;
+	background-position: 100% 70%;
+	height: 380px;
 	text-align: center;
-}
-p.ptext{
-	text-align: center;
+	font-style: oblique;
+	left: 0;
 }
 </style>
 </h:head>
@@ -140,7 +51,7 @@ p.ptext{
 		</button>
 		<div class="collapse navbar-collapse" id="navbarResponsive">
 			<ul class="navbar-nav ml-auto">
-				<li class="nav-item active"><a class="nav-link"
+				<li class="nav-item"><a class="nav-link"
 					href="/user/home.xhtml"><i class="fa fa-home"
 						aria-hidden="true"></i> Home <span class="sr-only">(current)</span>
 				</a></li>
@@ -189,68 +100,51 @@ p.ptext{
 	</nav>
 
 	<div class="jumbotron jumbotron-fluid bg">
-		<center>
-			<h3 class="display-4">WELCOME, #{request.userPrincipal.name}.</h3>
-			<p>We are committed to helping individuals and families in
-				Myanmar to live in healthier and happier lives.</p>
-			<a href="/user/createquote.xhtml"><button type="button"
-					class="btn btn-primary">Create A New Quote</button></a> <a
-				href="/user/myquotes.xhtml"><button type="button"
-					class="btn btn-success">See Your Quotes</button></a>
-		</center>
-	</div>
-	<br />
-	<section id="Hover_con">
-	<div class="container">
-		<div class="row">
-			<div class="hover_content_block col-sm-4"
-				style="background-image: url(https://cdn.pixabay.com/photo/2014/07/06/13/55/calculator-385506_1280.jpg);">
-				<div class="overlay-darker"></div>
-				<div class="overlay"></div>
-				<div class="Hover_con_text">
-					<i class="Hover_con_icon fa fa-lightbulb-o"></i>
-					<h2>About Us</h2>
-					<p class="ptext">We are providing life insurance products and programs to
-						with our commitment to being the most professional life insurer.</p>
-					<p class="ptext">
-						<a href="/user/aboutus.xhtml" class="btn btn-primary">Learn More</a>
-					</p>
-				</div>
-			</div>
-			<div class="hover_content_block col-sm-4"
-				style="background-image: url(https://cdn.pixabay.com/photo/2019/04/23/01/46/e-business-4148211_1280.jpg);">
-				<div class="overlay-darker"></div>
-				<div class="overlay"></div>
-				<div class="Hover_con_text">
-					<i class="Hover_con_icon fa fa-phone"></i>
-					<h2>Contact</h2>
-					<p class="ptext">Want to know more about our service or need a help? Just
-						call us anytime. We will make sure to reach out as quick as
-						possible.</p>
-					<p class="ptext">
-						<a href="/user/contact.xhtml" class="btn btn-primary">Contact IG2</a>
-					</p>
-				</div>
-			</div>
-			<div class="hover_content_block col-sm-4"
-				style="background-image: url(https://cdn.pixabay.com/photo/2016/01/19/17/53/writing-1149962_1280.jpg);">
-				<div class="overlay-darker"></div>
-				<div class="overlay"></div>
-				<div class="Hover_con_text">
-					<i class="Hover_con_icon fa fa-question"></i>
-					<h2>FAQs</h2>
-					<p class="ptext">
-						Have some questions? Cilck the below button to find out more about
-						<b>"Short Term Life Endowment Insurance"</b>.
-					</p>
-					<p class="ptext">
-						<a href="/user/faqs.xhtml" class="btn btn-primary">Click Here</a>
-					</p>
-				</div>
-			</div>
+		<div class="container">
+			<p>
+				<br /> <br />
+			</p>
+			<h1>
+				<b>Short Term Endowment Life Insurance</b>
+			</h1>
+			<br />
+			<h4 id="ws">&emsp;Start Planning Today for Save Your Life with
+				Benefit</h4>
 		</div>
 	</div>
-	</section>
+
+	<!-- Page Content -->
+	<div class="container">
+		<h1>
+			<b>About Our Company</b>
+		</h1>
+		<br />
+		<h3>IG2 Insurance Overview</h3>
+		<p>&emsp;&emsp;&emsp;Our IG2 insurance is one of the new dynamic
+			and progressive life insurance organizations in the emerging market
+			of Myanmar. IG2 insurance was formed in 2019 to provide life
+			insurance products and programs to all the people of Myanmar with our
+			commitment to being the most professional life insurer in the
+			Country. We wish to support our clients with high quality services
+			and protection, and establish a successful long term partnership.</p>
+		<p>&emsp;&emsp;&emsp;We have started IG2 insurance operations in
+			2019 and our initial growth has been good as we laid the ground work
+			for our different programs which accelerate our growth and beyond. We
+			also have implemented best practices throughout our organization at
+			all levels and training programs for our staffs.</p>
+		<h3>Vision</h3>
+		<p>To be the most recommended new age Life Insurance Company in
+			Myanmar.</p>
+
+		<h3>Mission</h3>
+		<p>To become a leading Insurance Company in Myanmar Insurance
+			Industry by fostering Industrial and Economic growth thereby
+			improving quality of peoples’ lives.</p>
+		<p>To help protect our customers from all kinds of peril by
+			providing them with not only financial benefits but also peace of
+			mind.</p>
+
+	</div>
 
 	<!-- /.container -->
 	<div class="mt-5 pt-5 pb-5 footer">

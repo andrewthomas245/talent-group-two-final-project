@@ -23,105 +23,17 @@
 	<link rel="stylesheet"
 		href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 	<link rel="stylesheet" type="text/css" href="/css/allcss.css" />
+	<link rel="stylesheet" type="text/css" href="/css/faqs.css" />
 	<style>
 .bg {
-	background-image: url(/img/bg_health.jpg);
-}
-
-#Hover_con .hover_content_block {
-	text-align: center;
-	font-size: 16px;
-	min-height: 300px;
-	vertical-align: middle;
-	padding: 40px;
-	background: #fff;
-	-webkit-box-shadow: 7px 14px 42px 3px rgba(163, 174, 184, 0.4);
-	-moz-box-shadow: 7px 14px 42px 3px rgba(163, 174, 184, 0.4);
-	-ms-box-shadow: 7px 14px 42px 3px rgba(163, 174, 184, 0.4);
-	-o-box-shadow: 7px 14px 42px 3px rgba(163, 174, 184, 0.4);
-	box-shadow: 7px 14px 42px 3px rgba(163, 174, 184, 0.4);
-	z-index: 7;
-	flex-grow: 1;
-	background-size: cover;
-	position: relative;
+	background-image: url(/img/stijum12.jpg);
 	background-repeat: no-repeat;
-}
-
-#Hover_con .hover_content_block>.overlay-darker {
-	z-index: 8;
-	opacity: .8;
-	background: #474747;
-	position: absolute;
-	left: 0;
-	right: 0;
-	top: 0;
-	bottom: 0;
-}
-
-#Hover_con .hover_content_block>.overlay {
-	background: #fff;
-	opacity: 1;
-	z-index: 9;
-	position: absolute;
-	top: 0;
-	bottom: 0;
-	left: 0;
-	right: 0;
-	-webkit-transition: 0.5s;
-	-o-transition: 0.5s;
-	transition: 0.5s;
-}
-
-#Hover_con .hover_content_block>.Hover_con_text {
-	position: relative;
-	z-index: 10;
-}
-
-#Hover_con .hover_content_block>.Hover_con_text .Hover_con_icon {
-	font-size: 50px;
-	color: #2941ab;
-	margin-bottom: 30px;
-	display: block;
-}
-
-#Hover_con .hover_content_block h2 {
-	font-size: 24px;
-	font-weight: 400;
-}
-
-#Hover_con .hover_content_block:hover>.overlay, #Hover_con .hover_content_block:focus>.overlay
-	{
-	opacity: 0;
-	z-index: 9;
-}
-
-#Hover_con .hover_content_block:hover>.Hover_con_text .Hover_con_icon,
-	#Hover_con .hover_content_block:focus>.Hover_con_text .Hover_con_icon {
-	color: #fff;
-}
-
-#Hover_con .hover_content_block:hover h2, #Hover_con .hover_content_block:focus h2,
-	#Hover_con .hover_content_block:hover>.Hover_con_text, #Hover_con .hover_content_block:focus>.Hover_con_text
-	{
-	color: #fff;
-}
-
-#Hover_con .hover_content_block:hover .btn, #Hover_con .hover_content_block:focus .btn
-	{
-	border: 2px solid #fff !important;
-	background: transparent;
-}
-
-#Hover_con .hover_content_block:hover .btn:hover, #Hover_con .hover_content_block:focus .btn:hover
-	{
-	background: #2941ab !important;
-	border: 2px solid #2941ab !important;
-}
-center>p{
+	background-size: cover;
+	background-position: 100% 70%;
+	height: 380px;
 	text-align: center;
-}
-p.ptext{
-	text-align: center;
+	font-style: oblique;
+	left: 0;
 }
 </style>
 </h:head>
@@ -140,7 +52,7 @@ p.ptext{
 		</button>
 		<div class="collapse navbar-collapse" id="navbarResponsive">
 			<ul class="navbar-nav ml-auto">
-				<li class="nav-item active"><a class="nav-link"
+				<li class="nav-item"><a class="nav-link"
 					href="/user/home.xhtml"><i class="fa fa-home"
 						aria-hidden="true"></i> Home <span class="sr-only">(current)</span>
 				</a></li>
@@ -189,69 +101,113 @@ p.ptext{
 	</nav>
 
 	<div class="jumbotron jumbotron-fluid bg">
-		<center>
-			<h3 class="display-4">WELCOME, #{request.userPrincipal.name}.</h3>
-			<p>We are committed to helping individuals and families in
-				Myanmar to live in healthier and happier lives.</p>
-			<a href="/user/createquote.xhtml"><button type="button"
-					class="btn btn-primary">Create A New Quote</button></a> <a
-				href="/user/myquotes.xhtml"><button type="button"
-					class="btn btn-success">See Your Quotes</button></a>
-		</center>
-	</div>
-	<br />
-	<section id="Hover_con">
-	<div class="container">
-		<div class="row">
-			<div class="hover_content_block col-sm-4"
-				style="background-image: url(https://cdn.pixabay.com/photo/2014/07/06/13/55/calculator-385506_1280.jpg);">
-				<div class="overlay-darker"></div>
-				<div class="overlay"></div>
-				<div class="Hover_con_text">
-					<i class="Hover_con_icon fa fa-lightbulb-o"></i>
-					<h2>About Us</h2>
-					<p class="ptext">We are providing life insurance products and programs to
-						with our commitment to being the most professional life insurer.</p>
-					<p class="ptext">
-						<a href="/user/aboutus.xhtml" class="btn btn-primary">Learn More</a>
-					</p>
-				</div>
-			</div>
-			<div class="hover_content_block col-sm-4"
-				style="background-image: url(https://cdn.pixabay.com/photo/2019/04/23/01/46/e-business-4148211_1280.jpg);">
-				<div class="overlay-darker"></div>
-				<div class="overlay"></div>
-				<div class="Hover_con_text">
-					<i class="Hover_con_icon fa fa-phone"></i>
-					<h2>Contact</h2>
-					<p class="ptext">Want to know more about our service or need a help? Just
-						call us anytime. We will make sure to reach out as quick as
-						possible.</p>
-					<p class="ptext">
-						<a href="/user/contact.xhtml" class="btn btn-primary">Contact IG2</a>
-					</p>
-				</div>
-			</div>
-			<div class="hover_content_block col-sm-4"
-				style="background-image: url(https://cdn.pixabay.com/photo/2016/01/19/17/53/writing-1149962_1280.jpg);">
-				<div class="overlay-darker"></div>
-				<div class="overlay"></div>
-				<div class="Hover_con_text">
-					<i class="Hover_con_icon fa fa-question"></i>
-					<h2>FAQs</h2>
-					<p class="ptext">
-						Have some questions? Cilck the below button to find out more about
-						<b>"Short Term Life Endowment Insurance"</b>.
-					</p>
-					<p class="ptext">
-						<a href="/user/faqs.xhtml" class="btn btn-primary">Click Here</a>
-					</p>
-				</div>
-			</div>
+		<div class="container">
+			<p>
+				<br /> <br />
+			</p>
+			<h1>
+				<b>Short Term Endowment Life Insurance</b>
+			</h1>
+			<br />
+			<h4 id="ws">&emsp;Start Planning Today for Save Your Life with
+				Benefit</h4>
 		</div>
 	</div>
-	</section>
 
+	<!-- Page Content -->
+	<div class="container">
+		<h1>
+			<b>FAQs</b>
+		</h1>
+		<br />
+		<p>Here are some frequently asked questions about Short Term
+			Endownment Life Insurance.</p>
+		<button class="accordion">
+			<b>How does the insured pay for the premium?</b>
+		</button>
+		<div class="panel">
+			<p>Premium can be paid in monthly, quarterly, bi-yearly and
+				yearly basis.</p>
+		</div>
+
+		<button class="accordion">
+			<b>How do you calculate premium for Short term Endowment Life
+				Insurance?</b>
+		</button>
+		<div class="panel">
+			<p>Premium will be calculated based on Age of Insured, Policy
+				term and Sum Insured Amount.</p>
+		</div>
+
+		<button class="accordion">
+			<b>Can the insured get benefit for injury due to accident?</b>
+		</button>
+		<div class="panel">
+			<p>You should buy personal accident insurance if you want to get
+				benefit for injury due to accident.</p>
+		</div>
+
+		<button class="accordion">
+			<b>Do You Need An Endowment Life Insurance Policy?</b>
+		</button>
+		<div class="panel">
+			<p>
+				Whether you are young, you tend to splurge too much and save
+				nothing. You love to buy new clothes, gadgets, accessories and so
+				on. In short, you hardly have any count of your spending! However,
+				there are so many means to save your hard-earned money. One of the
+				best options available is endowment plans.<br /> It dually benefits
+				you by getting a life cover and saving at the same time. If these
+				are your financial objectives, then you must buy endowment
+				insurance.
+			</p>
+		</div>
+
+		<button class="accordion">
+			<b>What Is An Endowment Life Insurance Policy?</b>
+		</button>
+		<div class="panel">
+			<p>An endowment policy is a life insurance contract designed to
+				pay a lump sum after a specific term on its ‘maturity’ or
+				unfortunate demise of the policy holder. In literal terms, the best
+				suitable endowment policy will serve as both saving and protection.
+				Such policies will provide maturity and death benefit both; The
+				maturity benefit is payable if the policy holder survives until the
+				end of the policy term and pays the entire premium.</p>
+		</div>
+
+		<button class="accordion">
+			<b>Who Should Buy An Endowment Life Insurance Policy?</b>
+		</button>
+		<div class="panel">
+			<ol>
+				<li><p>It’s a fantastic saving option for people who have a
+						regular flow of income, such as salaried persons, professionals,
+						and businessmen, etc.</p></li>
+				<li><p>It’s also wise for people who are not great at
+						saving and who tend to spend extravagantly.</p></li>
+				<li><p>People with zero risk-appetite should opt for such
+						plans where the returns are guaranteed.</p></li>
+			</ol>
+		</div>
+
+		<button class="accordion">
+			<b>What should you consider before buying an endowment plan?</b>
+		</button>
+		<div class="panel">
+			<p>
+				<ol>
+					<li><p>Characteristics of an endowment plan</p></li>
+					<li><p>Conditions for purchasing the plan</p></li>
+					<li><p>The purpose of purchasing an endowment plan</p></li>
+				</ol>
+			</p>
+		</div>
+
+		<script src="js/faqs.js">
+			
+		</script>
+	</div>
 	<!-- /.container -->
 	<div class="mt-5 pt-5 pb-5 footer">
 		<div class="container">
