@@ -17,5 +17,5 @@ public interface UserService extends UserDetailsService
 	
 	public UserModel getUserInfo();
 	
-	public Users findUserByEmail(String email);
+	public List<Users> findUserByEmail(String email);
 }

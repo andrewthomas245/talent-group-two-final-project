@@ -1,4 +1,6 @@
 package com.talent.grouptwofinalproject.repositories;
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -10,5 +12,5 @@ public interface UserRepository extends JpaRepository<Users, Long> {
     
     Users findByName (String name);
     
-    Users findByEmail(String email);
+    List<Users> findByEmail(String email);
 }
