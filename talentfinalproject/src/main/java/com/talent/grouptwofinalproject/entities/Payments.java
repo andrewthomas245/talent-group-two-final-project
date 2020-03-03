@@ -60,4 +60,6 @@ public class Payments {
 	public void setPolicies(Policies policies) {
 		this.policies = policies;
 	}
+	
+	
 }

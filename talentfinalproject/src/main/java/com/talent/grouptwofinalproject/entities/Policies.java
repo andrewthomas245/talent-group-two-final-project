@@ -85,4 +85,6 @@ public class Policies {
 	public void setPayments(List<Payments> payments) {
 		this.payments = payments;
 	}
+	
+	
 }
