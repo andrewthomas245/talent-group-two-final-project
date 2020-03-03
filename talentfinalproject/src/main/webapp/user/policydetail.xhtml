@@ -5,6 +5,7 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui">
 <h:head>
+	<title>IG2 Insurance</title>
 	<f:metadata charset="UTF-8" />
 	<f:metadata name="viewport"
 		content="width=device-width, initial-scale=1" />
@@ -49,7 +50,7 @@
 .totaltext {
 	font-weight: bolder;
 	color: navy;
-	padding:5px;
+	padding: 5px;
 }
 
 .total {
@@ -170,6 +171,20 @@
 					<h:outputText value="#{policyController.policy.policystatus}"
 						rendered="#{policyController.policy.policystatus =='Claimed'}"
 						styleClass="maroon" />
+
+					<h:outputText value="Policy Effective Date: " />
+					<h:outputText value="#{policyController.policy.effectivedate}"
+						rendered="#{policyController.policy.policystatus =='Active' or policyController.policy.policystatus =='Claimed'}"
+						styleClass="outputLabel">
+						<f:convertDateTime pattern="dd/MM/yyyy" type="date" />
+					</h:outputText>
+
+					<h:outputText value="Policy End Date: " />
+					<h:outputText value="#{policyController.policy.enddate}"
+						rendered="#{policyController.policy.policystatus =='Active' or policyController.policy.policystatus =='Claimed'}"
+						styleClass="outputLabel">
+						<f:convertDateTime pattern="dd/MM/yyyy" type="date" />
+					</h:outputText>
 				</h:panelGrid>
 			</p:panel>
 			<br />

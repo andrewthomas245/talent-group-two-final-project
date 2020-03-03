@@ -114,6 +114,8 @@ public class PolicyServiceImpl implements PolicyService {
 			model1.setId(p.getPolicyid());
 			model1.setPolicystatus(p.getPolicystatus());
 			model1.setQuoteid(p.getQuotes().getQuoteid());
+			model1.setEffectivedate(p.getPolicyeffectivedate());
+			model1.setEnddate(p.getPolicyenddate());
 		}
 
 		entitylist2 = quoteRepository.getQuoteDetailByID(model1.getQuoteid());

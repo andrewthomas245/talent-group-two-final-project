@@ -5,6 +5,7 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui">
 <h:head>
+	<title>Register</title>
 	<style>
 @import url(https://fonts.googleapis.com/css?family=Roboto:300);
 
@@ -152,30 +153,38 @@ body {
 		<br />
 		<div class="form">
 			<h:form class="login-form" id="login">
-			<p:growl id="growl" showDetail="true" rendered="#{not facesContext.validationFailed}"/>
+				<p:growl id="growl" showDetail="true"
+					rendered="#{not facesContext.validationFailed}" />
 				<h1>REGISTER</h1>
-				<p:messages autoUpdate="true" style="font-size:12px;text-align: justify;" id="msgs"
+				<p:messages autoUpdate="true"
+					style="font-size:12px;text-align: justify;" id="msgs"
 					showIcon="false" rendered="#{facesContext.validationFailed}" />
 				<p:inputText id="username" placeholder="User Name"
 					value="#{userController.user.username}" required="true"
 					requiredMessage="User Name is required."
-					validatorMessage="Name must be characters and numbers only with no spaces.">
+					validatorMessage="User Name must be 3 to 15 characters with numbers only without spaces before and after.">
 					<f:validateRegex pattern="^[a-zA-Z0-9_]+( [a-zA-Z0-9_]+)*$" />
+					<f:validateLength minimum="3" maximum="15" />
 					<p:ajax update="msgs" event="keyup" />
 				</p:inputText>
 				<p:inputText placeholder="Email Address"
 					value="#{userController.user.email}" required="true"
-					requiredMessage="Email Address is required." validatorMessage="Email Address must be in correct format.">
-					<f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+					requiredMessage="Email Address is required."
+					validatorMessage="Email Address must be in correct format.">
+					<f:validateRegex
+						pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
 					<p:ajax update="msgs" event="keyup" />
 				</p:inputText>
 				<p:password placeholder="Password" id="pw"
 					value="#{userController.user.password}" required="true"
-					requiredMessage="Password is required."	match="pw2" validatorMessage="Password and Confirm Password must be matched.">
+					requiredMessage="Password is required." match="pw2"
+					validatorMessage="Password and Confirm Password must be matched.">
 					<p:ajax update="msgs" event="keyup" />
 				</p:password>
-				<p:password placeholder="Confrim Password" id="pw2" required="true" value="#{userController.user.password}"
-					requiredMessage="Confirm Password is required." validatorMessage="Password must have minimum eight characters, at least one letter and one number.">
+				<p:password placeholder="Confrim Password" id="pw2" required="true"
+					value="#{userController.user.password}"
+					requiredMessage="Confirm Password is required."
+					validatorMessage="Password must have minimum eight characters, at least one letter and one number.">
 					<f:validateRegex pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$" />
 					<p:ajax update="msgs" event="keyup" />
 				</p:password>
