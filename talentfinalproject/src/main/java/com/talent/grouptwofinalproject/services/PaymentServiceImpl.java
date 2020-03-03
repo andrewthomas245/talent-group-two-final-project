@@ -4,6 +4,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
 import java.util.Date;
 
 import javax.persistence.EntityManager;
@@ -42,15 +43,22 @@ public class PaymentServiceImpl implements PaymentService {
 		paymentEntity.setPaymentdate(date);
 		paymentEntity.setPaymentmethod(pay.getPaymentmethod());
 		
+		int policyterm=pol.getPolicyterm();	
+		Calendar cal = Calendar.getInstance();
+		cal.add(Calendar.YEAR, policyterm);
+		Date enddate= cal.getTime();
+		
 		System.out.println(pay.getPolicyid());
 		
-		Policies attachedPolicy = em.find(Policies.class, pay.getPolicyid());
 		double yearlypremium=pol.getYearlypremium();
 		double totalpaidpremium=pol.getTotalpaidpremium();
+		
+		Policies attachedPolicy = em.find(Policies.class, pay.getPolicyid());
+		
 		if (totalpaidpremium >= yearlypremium) {
 			attachedPolicy.setPolicystatus("Active");
 			attachedPolicy.setPolicyeffectivedate(date);
-			attachedPolicy.setPolicyenddate(date);
+			attachedPolicy.setPolicyenddate(enddate);
 		}
 		paymentEntity.setPolicies(attachedPolicy);
 		
