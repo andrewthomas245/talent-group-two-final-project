@@ -47,7 +47,7 @@ public class PaymentServiceImpl implements PaymentService {
 		Policies attachedPolicy = em.find(Policies.class, pay.getPolicyid());
 		double yearlypremium=pol.getYearlypremium();
 		double totalpaidpremium=pol.getTotalpaidpremium();
-		if (totalpaidpremium == yearlypremium) {
+		if (totalpaidpremium >= yearlypremium) {
 			attachedPolicy.setPolicystatus("Active");
 		}
 		paymentEntity.setPolicies(attachedPolicy);
