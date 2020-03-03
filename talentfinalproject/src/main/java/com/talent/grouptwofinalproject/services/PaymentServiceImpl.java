@@ -49,6 +49,8 @@ public class PaymentServiceImpl implements PaymentService {
 		double totalpaidpremium=pol.getTotalpaidpremium();
 		if (totalpaidpremium >= yearlypremium) {
 			attachedPolicy.setPolicystatus("Active");
+			attachedPolicy.setPolicyeffectivedate(date);
+			attachedPolicy.setPolicyenddate(date);
 		}
 		paymentEntity.setPolicies(attachedPolicy);
 		
