@@ -172,14 +172,14 @@
 						rendered="#{policyController.policy.policystatus =='Claimed'}"
 						styleClass="maroon" />
 
-					<h:outputText value="Policy Effective Date: " />
+					<h:outputText value="Policy Effective Date: " rendered="#{policyController.policy.policystatus =='Active' or policyController.policy.policystatus =='Claimed'}"/>
 					<h:outputText value="#{policyController.policy.effectivedate}"
 						rendered="#{policyController.policy.policystatus =='Active' or policyController.policy.policystatus =='Claimed'}"
 						styleClass="outputLabel">
 						<f:convertDateTime pattern="dd/MM/yyyy" type="date" />
 					</h:outputText>
 
-					<h:outputText value="Policy End Date: " />
+					<h:outputText value="Policy End Date: " rendered="#{policyController.policy.policystatus =='Active' or policyController.policy.policystatus =='Claimed'}"/>
 					<h:outputText value="#{policyController.policy.enddate}"
 						rendered="#{policyController.policy.policystatus =='Active' or policyController.policy.policystatus =='Claimed'}"
 						styleClass="outputLabel">

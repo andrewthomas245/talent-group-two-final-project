@@ -274,10 +274,10 @@
 			<p:commandButton value="Buy Policy"
 				action="#{policyController.getToPolicy(quoteController.quote)}"
 				update="growl" process="@this" />
-			<p:commandButton value="Edit Quote"
+			<p:commandButton value="Edit Quote" style="margin-left:20px;"
 				action="#{quoteController.getToEdit(quoteController.quote)}"
 				update="growl" process="@this" />
-			<p:commandButton value="Delete Quote"
+			<p:commandButton value="Delete Quote" style="margin-left:20px;"
 				action="#{quoteController.delete(quoteController.quote)}"
 				update="growl" process="@this">
 				<p:confirm header="Confirmation" message="Are you sure?"
