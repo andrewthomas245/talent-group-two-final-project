@@ -205,7 +205,7 @@
 								styleClass="outputLabel" />
 						</h:panelGrid>
 					</p:panel>
-					<p:commandButton value="Pay" action="#{paymentController.save()}"
+					<p:commandButton value="Pay" action="#{paymentController.save(policyController.policy)}"
 						update="growl" process="@this"
 						style="float: right; margin-top: 3px; background-color:green; border-color: green;"
 						icon="pi pi-chevron-right" />

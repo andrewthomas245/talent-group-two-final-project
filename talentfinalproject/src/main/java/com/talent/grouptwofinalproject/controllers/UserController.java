@@ -59,7 +59,7 @@ public class UserController {
 
 			user = new UserModel();
 
-			return "/user/userlogin.xhtml?faces-redirect=true";
+			return "/userlogin.xhtml?faces-redirect=true";
 		}
 		return null;
 

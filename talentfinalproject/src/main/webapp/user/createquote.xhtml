@@ -19,7 +19,7 @@
 	<link rel="stylesheet" type="text/css" href="/css/allcss.css" />
 	<style type="text/css">
 .label {
-	width: 12%;
+	width: 14%;
 	padding: 4px;
 }
 
@@ -137,9 +137,9 @@
 						<h:panelGrid columns="3" columnClasses="label, value, message">
 							<h:outputText value="Name of Insured: *" />
 							<p:inputText id="qname" value="#{quoteController.quote.name}"
-								validatorMessage="Name must be 3 to 15 characters only without spaces before and after.">
+								validatorMessage="Name must be 3 to 25 characters only without spaces before and after.">
 								<f:validateRegex pattern="^[a-zA-Z_]+( [a-zA-Z_]+)*$" />
-								<f:validateLength minimum="3" maximum="15" />
+								<f:validateLength minimum="3" maximum="25" />
 								<p:ajax update="qnamem" event="keyup" />
 							</p:inputText>
 							<p:message id="qnamem" for="qname" />
@@ -157,9 +157,9 @@
 							<p:inputText id="fathername"
 								value="#{quoteController.quote.fathername}" required="true"
 								requiredMessage="Father's Name is required."
-								validatorMessage="Father's Name must be 3 to 15 characters only without spaces before and after.">
-								<f:validateRegex pattern="^[a-zA-Z_]+( [a-zA-Z_]+)*$" />
-								<f:validateLength minimum="3" maximum="15" />
+								validatorMessage="Father's Name must be 3 to 25 characters only without spaces before and after.">
+								<f:validateRegex pattern="^[a-zA-Z_]+( [a-zA-Z0-9_]+)*$" />
+								<f:validateLength minimum="3" maximum="25" />
 								<p:ajax update="fathernamem" event="keyup" />
 							</p:inputText>
 							<p:message id="fathernamem" for="fathername" />
@@ -188,9 +188,9 @@
 							<p:inputText id="occupation"
 								value="#{quoteController.quote.occupation}" required="true"
 								requiredMessage="Occupation is required."
-								validatorMessage="Occupation must be 3 to 15 characters with numbers only without spaces before and after.">
+								validatorMessage="Occupation must be 3 to 25 characters with numbers only without spaces before and after.">
 								<f:validateRegex pattern="^[a-zA-Z0-9_]+( [a-zA-Z0-9_]+)*$" />
-								<f:validateLength minimum="3" maximum="15" />
+								<f:validateLength minimum="3" maximum="25" />
 								<p:ajax update="occupationm" event="keyup" />
 							</p:inputText>
 							<p:message id="occupationm" for="occupation" />
@@ -225,9 +225,10 @@
 							<p:inputText id="qroad"
 								value="#{quoteController.quote.roadstreet}" required="true"
 								requiredMessage="Road or Street is required."
-								validatorMessage="Road or Street can be 3 to 15 characters, numbers with or without special characters '_' or '.' or '/' or '-'.">
-								<f:validateRegex pattern="^[a-zA-Z0-9_./-]+( [a-zA-Z0-9_./-]+)*$" />
-								<f:validateLength minimum="3" maximum="15" />
+								validatorMessage="Road or Street can be 3 to 25 characters, numbers with or without special characters '_' or '.' or '/' or '-'.">
+								<f:validateRegex
+									pattern="^[a-zA-Z0-9_./-]+( [a-zA-Z0-9_./-]+)*$" />
+								<f:validateLength minimum="3" maximum="25" />
 								<p:ajax update="qroadm" event="keyup" />
 							</p:inputText>
 							<p:message id="qroadm" for="qroad" />
@@ -236,9 +237,10 @@
 							<p:inputText id="qtownship"
 								value="#{quoteController.quote.township}" required="true"
 								requiredMessage="Township is required."
-								validatorMessage="Township can be 3 to 15 characters, numbers with or without special characters '_' or '.' or '/' or '-'.">
-								<f:validateRegex pattern="^[a-zA-Z0-9_./-]+( [a-zA-Z0-9_./-]+)*$" />
-								<f:validateLength minimum="3" maximum="15" />
+								validatorMessage="Township can be 3 to 25 characters, numbers with or without special characters '_' or '.' or '/' or '-'.">
+								<f:validateRegex
+									pattern="^[a-zA-Z0-9_./-]+( [a-zA-Z0-9_./-]+)*$" />
+								<f:validateLength minimum="3" maximum="25" />
 								<p:ajax update="qtownshipm" event="keyup" />
 							</p:inputText>
 							<p:message id="qtownshipm" for="qtownship" />
@@ -328,9 +330,9 @@
 							<p:inputText id="bname"
 								value="#{quoteController.quote.benificiaryname}" required="true"
 								requiredMessage="Beneficiary's Name is required."
-								validatorMessage="Beneficiary's Name must be 3 to 15 characters only without spaces before and after.">
+								validatorMessage="Beneficiary's Name must be 3 to 25 characters only without spaces before and after.">
 								<f:validateRegex pattern="^[a-zA-Z_]+( [a-zA-Z_]+)*$" />
-								<f:validateLength minimum="3" maximum="15" />
+								<f:validateLength minimum="3" maximum="25" />
 								<p:ajax update="bnamem" event="keyup" />
 							</p:inputText>
 							<p:message id="bnamem" for="bname" />
@@ -374,9 +376,10 @@
 							<p:inputTextarea id="addressb"
 								value="#{quoteController.quote.benificiaryaddress}"
 								required="true" requiredMessage="Address is required."
-								validatorMessage="Address can be 5 to 30 characters, numbers with or without special characters '_' or '.' or '/' or '-'.">
-								<f:validateRegex pattern="^[a-zA-Z0-9_./-]+( [a-zA-Z0-9_./-]+)*$" />
-								<f:validateLength minimum="5" maximum="30" />
+								validatorMessage="Address can be 5 to 50 characters, numbers with or without special characters '_' or '.' or '/' or '-'.">
+								<f:validateRegex
+									pattern="^[a-zA-Z0-9_./-]+( [a-zA-Z0-9_./-]+)*$" />
+								<f:validateLength minimum="5" maximum="50" />
 								<p:ajax update="addressbm" event="keyup" />
 							</p:inputTextarea>
 							<p:message id="addressbm" for="addressb" />

@@ -34,7 +34,7 @@ public class PaymentServiceImpl implements PaymentService {
 	public PaymentRepository paymentRepository;
 
 	@Override
-	public void createPayment(Payment pay) {
+	public void createPayment(Payment pay, Policy pol) {
 		Date date = new Date();
 		
 		Payments paymentEntity= new Payments();
@@ -45,6 +45,11 @@ public class PaymentServiceImpl implements PaymentService {
 		System.out.println(pay.getPolicyid());
 		
 		Policies attachedPolicy = em.find(Policies.class, pay.getPolicyid());
+		double yearlypremium=pol.getYearlypremium();
+		double totalpaidpremium=pol.getTotalpaidpremium();
+		if (totalpaidpremium == yearlypremium) {
+			attachedPolicy.setPolicystatus("Active");
+		}
 		paymentEntity.setPolicies(attachedPolicy);
 		
 		paymentRepository.save(paymentEntity);

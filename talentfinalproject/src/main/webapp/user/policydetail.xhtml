@@ -172,14 +172,16 @@
 						rendered="#{policyController.policy.policystatus =='Claimed'}"
 						styleClass="maroon" />
 
-					<h:outputText value="Policy Effective Date: " rendered="#{policyController.policy.policystatus =='Active' or policyController.policy.policystatus =='Claimed'}"/>
+					<h:outputText value="Policy Effective Date: "
+						rendered="#{policyController.policy.policystatus =='Active' or policyController.policy.policystatus =='Claimed'}" />
 					<h:outputText value="#{policyController.policy.effectivedate}"
 						rendered="#{policyController.policy.policystatus =='Active' or policyController.policy.policystatus =='Claimed'}"
 						styleClass="outputLabel">
 						<f:convertDateTime pattern="dd/MM/yyyy" type="date" />
 					</h:outputText>
 
-					<h:outputText value="Policy End Date: " rendered="#{policyController.policy.policystatus =='Active' or policyController.policy.policystatus =='Claimed'}"/>
+					<h:outputText value="Policy End Date: "
+						rendered="#{policyController.policy.policystatus =='Active' or policyController.policy.policystatus =='Claimed'}" />
 					<h:outputText value="#{policyController.policy.enddate}"
 						rendered="#{policyController.policy.policystatus =='Active' or policyController.policy.policystatus =='Claimed'}"
 						styleClass="outputLabel">
@@ -202,11 +204,18 @@
 							pattern="######## Kyats" />
 					</h:outputText>
 
+					<h:outputText value="Policy Term: " />
+					<h:outputText value="#{policyController.policy.policyterm} Years"
+						styleClass="outputLabel">
+						<f:convertNumber maxIntegerDigits="10" maxFractionDigits="1"
+							pattern="########" />
+					</h:outputText>
+
 					<h:outputText value="Premium Plan: " />
 					<h:outputText value="#{policyController.policy.premiumplan} Months"
 						styleClass="outputLabel">
 						<f:convertNumber maxIntegerDigits="10" maxFractionDigits="1"
-							pattern="######## Kyats" />
+							pattern="########" />
 					</h:outputText>
 
 					<h:outputText value="Monthly Premium: " />

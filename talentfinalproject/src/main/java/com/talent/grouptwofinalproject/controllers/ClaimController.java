@@ -48,6 +48,8 @@ public class ClaimController {
 
 	public String getToClaim(Policy pol) {
 		List<Claims> findclaims = claimService.findPolicyInClaims(pol.getId());
+		
+		//check if the policy is already claimed
 		if (!findclaims.isEmpty()) {
 			System.out.println("DUPLICATE");
 			FacesContext context = FacesContext.getCurrentInstance();
@@ -55,9 +57,11 @@ public class ClaimController {
 					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Fail", "This policy is already claimed."));
 			context.getExternalContext().getFlash().setKeepMessages(true);
 		} else {
+			//check if the policy's yearly payment has been paid
 			boolean checkpaidpremium = policyService.checkYearlyPayment(pol);
 			System.out.println(checkpaidpremium);
-
+			
+			//check if the policy status is active
 			String checkpolicystatus = policyService.checkStatus(pol);
 			System.out.println(checkpolicystatus);
 

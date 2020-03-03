@@ -83,8 +83,8 @@ public class PaymentController {
 		return null;
 	}
 
-	public String save() {
-		paymentService.createPayment(payment);
+	public String save(Policy pol) {
+		paymentService.createPayment(payment, pol);
 
 		FacesMessage msg = new FacesMessage("Successful",
 				"The Amount: " + payment.getPaymentamount() + " is paid successfully.");
