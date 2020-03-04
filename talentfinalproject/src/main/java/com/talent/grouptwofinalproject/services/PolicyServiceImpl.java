@@ -1,6 +1,7 @@
 package com.talent.grouptwofinalproject.services;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -28,10 +29,10 @@ public class PolicyServiceImpl implements PolicyService {
 
 	@PersistenceContext
 	EntityManager em;
-	
+
 	@Autowired
 	public UserRepository userRepository;
-	
+
 	@Autowired
 	public UserService userService;
 
@@ -43,7 +44,7 @@ public class PolicyServiceImpl implements PolicyService {
 
 	@Autowired
 	public PaymentRepository paymentRepository;
-	
+
 	@Autowired
 	public ClaimRepository claimRepository;
 
@@ -59,12 +60,31 @@ public class PolicyServiceImpl implements PolicyService {
 		policyEntity.setQuotes(attachedQuote);
 
 		Date date = new Date();
-		
+
 		Payments paymentEntity = new Payments();
 		paymentEntity.setPaymentamount(pol.getFirstpaymentamount());
 		paymentEntity.setPaymentmethod(pol.getPaymentmethod());
 		paymentEntity.setPaymentdate(date);
 		paymentEntity.setPolicies(policyEntity);
+		
+		String policystatus = policyEntity.getPolicystatus();
+
+		int policyterm = pol.getPolicyterm();
+		Calendar cal = Calendar.getInstance();
+		cal.add(Calendar.YEAR, policyterm);
+		Date enddate = cal.getTime();
+
+		double yearlypremium = pol.getYearlypremium();
+		double totalpaidpremium = pol.getFirstpaymentamount();
+
+		System.out.println("Yearly: " + yearlypremium);
+		System.out.println("Total Paid: " + totalpaidpremium);
+
+		if (totalpaidpremium >= yearlypremium && policystatus.equals("Pending")) {
+			policyEntity.setPolicystatus("Active");
+			policyEntity.setPolicyeffectivedate(date);
+			policyEntity.setPolicyenddate(enddate);
+		}
 
 		policyRepository.save(policyEntity);
 		paymentRepository.save(paymentEntity);
@@ -74,12 +94,12 @@ public class PolicyServiceImpl implements PolicyService {
 	public List<Policy> getPolicies(Policy pol) {
 		List<Policy> modellist = new ArrayList<Policy>();
 		List<Policies> entitylist = new ArrayList<Policies>();
-		
-		Users u=userRepository.findByName(userService.getLoginUserName());
-		Long id=u.getUserid();
+
+		Users u = userRepository.findByName(userService.getLoginUserName());
+		Long id = u.getUserid();
 
 		entitylist = policyRepository.findByUser(id);
-		
+
 		System.out.println("find all " + entitylist);
 		for (Policies p : entitylist) {
 			Policy model = new Policy();
@@ -102,12 +122,12 @@ public class PolicyServiceImpl implements PolicyService {
 		List<Policies> entitylist = new ArrayList<Policies>();
 		List<Quotes> entitylist2 = new ArrayList<Quotes>();
 		List<Payments> entitylist3 = new ArrayList<Payments>();
-		List<Claims> entitylist4= new ArrayList<Claims>();
-		
-		double totalpaidpremium =0;
+		List<Claims> entitylist4 = new ArrayList<Claims>();
+
+		double totalpaidpremium = 0;
 
 		Policy model1 = new Policy();
-	
+
 		entitylist = policyRepository.getDetailByID(id);
 
 		for (Policies p : entitylist) {
@@ -138,40 +158,40 @@ public class PolicyServiceImpl implements PolicyService {
 		entitylist3 = paymentRepository.findDetail(id);
 
 		for (Payments p : entitylist3) {
-			Payment model2= new Payment();
+			Payment model2 = new Payment();
 			model2.setPaymentamount(p.getPaymentamount());
 			model2.setPaymentdate(p.getPaymentdate());
 			model2.setPaymentmethod(p.getPaymentmethod());
-			totalpaidpremium=totalpaidpremium+p.getPaymentamount();
+			totalpaidpremium = totalpaidpremium + p.getPaymentamount();
 			System.out.println(totalpaidpremium);
 			modellist.add(model2);
 		}
-		
-		entitylist4 = claimRepository.getClaimByPolicy(id);
-		
-		if(!entitylist4.isEmpty()){
-		
-		Claim model3=new Claim();
 
-		for (Claims c : entitylist4) {
-			model3.setClaimdate(c.getClaimdate());
-			model3.setClaimreason(c.getClaimreason());
-			model3.setClaimsign(c.getClaimsign());
-			
-			System.out.println(c.getClaimsign());
+		entitylist4 = claimRepository.getClaimByPolicy(id);
+
+		if (!entitylist4.isEmpty()) {
+
+			Claim model3 = new Claim();
+
+			for (Claims c : entitylist4) {
+				model3.setClaimdate(c.getClaimdate());
+				model3.setClaimreason(c.getClaimreason());
+				model3.setClaimsign(c.getClaimsign());
+
+				System.out.println(c.getClaimsign());
+			}
+
+			model1.setClaim(model3);
+
 		}
-		
-		model1.setClaim(model3);
-		
-		}
-		
+
 		model1.setTotalpaidpremium(totalpaidpremium);
-		
+
 		model1.setPaymentList(modellist);
-		
+
 		System.out.println(model1.getClaim());
-		
-		//modellist.add(model1);
+
+		// modellist.add(model1);
 
 		return model1;
 
@@ -179,7 +199,7 @@ public class PolicyServiceImpl implements PolicyService {
 
 	@Override
 	public List<Policies> findQuoteInPolicy(Long id) {
-		System.out.println("Finding: "+ id);
+		System.out.println("Finding: " + id);
 		List<Policies> entitylist = policyRepository.getPolicyByQuote(id);
 		System.out.println(entitylist);
 		return entitylist;
@@ -188,10 +208,10 @@ public class PolicyServiceImpl implements PolicyService {
 	@Override
 	public Boolean checkYearlyPayment(Policy pol) {
 		boolean check = true;
-		double yearlypremium=pol.getYearlypremium();
-		double totalpaidpremium=pol.getTotalpaidpremium();
+		double yearlypremium = pol.getYearlypremium();
+		double totalpaidpremium = pol.getTotalpaidpremium();
 		if (totalpaidpremium >= yearlypremium) {
-			check=false;
+			check = false;
 		}
 		return check;
 	}
@@ -204,7 +224,7 @@ public class PolicyServiceImpl implements PolicyService {
 	}
 
 	@Override
-	public Policy getQuoteData(Policy pol,Quote quo) {
+	public Policy getQuoteData(Policy pol, Quote quo) {
 		pol.setQuoteid(quo.getId());
 		pol.setQuotename(quo.getName());
 		pol.setQuotenrc(quo.getNrc());
@@ -225,7 +245,7 @@ public class PolicyServiceImpl implements PolicyService {
 		} else {
 			pol.setFirstpaymentamount(quo.getYearlypremium());
 		}
-		
+
 		return pol;
 	}
 
