@@ -39,6 +39,8 @@ public class PaymentServiceImpl implements PaymentService {
 		paymentEntity.setPaymentdate(date);
 		paymentEntity.setPaymentmethod(pay.getPaymentmethod());
 		
+		String policystatus=pol.getPolicystatus();
+		
 		int policyterm=pol.getPolicyterm();	
 		Calendar cal = Calendar.getInstance();
 		cal.add(Calendar.YEAR, policyterm);
@@ -49,9 +51,12 @@ public class PaymentServiceImpl implements PaymentService {
 		double yearlypremium=pol.getYearlypremium();
 		double totalpaidpremium=pol.getTotalpaidpremium();
 		
+		System.out.println(yearlypremium);
+		System.out.println(totalpaidpremium);
+		
 		Policies attachedPolicy = em.find(Policies.class, pay.getPolicyid());
 		
-		if (totalpaidpremium >= yearlypremium) {
+		if (totalpaidpremium >= yearlypremium && policystatus.equals("Pending")) {
 			attachedPolicy.setPolicystatus("Active");
 			attachedPolicy.setPolicyeffectivedate(date);
 			attachedPolicy.setPolicyenddate(enddate);
