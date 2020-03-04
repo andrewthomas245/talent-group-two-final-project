@@ -49,10 +49,10 @@ public class PaymentServiceImpl implements PaymentService {
 		System.out.println(pay.getPolicyid());
 		
 		double yearlypremium=pol.getYearlypremium();
-		double totalpaidpremium=pol.getTotalpaidpremium();
+		double totalpaidpremium=pol.getTotalpaidpremium()+pay.getPaymentamount();
 		
-		System.out.println(yearlypremium);
-		System.out.println(totalpaidpremium);
+		System.out.println("Yearly: "+yearlypremium);
+		System.out.println("Total Paid: "+totalpaidpremium);
 		
 		Policies attachedPolicy = em.find(Policies.class, pay.getPolicyid());
 		

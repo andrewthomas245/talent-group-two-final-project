@@ -138,7 +138,8 @@
 
 							<h:outputText value="Claim Type: *" />
 							<p:selectOneMenu id="claimtype"
-								value="#{claimController.claim.claimreason}" rendered="#{policyController.policy.totalpaidpremium==policyController.policy.totalpremium}">
+								value="#{claimController.claim.claimreason}" rendered="#{policyController.policy.totalpaidpremium==policyController.policy.totalpremium}" required="true"
+								requiredMessage="Claim Type must be selected.">
 								<f:selectItem itemLabel="Select One" noSelectionOption="true" />
 								<f:selectItem itemLabel="Maturity" itemValue="Maturity" />
 								<f:selectItem itemLabel="Permenently Disabled"
@@ -189,7 +190,7 @@
 							<h:outputText value="#{policyController.policy.quotename}"
 								styleClass="outputLabel" />
 
-							<h:outputText value="Claim Reason: " />
+							<h:outputText value="Claim Type: " />
 							<h:outputText value="#{claimController.claim.claimreason}"
 								styleClass="outputLabel" />
 
