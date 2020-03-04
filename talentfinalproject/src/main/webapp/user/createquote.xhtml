@@ -214,9 +214,9 @@
 
 							<h:outputText value="Residence No: *" />
 							<p:inputNumber id="qresidence"
-								value="#{quoteController.quote.residenceno}" maxlength="3"
-								maxValue="999" decimalPlaces="0" minValue="1"
-								validatorMessage="Residence must be between 1 and 100.">
+								value="#{quoteController.quote.residenceno}" maxlength="4"
+								maxValue="9999" decimalPlaces="0" minValue="1"
+								validatorMessage="Residence must be between 1 and 9999.">
 								<p:ajax update="qresidencem" event="keyup" />
 							</p:inputNumber>
 							<p:message id="qresidencem" for="qresidence" />
@@ -237,9 +237,9 @@
 							<p:inputText id="qtownship"
 								value="#{quoteController.quote.township}" required="true"
 								requiredMessage="Township is required."
-								validatorMessage="Township can be 3 to 25 characters, numbers with or without special characters '_' or '.' or '/' or '-'.">
+								validatorMessage="Township must be 3 to 25 characters without special characters.">
 								<f:validateRegex
-									pattern="^[a-zA-Z0-9_./-]+( [a-zA-Z0-9_./-]+)*$" />
+									pattern="^[a-zA-Z_]+( [a-zA-Z_]+)*$" />
 								<f:validateLength minimum="3" maximum="25" />
 								<p:ajax update="qtownshipm" event="keyup" />
 							</p:inputText>
