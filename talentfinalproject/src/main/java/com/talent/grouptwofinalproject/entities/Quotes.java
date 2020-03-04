@@ -48,11 +48,11 @@ public class Quotes {
 	private String phone;
 	
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "address_id", referencedColumnName = "addressid")
+    @JoinColumn(name = "address_id", referencedColumnName = "addressid", nullable = false)
     private Addresses addresses;
     
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "benificiary_id", referencedColumnName = "benificiaryid")
+    @JoinColumn(name = "benificiary_id", referencedColumnName = "benificiaryid", nullable = false)
     private Benificiaries benificiaries;
     
 	@OneToOne(mappedBy = "quotes")
