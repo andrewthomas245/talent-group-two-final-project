@@ -127,37 +127,37 @@
 			<p:panel header="Personal Information">
 				<h:panelGrid columns="2" columnClasses="label, value">
 					<h:outputText value="Name: " />
-					<h:outputText value="#{quoteController.quote.name}"
+					<h:outputText value="#{quoteController.viewquote.name}"
 						styleClass="outputLabel" />
 
 					<h:outputText value="Gender: " />
-					<h:outputText value="#{quoteController.quote.gender}"
+					<h:outputText value="#{quoteController.viewquote.gender}"
 						styleClass="outputLabel" />
 
 					<h:outputText value="Father's Name: " />
-					<h:outputText value="#{quoteController.quote.fathername}"
+					<h:outputText value="#{quoteController.viewquote.fathername}"
 						styleClass="outputLabel" />
 
 					<h:outputText value="Age: " />
-					<h:outputText value="#{quoteController.quote.age}"
+					<h:outputText value="#{quoteController.viewquote.age}"
 						styleClass="outputLabel" />
 
 					<h:outputText value="Date of Birth: " />
-					<h:outputText value="#{quoteController.quote.dob}"
+					<h:outputText value="#{quoteController.viewquote.dob}"
 						styleClass="outputLabel">
 						<f:convertDateTime pattern="dd/MM/yyyy" />
 					</h:outputText>
 
 					<h:outputText value="NRC: " />
-					<h:outputText value="#{quoteController.quote.nrc}"
+					<h:outputText value="#{quoteController.viewquote.nrc}"
 						styleClass="outputLabel" />
 
 					<h:outputText value="Occupation: " />
-					<h:outputText value="#{quoteController.quote.occupation}"
+					<h:outputText value="#{quoteController.viewquote.occupation}"
 						styleClass="outputLabel" />
 
 					<h:outputText value="Phone: (+95)" />
-					<h:outputText value="#{quoteController.quote.phone}"
+					<h:outputText value="#{quoteController.viewquote.phone}"
 						styleClass="outputLabel" />
 				</h:panelGrid>
 			</p:panel>
@@ -165,19 +165,19 @@
 			<p:panel header="Address Information">
 				<h:panelGrid columns="2" columnClasses="label, value">
 					<h:outputText value="Residence No: " />
-					<h:outputText value="#{quoteController.quote.residenceno}"
+					<h:outputText value="#{quoteController.viewquote.residenceno}"
 						styleClass="outputLabel" />
 
 					<h:outputText value="Road or Street: " />
-					<h:outputText value="#{quoteController.quote.roadstreet}"
+					<h:outputText value="#{quoteController.viewquote.roadstreet}"
 						styleClass="outputLabel" />
 
 					<h:outputText value="Township: " />
-					<h:outputText value="#{quoteController.quote.township}"
+					<h:outputText value="#{quoteController.viewquote.township}"
 						styleClass="outputLabel" />
 
 					<h:outputText value="City: " />
-					<h:outputText value="#{quoteController.quote.city}"
+					<h:outputText value="#{quoteController.viewquote.city}"
 						styleClass="outputLabel" />
 
 				</h:panelGrid>
@@ -186,27 +186,27 @@
 			<p:panel header="Benificiary Information">
 				<h:panelGrid columns="2" columnClasses="label, value">
 					<h:outputText value="Benificiary's Name: " />
-					<h:outputText value="#{quoteController.quote.benificiaryname}"
+					<h:outputText value="#{quoteController.viewquote.benificiaryname}"
 						styleClass="outputLabel" />
 
 					<h:outputText value="Benificiary's Gender: " />
-					<h:outputText value="#{quoteController.quote.benificiarygender}"
+					<h:outputText value="#{quoteController.viewquote.benificiarygender}"
 						styleClass="outputLabel" />
 
 					<h:outputText value="Benificiary's NRC" />
-					<h:outputText value="#{quoteController.quote.benificiarynrc}"
+					<h:outputText value="#{quoteController.viewquote.benificiarynrc}"
 						styleClass="outputLabel" />
 
 					<h:outputText value="Relationship with Insurer: " />
-					<h:outputText value="#{quoteController.quote.relationship}"
+					<h:outputText value="#{quoteController.viewquote.relationship}"
 						styleClass="outputLabel" />
 
 					<h:outputText value="Benificiary's Phone: " />
-					<h:outputText value="#{quoteController.quote.benificiaryphone}"
+					<h:outputText value="#{quoteController.viewquote.benificiaryphone}"
 						styleClass="outputLabel" />
 
 					<h:outputText value="Benificiary's Address: " />
-					<h:outputText value="#{quoteController.quote.benificiaryaddress}"
+					<h:outputText value="#{quoteController.viewquote.benificiaryaddress}"
 						styleClass="outputLabel" />
 				</h:panelGrid>
 			</p:panel>
@@ -214,56 +214,56 @@
 			<p:panel header="Payment Information">
 				<h:panelGrid columns="2" columnClasses="label, value">
 					<h:outputText value="Sum Insured: " />
-					<h:outputText value="#{quoteController.quote.suminsured}"
+					<h:outputText value="#{quoteController.viewquote.suminsured}"
 						styleClass="outputLabel">
 						<f:convertNumber maxIntegerDigits="10" maxFractionDigits="1"
 							pattern="######## Kyats" />
 					</h:outputText>
 
 					<h:outputText value="Policy Term: " />
-					<h:outputText value="#{quoteController.quote.policyterm}"
+					<h:outputText value="#{quoteController.viewquote.policyterm}"
 						styleClass="outputLabel">
 						<f:convertNumber maxIntegerDigits="10" maxFractionDigits="1"
 							pattern="######## Years" />
 					</h:outputText>
 
 					<h:outputText value="Payment Plan: " />
-					<h:outputText value="#{quoteController.quote.premiumplan}"
+					<h:outputText value="#{quoteController.viewquote.premiumplan}"
 						styleClass="outputLabel">
 						<f:convertNumber maxIntegerDigits="10" maxFractionDigits="1"
 							pattern="######## Months" />
 					</h:outputText>
 
 					<h:outputText value="Monthly Premium: " />
-					<h:outputText value="#{quoteController.quote.monthlypremium}"
+					<h:outputText value="#{quoteController.viewquote.monthlypremium}"
 						styleClass="outputLabel">
 						<f:convertNumber maxIntegerDigits="10" maxFractionDigits="1"
 							pattern="######## Kyats" />
 					</h:outputText>
 
 					<h:outputText value="Quarterly Premium: " />
-					<h:outputText value="#{quoteController.quote.quarterlypremium}"
+					<h:outputText value="#{quoteController.viewquote.quarterlypremium}"
 						styleClass="outputLabel">
 						<f:convertNumber maxIntegerDigits="10" maxFractionDigits="1"
 							pattern="######## Kyats" />
 					</h:outputText>
 
 					<h:outputText value="Bi-annually Premium: " />
-					<h:outputText value="#{quoteController.quote.halfyearpremium}"
+					<h:outputText value="#{quoteController.viewquote.halfyearpremium}"
 						styleClass="outputLabel">
 						<f:convertNumber maxIntegerDigits="10" maxFractionDigits="1"
 							pattern="######## Kyats" />
 					</h:outputText>
 
 					<h:outputText value="Yearly Premium: " />
-					<h:outputText value="#{quoteController.quote.yearlypremium}"
+					<h:outputText value="#{quoteController.viewquote.yearlypremium}"
 						styleClass="outputLabel">
 						<f:convertNumber maxIntegerDigits="10" maxFractionDigits="1"
 							pattern="######## Kyats" />
 					</h:outputText>
 
 					<h:outputText value="Total Pay Amount: " />
-					<h:outputText value="#{quoteController.quote.totalpayamount}"
+					<h:outputText value="#{quoteController.viewquote.totalpayamount}"
 						styleClass="outputLabel">
 						<f:convertNumber maxIntegerDigits="10" maxFractionDigits="1"
 							pattern="######## Kyats" />
@@ -272,13 +272,13 @@
 			</p:panel>
 			<br />
 			<p:commandButton value="Buy Policy"
-				action="#{policyController.getToPolicy(quoteController.quote)}"
+				action="#{policyController.getToPolicy(quoteController.viewquote)}"
 				update="growl" process="@this" />
 			<p:commandButton value="Edit Quote" style="margin-left:20px;"
-				action="#{quoteController.getToEdit(quoteController.quote)}"
+				action="#{quoteController.getToEdit(quoteController.viewquote)}"
 				update="growl" process="@this" />
 			<p:commandButton value="Delete Quote" style="margin-left:20px;"
-				action="#{quoteController.delete(quoteController.quote)}"
+				action="#{quoteController.delete(quoteController.viewquote)}"
 				update="growl" process="@this">
 				<p:confirm header="Confirmation" message="Are you sure?"
 					icon="pi pi-exclamation-triangle" />

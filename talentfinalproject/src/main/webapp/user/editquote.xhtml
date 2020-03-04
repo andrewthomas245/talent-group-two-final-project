@@ -117,7 +117,7 @@
 	<br />
 
 	<div class="container">
-		<h2>Edit the Quote - #{quoteController.quote.id}</h2>
+		<h2>Edit the Quote - #{quoteController.viewquote.id}</h2>
 		<p>Edit the quotes and save them.</p>
 		<br />
 		<h:form>
@@ -129,7 +129,7 @@
 					<p:panel header="Fill your personal details here.">
 						<h:panelGrid columns="3" columnClasses="label, value, message">
 							<h:outputText value="Name of Insured: *" />
-							<p:inputText id="qname" value="#{quoteController.quote.name}"
+							<p:inputText id="qname" value="#{quoteController.viewquote.name}"
 								validatorMessage="Name must be 3 to 25 characters only without spaces before and after.">
 								<f:validateRegex pattern="^[a-zA-Z_]+( [a-zA-Z_]+)*$" />
 								<f:validateLength minimum="3" maximum="25" />
@@ -139,7 +139,7 @@
 
 							<h:outputText value="Gender: *" />
 							<p:selectOneRadio id="qgender"
-								value="#{quoteController.quote.gender}" required="true"
+								value="#{quoteController.viewquote.gender}" required="true"
 								requiredMessage="Gender must be selected.">
 								<f:selectItem itemLabel="Male" itemValue="Male" />
 								<f:selectItem itemLabel="Female" itemValue="Female" />
@@ -148,10 +148,10 @@
 
 							<h:outputText value="Father's Name: *" />
 							<p:inputText id="fathername"
-								value="#{quoteController.quote.fathername}" required="true"
+								value="#{quoteController.viewquote.fathername}" required="true"
 								requiredMessage="Father's Name is required."
 								validatorMessage="Father's Name must be 3 to 25 characters only without spaces before and after.">
-								<f:validateRegex pattern="^[a-zA-Z_]+( [a-zA-Z0-9_]+)*$" />
+								<f:validateRegex pattern="^[a-zA-Z_]+( [a-zA-Z_]+)*$" />
 								<f:validateLength minimum="3" maximum="25" />
 								<p:ajax update="fathernamem" event="keyup" />
 							</p:inputText>
@@ -159,18 +159,18 @@
 
 							<h:outputText value="Date of Birth: *" />
 							<p:calendar id="dob" yearRange="1960:2010"
-								value="#{quoteController.quote.dob}" navigator="true"
+								value="#{quoteController.viewquote.dob}" navigator="true"
 								required="true"
 								requiredMessage="Date of Birth must be selected." locale="de"
 								pattern="dd.MM.yyyy">
 								<p:ajax event="dateSelect"
-									listener="#{quoteController.onDateSelect}"
+									listener="#{quoteController.onDateSelectEdit}"
 									update="paymentdetails" />
 							</p:calendar>
 							<p:message id="dobm" for="dob" />
 
 							<h:outputText value="NRC: *" />
-							<p:inputMask id="qnrc" value="#{quoteController.quote.nrc}"
+							<p:inputMask id="qnrc" value="#{quoteController.viewquote.nrc}"
 								mask="99/aaaaaa(a)999999" required="true"
 								requiredMessage="NRC is required.">
 								<p:ajax update="qnrcm" event="keyup" />
@@ -179,7 +179,7 @@
 
 							<h:outputText value="Occupation: *" />
 							<p:inputText id="occupation"
-								value="#{quoteController.quote.occupation}" required="true"
+								value="#{quoteController.viewquote.occupation}" required="true"
 								requiredMessage="Occupation is required."
 								validatorMessage="Occupation must be 3 to 25 characters with numbers only without spaces before and after.">
 								<f:validateRegex pattern="^[a-zA-Z0-9_]+( [a-zA-Z0-9_]+)*$" />
@@ -189,7 +189,7 @@
 							<p:message id="occupationm" for="occupation" />
 
 							<h:outputText value="Phone (+95) :*" />
-							<p:inputNumber id="qphone" value="#{quoteController.quote.phone}"
+							<p:inputNumber id="qphone" value="#{quoteController.viewquote.phone}"
 								maxlength="10" maxValue="9999999999" decimalPlaces="0"
 								required="true" requiredMessage="Phone is required."
 								validatorMessage="Phone must have at least seven numbers.">
@@ -207,7 +207,7 @@
 
 							<h:outputText value="Residence No: *" />
 							<p:inputNumber id="qresidence"
-								value="#{quoteController.quote.residenceno}" maxlength="3"
+								value="#{quoteController.viewquote.residenceno}" maxlength="3"
 								maxValue="999" decimalPlaces="0" minValue="1"
 								validatorMessage="Residence must be between 1 and 100.">
 								<p:ajax update="qresidencem" event="keyup" />
@@ -216,7 +216,7 @@
 
 							<h:outputText value="Road or Street: *" />
 							<p:inputText id="qroad"
-								value="#{quoteController.quote.roadstreet}" required="true"
+								value="#{quoteController.viewquote.roadstreet}" required="true"
 								requiredMessage="Road or Street is required."
 								validatorMessage="Road or Street can be 3 to 25 characters, numbers with or without special characters '_' or '.' or '/' or '-'.">
 								<f:validateRegex
@@ -228,7 +228,7 @@
 
 							<h:outputText value="Township: *" />
 							<p:inputText id="qtownship"
-								value="#{quoteController.quote.township}" required="true"
+								value="#{quoteController.viewquote.township}" required="true"
 								requiredMessage="Township is required."
 								validatorMessage="Township can be 3 to 25 characters, numbers with or without special characters '_' or '.' or '/' or '-'.">
 								<f:validateRegex
@@ -239,7 +239,7 @@
 							<p:message id="qtownshipm" for="qtownship" />
 
 							<h:outputText value="City: *" />
-							<p:inputText id="qcity" value="#{quoteController.quote.city}"
+							<p:inputText id="qcity" value="#{quoteController.viewquote.city}"
 								required="true" requiredMessage="City is required."
 								validatorMessage="City must be 3 to 15 characters only without spaces before and after.">
 								<f:validateRegex pattern="^[a-zA-Z_]+( [a-zA-Z_]+)*$" />
@@ -256,7 +256,7 @@
 						<h:panelGrid columns="3" columnClasses="label, value, message">
 							<h:outputText value="Sum Insured: *" />
 							<p:inputNumber id="amount"
-								value="#{quoteController.quote.suminsured}" maxValue="99999999"
+								value="#{quoteController.viewquote.suminsured}" maxValue="99999999"
 								decimalPlaces="0"
 								validatorMessage="Sum Insured must be between 1000000 and 50000000.">
 								<f:validateLongRange minimum="1000000" maximum="50000000" />
@@ -266,8 +266,8 @@
 
 							<h:outputText value="Policy Term: *" />
 							<p:selectOneMenu id="policy1"
-								value="#{quoteController.quote.policyterm}" required="true"
-								rendered="#{quoteController.quote.age &gt;= 10 and quoteController.quote.age &lt;= 55}"
+								value="#{quoteController.viewquote.policyterm}" required="true"
+								rendered="#{quoteController.viewquote.age &gt;= 10 and quoteController.viewquote.age &lt;= 55}"
 								requiredMessage="Policy Term must be selected.">
 								<f:selectItem itemLabel="
 								Select One"
@@ -277,8 +277,8 @@
 								<f:selectItem itemLabel="10 Years" itemValue="10" />
 							</p:selectOneMenu>
 							<p:selectOneMenu id="policy2"
-								value="#{quoteController.quote.policyterm}" required="true"
-								rendered="#{quoteController.quote.age &gt;= 56 and quoteController.quote.age &lt;= 58}"
+								value="#{quoteController.viewquote.policyterm}" required="true"
+								rendered="#{quoteController.viewquote.age &gt;= 56 and quoteController.viewquote.age &lt;= 58}"
 								requiredMessage="Policy Term must be selected.">
 								<f:selectItem itemLabel="Select One" itemValue="#{null}"
 									noSelectionOption="true" />
@@ -286,23 +286,23 @@
 								<f:selectItem itemLabel="7 Years" itemValue="7" />
 							</p:selectOneMenu>
 							<p:selectOneMenu id="policy3"
-								value="#{quoteController.quote.policyterm}" required="true"
-								rendered="#{quoteController.quote.age &gt;= 59 and quoteController.quote.age &lt;= 60}"
+								value="#{quoteController.viewquote.policyterm}" required="true"
+								rendered="#{quoteController.viewquote.age &gt;= 59 and quoteController.viewquote.age &lt;= 60}"
 								requiredMessage="Policy Term must be selected.">
 								<f:selectItem itemLabel="Select One" itemValue="#{null}"
 									noSelectionOption="true" />
 								<f:selectItem itemLabel="5 Years" itemValue="5" />
 							</p:selectOneMenu>
 							<p:message id="policym1" for="policy1"
-								rendered="#{quoteController.quote.age &gt;= 10 and quoteController.quote.age &lt;= 55}" />
+								rendered="#{quoteController.viewquote.age &gt;= 10 and quoteController.viewquote.age &lt;= 55}" />
 							<p:message id="policym2" for="policy2"
-								rendered="#{quoteController.quote.age &gt;= 56 and quoteController.quote.age &lt;= 58}" />
+								rendered="#{quoteController.viewquote.age &gt;= 56 and quoteController.viewquote.age &lt;= 58}" />
 							<p:message id="policym3" for="policy3"
-								rendered="#{quoteController.quote.age &gt;= 59 and quoteController.quote.age &lt;= 60}" />
+								rendered="#{quoteController.viewquote.age &gt;= 59 and quoteController.viewquote.age &lt;= 60}" />
 
 							<h:outputText value="Premium Plan: *" />
 							<p:selectOneMenu id="premiumplan"
-								value="#{quoteController.quote.premiumplan}" required="true"
+								value="#{quoteController.viewquote.premiumplan}" required="true"
 								requiredMessage="Premium Plan must be selected.">
 								<f:selectItem itemLabel="Select One" itemValue="#{null}"
 									noSelectionOption="true" />
@@ -321,7 +321,7 @@
 						<h:panelGrid columns="3" columnClasses="label, value, message">
 							<h:outputText value="Beneficiary's Name: *" />
 							<p:inputText id="bname"
-								value="#{quoteController.quote.benificiaryname}" required="true"
+								value="#{quoteController.viewquote.benificiaryname}" required="true"
 								requiredMessage="Beneficiary's Name is required."
 								validatorMessage="Beneficiary's Name must be 3 to 25 characters only without spaces before and after.">
 								<f:validateRegex pattern="^[a-zA-Z_]+( [a-zA-Z_]+)*$" />
@@ -333,7 +333,7 @@
 
 							<h:outputText value="Gender: *" />
 							<p:selectOneRadio id="genderb"
-								value="#{quoteController.quote.benificiarygender}"
+								value="#{quoteController.viewquote.benificiarygender}"
 								required="true" requiredMessage="Gender must be selected.">
 								<f:selectItem itemLabel="Male" itemValue="Male" />
 								<f:selectItem itemLabel="Female" itemValue="Female" />
@@ -342,7 +342,7 @@
 
 							<h:outputText value="NRC: *" />
 							<p:inputMask id="nrcb"
-								value="#{quoteController.quote.benificiarynrc}"
+								value="#{quoteController.viewquote.benificiarynrc}"
 								mask="99/aaaaaa(a)999999" required="true"
 								requiredMessage="NRC is required.">
 							</p:inputMask>
@@ -350,7 +350,7 @@
 
 							<h:outputText value="Relationship with Insurer: *" />
 							<p:selectOneMenu id="relationship"
-								value="#{quoteController.quote.relationship}" required="true"
+								value="#{quoteController.viewquote.relationship}" required="true"
 								requiredMessage="Relationship with Insurer is required.">
 								<f:selectItem itemLabel="Select One" itemValue="#{null}"
 									noSelectionOption="true" />
@@ -367,7 +367,7 @@
 
 							<h:outputText value="Address: *" />
 							<p:inputTextarea id="addressb"
-								value="#{quoteController.quote.benificiaryaddress}"
+								value="#{quoteController.viewquote.benificiaryaddress}"
 								required="true" requiredMessage="Address is required."
 								validatorMessage="Address can be 5 to 50 characters, numbers with or without special characters '_' or '.' or '/' or '-'.">
 								<f:validateRegex
@@ -379,7 +379,7 @@
 
 							<h:outputText value="Phone: (+95)*" />
 							<p:inputNumber id="phoneb"
-								value="#{quoteController.quote.benificiaryphone}" maxlength="10"
+								value="#{quoteController.viewquote.benificiaryphone}" maxlength="10"
 								maxValue="9999999999" decimalPlaces="0" required="true"
 								requiredMessage="Phone is required."
 								validatorMessage="Phone must have at least seven numbers.">

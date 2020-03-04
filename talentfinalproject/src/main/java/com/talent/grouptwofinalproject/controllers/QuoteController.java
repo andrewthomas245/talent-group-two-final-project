@@ -24,6 +24,7 @@ import com.talent.grouptwofinalproject.services.UserService;
 @ViewScoped
 public class QuoteController {
 	private Quote quote = new Quote();
+	private Quote viewquote = new Quote();
 
 	private List<Quote> quotes = new ArrayList<>();
 
@@ -33,6 +34,14 @@ public class QuoteController {
 
 	public void setQuote(Quote quote) {
 		this.quote = quote;
+	}
+
+	public Quote getViewquote() {
+		return viewquote;
+	}
+
+	public void setViewquote(Quote viewquote) {
+		this.viewquote = viewquote;
 	}
 
 	public List<Quote> getQuotes() {
@@ -79,15 +88,15 @@ public class QuoteController {
 	}
 
 	public String edit() {
-		quoteservice.updateQuote(quote);
+		quoteservice.updateQuote(viewquote);
 		FacesMessage msg = new FacesMessage("Successful",
-				"Quote with Name: " + quote.getName() + " is edited successfully.");
+				"Quote with Name: " + viewquote.getName() + " is edited successfully.");
 
 		FacesContext context = FacesContext.getCurrentInstance();
 		context.addMessage(null, msg);
 		context.getExternalContext().getFlash().setKeepMessages(true);
 
-		quote = new Quote();
+		viewquote = new Quote();
 
 		return "/user/myquotes.xhtml?faces-redirect=true";
 
@@ -112,13 +121,13 @@ public class QuoteController {
 
 			quoteservice.deleteQuote(quo.getId());
 			FacesMessage msg = new FacesMessage("Successful",
-					"Quote with Name: " + quote.getName() + " is deleted successfully.");
+					"Quote with Name: " + viewquote.getName() + " is deleted successfully.");
 
 			FacesContext context = FacesContext.getCurrentInstance();
 			context.addMessage(null, msg);
 			context.getExternalContext().getFlash().setKeepMessages(true);
 
-			quote = new Quote();
+			viewquote = new Quote();
 
 			return "/user/myquotes.xhtml?faces-redirect=true";
 		}
@@ -149,7 +158,7 @@ public class QuoteController {
 	}
 
 	public String confirmedited() {
-		quote = quoteservice.calculate(quote);
+		viewquote = quoteservice.calculate(viewquote);
 		return "/user/confirmeditedquote.xhtml?faces-redirect=true";
 	}
 
@@ -158,7 +167,7 @@ public class QuoteController {
 	}
 
 	public String fetchByQuote(Long id) {
-		quote = quoteservice.getQuoteDetailById(id);
+		viewquote = quoteservice.getQuoteDetailById(id);
 		return "/user/quotedetail.xhtml?faces-redirect=true";
 	}
 
@@ -181,5 +190,15 @@ public class QuoteController {
 	    
 	    int age=currentyear-birthyear;
 	    quote.setAge(age);
+	}
+	
+	public void onDateSelectEdit(SelectEvent event) {
+	    int yearfrombirthdate = viewquote.getDob().getYear();
+	    int birthyear;
+
+	    birthyear=1900+yearfrombirthdate;
+	    
+	    int age=currentyear-birthyear;
+	    viewquote.setAge(age);
 	}
 }

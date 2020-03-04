@@ -115,7 +115,7 @@
 
 	<div class="container">
 		<h2>Buy A Policy</h2>
-		<p>With Quote - #{quoteController.quote.id}</p>
+		<p>With Quote - #{quoteController.viewquote.id}</p>
 		<br />
 		<h:form>
 
@@ -160,7 +160,7 @@
 							</h:outputText>
 
 							<h:outputText value="Total Pay Amount: " />
-							<h:outputText value="#{quoteController.quote.totalpayamount}"
+							<h:outputText value="#{quoteController.viewquote.totalpayamount}"
 								styleClass="outputLabel">
 								<f:convertNumber maxIntegerDigits="10" maxFractionDigits="1"
 									pattern="######## Kyats" />
@@ -216,7 +216,7 @@
 							</h:outputText>
 
 							<h:outputText value="Total Pay Amount: " />
-							<h:outputText value="#{quoteController.quote.totalpayamount}"
+							<h:outputText value="#{quoteController.viewquote.totalpayamount}"
 								styleClass="outputLabel">
 								<f:convertNumber maxIntegerDigits="10" maxFractionDigits="1"
 									pattern="######## Kyats" />

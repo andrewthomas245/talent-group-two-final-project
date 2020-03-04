@@ -22,6 +22,8 @@ import com.talent.grouptwofinalproject.services.UserService;
 public class UserController {
 
 	private UserModel user = new UserModel();
+	
+	private UserModel viewuser = new UserModel();
 
 	private boolean skip;
 
@@ -94,7 +96,7 @@ public class UserController {
 
 	public void fetchUser() {
 		System.out.println("Here");
-		user = userService.getUserInfo();
+		viewuser = userService.getUserInfo();
 	}
 
 	public UserModel getUser() {
@@ -103,6 +105,14 @@ public class UserController {
 
 	public void setUser(UserModel user) {
 		this.user = user;
+	}
+
+	public UserModel getViewuser() {
+		return viewuser;
+	}
+
+	public void setViewuser(UserModel viewuser) {
+		this.viewuser = viewuser;
 	}
 
 }
