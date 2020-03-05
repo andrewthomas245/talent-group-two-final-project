@@ -230,7 +230,7 @@
 							<p:inputText id="qtownship"
 								value="#{quoteController.viewquote.township}" required="true"
 								requiredMessage="Township is required."
-								validatorMessage="Township must be 3 to 25 characters without special characters.">
+								validatorMessage="Township must be 3 to 25 characters without numbers and special characters.">
 								<f:validateRegex
 									pattern="^[a-zA-Z_]+( [a-zA-Z_]+)*$" />
 								<f:validateLength minimum="3" maximum="25" />

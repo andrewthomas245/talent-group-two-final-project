@@ -163,7 +163,7 @@ body {
 					value="#{userController.user.username}" required="true"
 					requiredMessage="User Name is required."
 					validatorMessage="User Name must be 3 to 25 characters with numbers only without spaces before and after.">
-					<f:validateRegex pattern="^[a-zA-Z_]+( [a-zA-Z0-9_]+)*$" />
+					<f:validateRegex pattern="^[a-zA-Z0-9_]+( [a-zA-Z0-9_]+)*$" />
 					<f:validateLength minimum="3" maximum="25" />
 					<p:ajax update="msgs" event="keyup" />
 				</p:inputText>
